@@ -12,6 +12,3 @@
 
 ### 5. ProgressionManager
 
-### 6. Save data structure
-
-### 7. Information network
