@@ -14,6 +14,7 @@ permissions:
 
 jobs:
   build-pdf:
+    name: Build GettingStarted.pdf
     runs-on: ubuntu-latest
 
     steps:
@@ -29,7 +30,7 @@ jobs:
         run: gem install asciidoctor-pdf
 
       - name: Build GettingStarted.pdf
-        run: 
+        run: |
           mkdir -p bin/pdf
           asciidoctor-pdf bin/docs/GettingStarted.adoc -o bin/pdf/GettingStarted.pdf
 
