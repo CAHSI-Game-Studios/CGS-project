@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "bin/GettingStarted.adoc"
+      - "bin/docs/GettingStarted.adoc"
 
   workflow_dispatch:
 
