@@ -1,0 +1,46 @@
+name: Build Getting Started PDF
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "bin/GettingStarted.adoc"
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+
+      - name: Install Asciidoctor PDF
+        run: gem install asciidoctor-pdf
+
+      - name: Build GettingStarted.pdf
+        run: asciidoctor-pdf bin/GettingStarted.adoc -o GettingStarted.pdf
+
+      - name: Commit updated PDF
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add GettingStarted.pdf
+
+          if git diff --cached --quiet; then
+            echo "GettingStarted.pdf has not changed."
+          else
+            git commit -m "docs: rebuild GettingStarted.pdf"
+            git push
+          fi
