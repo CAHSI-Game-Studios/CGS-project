@@ -824,6 +824,8 @@ Before opening a Pull Request:
 
 == Final Reminder
 
+Pushing *directly* to *main* is a crime.
+
 The standard contribution loop is:
 
 [source,text]
