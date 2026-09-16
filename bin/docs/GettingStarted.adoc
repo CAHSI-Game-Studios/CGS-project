@@ -36,7 +36,7 @@ A Producer, or other authorized organization member will send you an invitation.
 
 After accepting the invitation:
 
-* Confirm that TheArcade organization appears under your GitHub organizations.
+* Confirm that The Arcade organization appears under your GitHub organizations.
 * Confirm that you can view the project repository.
 * Confirm that you have been placed in the appropriate GitHub team or teams.
 * If you cannot access the repository, contact a Lead or Producer.
@@ -49,7 +49,7 @@ Team roles are *not generally mutually exclusive*. A collaborator may participat
 
 All specialized roles inherit the responsibilities of *The Arcade Collaborator*.
 
-=== TheArcade Collaborator
+=== The Arcade Collaborator
 
 Every organization member is first a Collaborator.
 
@@ -140,7 +140,7 @@ Lead assignments may change between milestones or Sprints.
 
 == Installing GitHub Desktop
 
-TheArcade recommends *GitHub Desktop* for the standard team workflow. It provides a graphical interface for Git operations such as cloning, Fetching, Pulling, creating branches, committing, Pushing, and opening Pull Requests.
+The Arcade recommends *GitHub Desktop* for the standard team workflow. It provides a graphical interface for Git operations such as cloning, Fetching, Pulling, creating branches, committing, Pushing, and opening Pull Requests.
 
 Use GitHub's official installation and setup documentation:
 
@@ -151,9 +151,9 @@ https://docs.github.com/en/desktop/overview/getting-started-with-github-desktop[
 After installation:
 
 . Open GitHub Desktop.
-. Sign in using the GitHub account that belongs to TheArcade organization.
+. Sign in using the GitHub account that belongs to The Arcade organization.
 . Confirm the name and email that will be attached to your commits.
-. Confirm that you can see the TheArcade repository when selecting a repository to clone.
+. Confirm that you can see the The Arcade repository when selecting a repository to clone.
 
 For this workflow, contributors are *not required* to use command-line Git.
 
@@ -186,7 +186,7 @@ https://docs.github.com/en/desktop/adding-and-cloning-repositories/cloning-a-rep
 In general:
 
 . Sign in to GitHub and GitHub Desktop.
-. Open the TheArcade repository on GitHub.
+. Open the The Arcade repository on GitHub.
 . Select *Code*.
 . Choose *Open with GitHub Desktop*.
 . Select a permanent folder on your computer for the repository.
@@ -218,10 +218,13 @@ The standard workflow is:
 
 [source,text]
 ----
-Discuss work
+Discuss project needs
     |
     v
 Create Issue
+    |
+    v
+Refine issue
     |
     v
 Lead approval
@@ -411,7 +414,7 @@ If any requirement is unclear, ask before editing project files.
 
 === 7. Fetch
 
-Open GitHub Desktop and select the TheArcade repository.
+Open GitHub Desktop and select the The Arcade repository.
 
 First verify:
 
@@ -726,9 +729,9 @@ The process in which a Lead or other authorized reviewer examines a Pull Request
 
 === Merge
 
-The act of integrating approved work from one branch into another. Under the standard TheArcade workflow, the Producer performs the final merge after the required approvals.
+The act of integrating approved work from one branch into another. Under the standard The Arcade workflow, the Producer performs the final merge after the required approvals.
 
-== TheArcade Golden Rules
+== The Arcade Golden Rules
 
 . Every planned contribution begins with discussion and an Issue.
 . Every Issue must have an objective, description, and acceptance criteria.
