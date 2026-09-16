@@ -29,16 +29,7 @@ How does the character usually come across to other people?
 > Focus on the personality they *show*. Hidden motivations, fears, history, and deeper traits can stay secret.
 
 ## World of Origin
-A very short description of where the character comes from.
-
-**World / Setting Name:**  
-
-**Brief Description:**  
-What kind of place is it? Fantasy, modern, sci-fi, ruined world, strange dimension, etc.
-
-**One notable thing about their world:**  
-
-> Enough context to understand why the character might find The Arcade strange without explaining their entire setting.
+Elden ring
 
 ## Dialogue Flavor
 Optional, but useful for interactions.
