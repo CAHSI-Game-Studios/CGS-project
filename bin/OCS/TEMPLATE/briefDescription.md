@@ -1,13 +1,14 @@
 # OC Profile
 
 ## Basic Info
-**Name:**  
-**Nickname / Alias:**  
-**Pronouns:**  
-**Role / Occupation:**  
+**Name:**-> Arthur Nash  
+**Nickname / Alias:** -> Red 
+**Pronouns:** -> he/ him
+**Role / Occupation:**  ->cowboy / bounty hunter
 
 ## Physical Description
 A short description of what the character looks like.
+
 
 - General appearance:
 - Clothing / style:
