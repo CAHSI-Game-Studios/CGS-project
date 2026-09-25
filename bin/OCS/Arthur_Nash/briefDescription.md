@@ -1,13 +1,15 @@
 # OC Profile
 
 ## Basic Info
-**Name:**  
-**Nickname / Alias:**  
-**Pronouns:**  
-**Role / Occupation:**  
+**Name:**  Arthur Nash 
+**Nickname / Alias:**  -> Red
+**Pronouns:**  -> he/ him
+**Role / Occupation:**  ->cowboy / bounty hunter
+
 
 ## Physical Description
-A short description of what the character looks like.
+He has young noraml human features apart from his red skins, small horns sticking out of his cowboy hat,  and yellow eyes. 
+He wears a brown trench coat, with brown boots with a buckle.
 
 - General appearance:
 - Clothing / style:
@@ -18,18 +20,18 @@ A short description of what the character looks like.
 ## Displayed Personality
 How does the character usually come across to other people?
 
-- General demeanor:
-- Social habits:
-- Sense of humor:
-- Common attitude toward strangers:
+- General demeanor: open body language making him easy to talk and aproach him which also makes him an easy target 
+- Social habits: comedic relief 
+- Sense of humor: verbal and ckever humor
+- Common attitude toward strangers: A generally nice being
 
 **A few personality words:**  
-`Example: reserved, curious, sarcastic, excitable`
+chaotic, clumsy, curious, witty, unnaturally lucky 
 
 > Focus on the personality they *show*. Hidden motivations, fears, history, and deeper traits can stay secret.
 
 ## World of Origin
-A very short description of where the character comes from.
+He is from the wild wild west in south america where he once was a normal being and looking for power got stuck with a curse given to him by a tricky demon. The curse gave him fire powers but has to live all his life looking like a demon. 
 
 **World / Setting Name:**  
 
@@ -54,9 +56,9 @@ Optional, but useful for interactions.
 ## First-Impression Hooks
 A few things other characters can naturally notice, ask about, or react to.
 
-- 
-- 
-- 
+- Skin color, horns, or eyes 
+- How he got his fire powers (curse)
+- How many succesful bountys hes got
 
 ## Creator Notes
 Anything collaborators should know when writing scenes involving this character.
