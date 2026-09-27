@@ -1,13 +1,13 @@
 # OC Profile
 
 ## Basic Info
-**Name:**  
-**Nickname / Alias:**  
-**Pronouns:**  
-**Role / Occupation:**  
-
+**Name:**
+**Nickname / Alias:**
+**Pronouns:** 
+**Role / Occupation:** 
 ## Physical Description
 A short description of what the character looks like.
+
 
 - General appearance:
 - Clothing / style:
