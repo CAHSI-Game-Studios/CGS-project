@@ -11,6 +11,12 @@ labels:
   - implementation
 
 body:
+- type: markdown
+  attributes:
+    value: |
+      > Contributors: fill out the form below only.
+      > Do not assign users, milestones, projects, sprints, or planning metadata.
+      > Producers will manage those fields after review.
   - type: textarea
     id: objective
     attributes:
