@@ -6,6 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
 
 [node name="Player" type="CharacterBody2D" unique_id=1423827142]
+scale = Vector2(20, 20)
 script = ExtResource("1_mhyra")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1428331944]
