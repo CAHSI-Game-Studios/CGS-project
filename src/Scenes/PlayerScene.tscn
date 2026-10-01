@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://bffu4rka8dn53"]
+[gd_scene format=3 uid="uid://bqwwxohqe6up2"]
 
-[node name="PlayerScene" type="Node2D" unique_id=1252535557]
+[ext_resource type="Script" uid="uid://tsjdgjm6fuwa" path="res://Scripts/player.gd" id="1_mhyra"]
+[ext_resource type="Texture2D" uid="uid://81ppbf36wc7r" path="res://Assets/Nova.png" id="2_ttk74"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
+
+[node name="Player" type="CharacterBody2D" unique_id=1423827142]
+script = ExtResource("1_mhyra")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1428331944]
+shape = SubResource("RectangleShape2D_bhunq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1937365883]
+position = Vector2(3.5762787e-07, 0)
+scale = Vector2(0.014684288, 0.01731602)
+texture = ExtResource("2_ttk74")
