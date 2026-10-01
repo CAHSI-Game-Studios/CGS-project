@@ -1,0 +1,45 @@
+name: Documentation
+description: Request the creation, correction, or expansion of project documentation.
+title: "[Documentation] "
+labels:
+  - documentation
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > Contributors: fill out the form below only.
+        > Do not assign users, milestones, projects, sprints, or planning metadata.
+        > Producers will manage those fields after review.
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: Clearly state what documentation should be created or updated.
+      placeholder: Add instructions for cloning the repository using GitHub Desktop.
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Provide context, intended audience, affected files, and any information that must be included.
+      placeholder: |
+        Update GettingStarted.adoc with a short section explaining how new collaborators should clone the repository using GitHub Desktop.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Define the conditions required for the documentation task to be complete.
+      placeholder: |
+        - [ ] Instructions are added to GettingStarted.adoc.
+        - [ ] Steps are clear for non-technical contributors.
+        - [ ] Relevant official links are included.
+        - [ ] Formatting follows the existing AsciiDoc style.
+        - [ ] No unrelated documentation is modified.
+    validations:
+      required: true

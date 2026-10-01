@@ -1,0 +1,45 @@
+name: Asset Requirement
+description: Request an art, animation, audio, or other game asset.
+title: "[Asset] "
+labels:
+  - asset
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > Contributors: fill out the form below only.
+        > Do not assign users, milestones, projects, sprints, or planning metadata.
+        > Producers will manage those fields after review.
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: State what asset is required and its intended purpose.
+      placeholder: Create a hover sound effect for main-menu buttons.
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the asset, its intended use, style, format, dimensions, or other relevant requirements.
+      placeholder: |
+        The sound should be a short retro-style UI effect that plays whenever a selectable menu button receives focus.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Define exactly what must be delivered.
+      placeholder: |
+        - [ ] Sound uses a retro/8-bit style.
+        - [ ] Exported as WAV.
+        - [ ] Duration is under 0.5 seconds.
+        - [ ] File follows the project's asset naming convention.
+        - [ ] Asset is placed in the appropriate audio directory.
+    validations:
+      required: true

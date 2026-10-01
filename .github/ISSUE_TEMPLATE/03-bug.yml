@@ -1,0 +1,64 @@
+name: Bug Report
+description: Report behavior that is incorrect, broken, or inconsistent with the intended design.
+title: "[Bug] "
+labels:
+  - bug
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > Contributors: fill out the form below only.
+        > Do not assign users, milestones, projects, sprints, or planning metadata.
+        > Producers will manage those fields after review.
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: State what behavior should be corrected.
+      placeholder: Fix the pause menu failing to reopen after the game has been resumed.
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the problem and provide any useful context.
+      placeholder: Explain what is happening, where it occurs, and anything that may help reproduce the problem.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: List the steps that consistently cause the problem.
+      placeholder: |
+        1. Start a game.
+        2. Press P.
+        3. Select Resume.
+        4. Press P again.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: Describe what should happen instead.
+      placeholder: The pause menu should open whenever the pause action is pressed.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Define what must be true for the bug to be considered resolved.
+      placeholder: |
+        - [ ] Pause menu can be opened repeatedly.
+        - [ ] Resuming does not disable future pause input.
+        - [ ] Existing pause functionality continues to work.
+    validations:
+      required: true
