@@ -1,3 +1,9 @@
+- type: markdown
+  attributes:
+    value: |
+      > Contributors: fill out the form below only.
+      > Do not assign users, milestones, projects, sprints, or planning metadata.
+      > Producers will manage those fields after review.
 name: Implementation
 description: Request the implementation of a feature, system, mechanic, or behavior.
 title: "[Implementation] "
