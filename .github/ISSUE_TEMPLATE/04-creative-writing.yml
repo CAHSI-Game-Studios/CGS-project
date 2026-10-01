@@ -1,0 +1,46 @@
+name: Creative Writing
+description: Request narrative, dialogue, lore, character writing, or other creative text.
+title: "[Creative Writing] "
+labels:
+  - creative-writing
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > Contributors: fill out the form below only.
+        > Do not assign users, milestones, projects, sprints, or planning metadata.
+        > Producers will manage those fields after review.
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: Clearly state what piece of writing is needed and what purpose it serves.
+      placeholder: Write the introductory dialogue between the player and the first hub-world NPC.
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Provide relevant context, tone, characters, setting, narrative constraints, and any existing material that should be followed.
+      placeholder: |
+        The dialogue should introduce the hub world without directly explaining every mechanic.
+        The NPC should sound energetic but slightly suspicious of the player.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Define what must be true for the writing to be considered complete.
+      placeholder: |
+        - [ ] Dialogue introduces the hub world.
+        - [ ] Character voice matches the established personality.
+        - [ ] Writing is consistent with existing lore.
+        - [ ] No gameplay mechanics are contradicted.
+        - [ ] Final text is added to the appropriate project file.
+    validations:
+      required: true
