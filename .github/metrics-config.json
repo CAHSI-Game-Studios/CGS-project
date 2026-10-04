@@ -1,0 +1,10 @@
+{
+  "project_number": 3,
+  "iteration_field": null,
+  "size_field": "Size",
+  "size_points": {"XS": 1, "S": 2, "M": 3, "L": 5, "XL": 8},
+  "discussion_category": "Daily Check In",
+  "collaborator_team_slug": "the-arcade-collaborator",
+  "producer_team_slug": "producer",
+  "timezone": "America/La_Paz"
+}
