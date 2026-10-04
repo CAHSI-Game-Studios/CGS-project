@@ -21,8 +21,6 @@ jobs:
     timeout-minutes: 20
     env:
       PYTHONDONTWRITEBYTECODE: "1"
-      CONTEXT_FILE: ${{ runner.temp }}/sprint-context.json
-      REPORT_DIR: ${{ runner.temp }}/sprint-reports
     steps:
       - name: Check out workflow code
         uses: actions/checkout@v7
@@ -37,6 +35,7 @@ jobs:
       - name: Detect active sprints
         id: sprint
         env:
+          CONTEXT_FILE: ${{ runner.temp }}/sprint-context.json
           METRICS_TOKEN: ${{ secrets.METRICS_TOKEN }}
           METRICS_PROJECT_NUMBER: ${{ vars.METRICS_PROJECT_NUMBER }}
         run: python .github/scripts/sprint_metrics.py detect --context "$CONTEXT_FILE"
@@ -53,6 +52,8 @@ jobs:
       - name: Create check-in and publish metrics
         if: steps.sprint.outputs.active == 'true'
         env:
+          CONTEXT_FILE: ${{ runner.temp }}/sprint-context.json
+          REPORT_DIR: ${{ runner.temp }}/sprint-reports
           METRICS_TOKEN: ${{ secrets.METRICS_TOKEN }}
           GITHUB_TOKEN: ${{ github.token }}
         run: python .github/scripts/sprint_metrics.py publish --context "$CONTEXT_FILE" --output "$REPORT_DIR"
