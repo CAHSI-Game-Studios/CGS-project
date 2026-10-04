@@ -1,7 +1,7 @@
 # OC Profile
 
 ## Basic Info
-**Name:** Zyrel
+**Name:** Unknown
 **Nickname / Alias:** The Knight of the Dead Weight
 **Pronouns:** he/him
 **Role / Occupation:** Wandering knight
@@ -53,5 +53,6 @@ Glances at the wolf before answering, as if checking with it. Rests his hand on 
 Small acts of kindness, his interactions with the wolf, dry reactions to The Arcade's strangeness, and people noticing something unsettling about him that they can't name.
 
 **Please avoid changing/revealing:**
-- His real name.
+- For now, he doesnt have a name.
 - Having him draw the greatsword casually; it should always feel significant.
+- He should be able to replace his missing arm with magic (preferably dark/abbys magic, for aesthetic reasons).
