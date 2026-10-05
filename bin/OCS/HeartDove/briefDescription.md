@@ -4,7 +4,7 @@
 **Name:Heart Dove**  
 **Nickname / Alias: Lovey Dovey**  
 **Pronouns:She/Her**  
-**Role / Occupation:**  
+**Role / Occupation:None**  
 
 ## Physical Description
 A short description of what the character looks like.
@@ -20,7 +20,7 @@ How does the character usually come across to other people?
 
 - General demeanor:Flighty, head in the clouds.
 - Social habits: Eating with other pidgeons.
-- Sense of humor: Too distractable for joked and might leave mid-conversation.
+- Sense of humor: Too distractable for jokes and might leave mid-conversation.
 - Common attitude toward strangers: Can't hold a conversation.
 
 **A few personality words:flighty, excentric, distracted**  
