@@ -1,10 +1,13 @@
 # OC Profile
 
 ## Basic Info
-**Name:**  
-**Nickname / Alias:**  
-**Pronouns:**  
-**Role / Occupation:**  
+**Name:**  Lyra
+
+**Nickname / Alias:**  The Pink Human
+
+**Pronouns:**  She/Her
+
+**Role / Occupation:**  Voodoo Doll Collector
 
 ## Physical Description
 A short description of what the character looks like.
