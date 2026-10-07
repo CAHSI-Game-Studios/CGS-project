@@ -64,7 +64,14 @@ class GitHub:
             raise MetricsError(f"Unable to reach GitHub: {error.reason}") from error
 
     def graphql(self, query, **variables):
-        response = self.request("POST", "graphql", {"query": query, "variables": variables})
+        operation = query.split("(", 1)[0].strip().replace("\n", " ")
+        print(f"[DEBUG] {self.token_name} -> GraphQL {operation}", flush=True)
+        try:
+            response = self.request("POST", "graphql", {"query": query, "variables": variables})
+        except MetricsError as error:
+            print(f"[DEBUG] FAILED: {self.token_name} -> GraphQL {operation}: {error}",
+                  file=sys.stderr, flush=True)
+            raise
         if response.get("errors"):
             messages = []
             for error in response["errors"]:
@@ -72,8 +79,10 @@ class GitHub:
                 if error.get("path"):
                     message += " [path: " + ".".join(map(str, error["path"])) + "]"
                 messages.append(message)
-            operation = query.split("(", 1)[0].strip()
+            print(f"[DEBUG] FAILED: {self.token_name} -> GraphQL {operation}: "
+                  + "; ".join(messages), file=sys.stderr, flush=True)
             raise MetricsError(f"GitHub GraphQL {operation} using {self.token_name}: " + "; ".join(messages))
+        print(f"[DEBUG] OK: {self.token_name} -> GraphQL {operation}", flush=True)
         return response["data"]
 
     def connection(self, query, path, **variables):
@@ -91,11 +100,18 @@ class GitHub:
 
     def rest_list(self, path):
         page = 1
+        print(f"[DEBUG] {self.token_name} -> REST GET {path}", flush=True)
         while True:
             separator = "&" if "?" in path else "?"
-            values = self.request("GET", f"{path}{separator}per_page=100&page={page}")
+            try:
+                values = self.request("GET", f"{path}{separator}per_page=100&page={page}")
+            except MetricsError as error:
+                print(f"[DEBUG] FAILED: {self.token_name} -> REST GET {path}: {error}",
+                      file=sys.stderr, flush=True)
+                raise
             yield from values
             if len(values) < 100:
+                print(f"[DEBUG] OK: {self.token_name} -> REST GET {path}", flush=True)
                 return
             page += 1
 
@@ -495,41 +511,55 @@ def publish_files(api, repository, files, day):
 
 
 def publish(read_api, repo_api, context, output, now):
+    """Run read-only diagnostics for the publish pipeline.
+
+    This debug build deliberately stops before creating today's Discussion or
+    writing to the metrics branch. It is safe to run repeatedly while tracing
+    authentication and authorization failures.
+    """
     if not context["active_sprints"]:
+        print("[DEBUG] No active sprints. Nothing to diagnose.", flush=True)
         return
+
     zone = local_zone(context["config"]["timezone"])
     if now.astimezone(zone).date().isoformat() != context["date"]:
         raise MetricsError("Calendar date changed after sprint detection; rerun the workflow.")
+
+    print("\n[DEBUG] ===== READ-ONLY SPRINT METRICS DIAGNOSTIC =====", flush=True)
+    print(f"[DEBUG] Repository: {context['repository']}", flush=True)
+    print(f"[DEBUG] Project number: {context['project_number']}", flush=True)
+    print(f"[DEBUG] Active sprints: {len(context['active_sprints'])}", flush=True)
+    print("[DEBUG] No Discussions will be created and the metrics branch will not be modified.\n", flush=True)
+
+    print("[DEBUG] STEP 1/4: Read Project size field and active-sprint issues with METRICS_TOKEN", flush=True)
     issues = collect_issues(read_api, context)
+    print(f"[DEBUG] STEP 1 OK: Read {len(issues)} issue(s) from active sprint scope.\n", flush=True)
+
+    print("[DEBUG] STEP 2/4: Read collaborator and producer team rosters with METRICS_TOKEN", flush=True)
     collaborators, producers = roster(read_api, context["repository"],
                                       context["config"]["collaborator_team_slug"],
                                       context["config"]["producer_team_slug"])
+    print(f"[DEBUG] STEP 2 OK: {len(collaborators)} collaborator(s), "
+          f"{len(producers)} producer(s).\n", flush=True)
+
+    print("[DEBUG] STEP 3/4: Read Discussion categories and recent check-ins with GITHUB_TOKEN", flush=True)
     repo_id, category_id, discussion, yesterday = discussion_context(repo_api, context)
+    print(f"[DEBUG] STEP 3 OK: repositoryId={repo_id}, categoryId={category_id}, "
+          f"today_exists={discussion is not None}, yesterday_exists={yesterday is not None}.\n", flush=True)
+
+    print("[DEBUG] STEP 4/4: Read previous check-in participation with GITHUB_TOKEN", flush=True)
     counts = participation(repo_api, yesterday, now)
-    files, results = {}, []
+    print(f"[DEBUG] STEP 4 OK: counted participation for {len(counts)} user(s).\n", flush=True)
+
+    print("[DEBUG] Local metrics calculation test...", flush=True)
     for sprint in context["active_sprints"]:
         metrics = sprint_metrics(sprint, issues, collaborators, producers, now, zone)
-        filename = f"{context['date']}-{quote(sprint['id'], safe='')}.svg"
-        files[f"charts/{filename}"] = chart_svg(sprint, metrics, now)
-        results.append((sprint, metrics, f"../charts/{filename}"))
-    # Finish reads and validation before posting. Reruns locate the marker and reuse the thread.
-    if discussion is None:
-        discussion = repo_api.graphql("""mutation CreateDailyCheckIn($input: CreateDiscussionInput!) {
-          createDiscussion(input: $input) { discussion { id number url } }
-        }""", input={"repositoryId": repo_id, "categoryId": category_id,
-                      "title": f"Daily check-in — {context['date']}", "body": discussion_body(context)})["createDiscussion"]["discussion"]
-    report = render_report(context, results, collaborators, counts, discussion, yesterday, now)
-    files[f"daily/{context['date']}.md"] = report
-    files["README.md"] = ("# The Arcade sprint metrics\n\n"
-                          f"[Latest daily report: {context['date']}](daily/{context['date']}.md)\n\n"
-                          f"[All daily reports](daily/) · [Workflow setup](https://github.com/{context['repository']}/blob/HEAD/bin/docs/SprintMetrics.md)\n")
-    output.mkdir(parents=True, exist_ok=True)
-    for path, content in files.items():
-        target = output / path
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(content, encoding="utf-8")
-    publish_files(repo_api, context["repository"], files, context["date"])
-    summary(f"Published [{context['date']} metrics](https://github.com/{context['repository']}/blob/metrics/daily/{context['date']}.md).\n")
+        print(f"[DEBUG]   {sprint['title']}: {len(metrics['issues'])} issue(s), "
+              f"{metrics['completed_points']:g}/{metrics['total_points']:g} points complete", flush=True)
+
+    print("\n[DEBUG] ALL READ-ONLY DIAGNOSTICS PASSED.", flush=True)
+    print("[DEBUG] This debug build intentionally stopped before CreateDailyCheckIn and publish_files().", flush=True)
+    summary("Sprint metrics debug run passed all read-only API checks. No repository or Discussion changes were made.")
 
 
 def summary(message):
