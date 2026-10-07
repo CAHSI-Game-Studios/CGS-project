@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="380" viewBox="0 0 960 380" role="img" aria-labelledby="title desc">
+<title id="title">Sprint 1: completed points</title>
+<desc id="desc">Sprint scope: 34 points. Completed: 27 points. Line stops at report time.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<g font-family="system-ui, sans-serif" font-size="13" fill="#24292f">
+<text x="70" y="28" font-size="18">Completed points / 34 points in sprint</text>
+<line x1="70" x2="930" y1="300.00" y2="300.00" stroke="#d0d7de"/>
+<text x="58" y="305.00" text-anchor="end">0</text>
+<line x1="70" x2="930" y1="251.60" y2="251.60" stroke="#d0d7de"/>
+<text x="58" y="256.60" text-anchor="end">6.8</text>
+<line x1="70" x2="930" y1="203.20" y2="203.20" stroke="#d0d7de"/>
+<text x="58" y="208.20" text-anchor="end">13.6</text>
+<line x1="70" x2="930" y1="154.80" y2="154.80" stroke="#d0d7de"/>
+<text x="58" y="159.80" text-anchor="end">20.4</text>
+<line x1="70" x2="930" y1="106.40" y2="106.40" stroke="#d0d7de"/>
+<text x="58" y="111.40" text-anchor="end">27.2</text>
+<line x1="70" x2="930" y1="58.00" y2="58.00" stroke="#d0d7de"/>
+<text x="58" y="63.00" text-anchor="end">34</text>
+<text x="70.00" y="326" text-anchor="middle">10-01</text>
+<text x="192.86" y="326" text-anchor="middle">10-02</text>
+<text x="315.71" y="326" text-anchor="middle">10-03</text>
+<text x="561.43" y="326" text-anchor="middle">10-05</text>
+<text x="684.29" y="326" text-anchor="middle">10-06</text>
+<text x="807.14" y="326" text-anchor="middle">10-07</text>
+<text x="930.00" y="326" text-anchor="middle">10-08</text>
+<path d="M 70 58 V 300 H 930" fill="none" stroke="#57606a"/>
+<polyline points="70.00,271.53 125.72,271.53 125.72,264.41 155.68,264.41 155.68,257.29 156.16,257.29 156.16,250.18 298.72,250.18 298.72,243.06 389.83,243.06 389.83,235.94 389.90,235.94 389.90,228.82 545.22,228.82 545.22,221.71 635.81,221.71 635.81,214.59 640.27,214.59 640.27,207.47 726.07,207.47 726.07,200.35 727.30,200.35 727.30,186.12 760.96,186.12 760.96,179.00 787.85,179.00 787.85,171.88 788.15,171.88 788.15,164.76 788.66,164.76 788.66,157.65 868.13,157.65 868.13,143.41 868.14,143.41 868.14,129.18 868.16,129.18 868.16,122.06 868.18,122.06 868.18,114.94 868.20,114.94 868.20,107.82 903.82,107.82" fill="none" stroke="#0969da" stroke-width="3"/>
+<text x="480" y="362" text-anchor="middle">Sprint dates (last tick is the exclusive end boundary)</text></g></svg>
