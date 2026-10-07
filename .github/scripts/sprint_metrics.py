@@ -317,6 +317,8 @@ def is_completed(issue, now):
 def sprint_metrics(sprint, issues, collaborators, producers, now, zone):
     scoped = [issue for issue in issues if issue["iteration_id"] == sprint["id"]]
     completed = [issue for issue in scoped if is_completed(issue, now)]
+    total_points = sum(issue["points"] or 0 for issue in scoped)
+    completed_points = sum(issue["points"] or 0 for issue in completed)
     start, end = sprint_bounds(sprint, zone)
     credit = {login: 0.0 for login in collaborators if login.casefold() not in producers}
     by_login = {login.casefold(): login for login in credit}
@@ -335,52 +337,56 @@ def sprint_metrics(sprint, issues, collaborators, producers, now, zone):
                 unattributed += share
     # Current snapshot, using latest close dates; reopened issues are no longer complete.
     days = [start.date() + timedelta(days=offset) for offset in range(sprint["duration"])]
-    series = [(day, sum(timestamp(issue["closedAt"]).astimezone(zone).date() <= day
-                        for issue in completed)) for day in days if day <= now.astimezone(zone).date()]
+    series = [(day, sum(issue["points"] or 0 for issue in completed
+                        if timestamp(issue["closedAt"]).astimezone(zone).date() <= day))
+              for day in days if day <= now.astimezone(zone).date()]
     return {"issues": scoped, "completed": completed, "credit": credit,
+            "total_points": total_points, "completed_points": completed_points,
             "unattributed": unattributed, "series": series, "start": start, "end": end}
 
 
 def chart_svg(sprint, metrics, now):
     width, height, left, right, top, bottom = 960, 380, 70, 930, 58, 300
-    total = len(metrics["issues"])
+    total = metrics["total_points"]
     start, end = metrics["start"], metrics["end"]
 
     def x(moment):
         return left + (right - left) * ((moment - start).total_seconds() / (end - start).total_seconds())
 
-    def y(count):
-        return bottom - (bottom - top) * count / max(total, 1)
+    def y(points):
+        return bottom - (bottom - top) * points / (total or 1)
 
     svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
-           f'<title id="title">{escape(sprint["title"])}: completed issues</title>',
-           f'<desc id="desc">Sprint scope: {total} issues. Completed: {len(metrics["completed"])}. Line stops at report time.</desc>',
+           f'<title id="title">{escape(sprint["title"])}: completed points</title>',
+           f'<desc id="desc">Sprint scope: {total:g} points. Completed: {metrics["completed_points"]:g} points. Line stops at report time.</desc>',
            '<rect width="100%" height="100%" fill="#ffffff"/>',
            '<g font-family="system-ui, sans-serif" font-size="13" fill="#24292f">',
-           f'<text x="70" y="28" font-size="18">Completed issues / {total} issues in sprint</text>']
-    ticks = sorted({round(total * part / 5) for part in range(6)})
+           f'<text x="70" y="28" font-size="18">Completed points / {total:g} points in sprint</text>']
+    ticks = sorted({total * part / 5 for part in range(6)})
     for tick in ticks:
         svg.extend([f'<line x1="{left}" x2="{right}" y1="{y(tick):.2f}" y2="{y(tick):.2f}" stroke="#d0d7de"/>',
-                    f'<text x="58" y="{y(tick) + 5:.2f}" text-anchor="end">{tick}</text>'])
+                    f'<text x="58" y="{y(tick) + 5:.2f}" text-anchor="end">{tick:g}</text>'])
     duration = sprint["duration"]
     for offset in sorted({round(duration * part / min(duration, 6)) for part in range(min(duration, 6) + 1)}):
         moment = start + timedelta(days=offset)
         svg.append(f'<text x="{x(moment):.2f}" y="326" text-anchor="middle">{moment:%m-%d}</text>')
     svg.append(f'<path d="M {left} {top} V {bottom} H {right}" fill="none" stroke="#57606a"/>')
     if total:
-        closures = sorted(timestamp(issue["closedAt"]).astimezone(start.tzinfo) for issue in metrics["completed"])
-        count = sum(moment <= start for moment in closures)
-        points = [(x(start), y(count))]
-        for moment in closures:
+        closures = sorted((timestamp(issue["closedAt"]).astimezone(start.tzinfo), issue["points"] or 0)
+                          for issue in metrics["completed"])
+        completed_points = sum(points for moment, points in closures if moment <= start)
+        vertices = [(x(start), y(completed_points))]
+        for moment, points in closures:
             if start < moment < end:
-                points.append((x(moment), y(count)))
-                count += 1
-                points.append((x(moment), y(count)))
-        points.append((x(min(now.astimezone(start.tzinfo), end)), y(count)))
-        coordinates = " ".join(f"{px:.2f},{py:.2f}" for px, py in points)
+                vertices.append((x(moment), y(completed_points)))
+                completed_points += points
+                vertices.append((x(moment), y(completed_points)))
+        vertices.append((x(min(now.astimezone(start.tzinfo), end)), y(completed_points)))
+        coordinates = " ".join(f"{px:.2f},{py:.2f}" for px, py in vertices)
         svg.append(f'<polyline points="{coordinates}" fill="none" stroke="#0969da" stroke-width="3"/>')
     else:
-        svg.append('<text x="480" y="180" text-anchor="middle">No issues assigned to this sprint.</text>')
+        message = "No estimated points in this sprint." if metrics["issues"] else "No issues assigned to this sprint."
+        svg.append(f'<text x="480" y="180" text-anchor="middle">{message}</text>')
     svg.append('<text x="480" y="362" text-anchor="middle">Sprint dates (last tick is the exclusive end boundary)</text></g></svg>')
     return "\n".join(svg) + "\n"
 
@@ -411,14 +417,17 @@ def render_report(context, all_metrics, collaborators, counts, today_discussion,
                                if metrics["start"] <= timestamp(issue["closedAt"]) < metrics["end"]]
         lines += [f"## {md(sprint['title'])}", "",
                   f"{metrics['start']:%Y-%m-%d} through {metrics['end'] - timedelta(days=1):%Y-%m-%d} (inclusive).", "",
-                  "### Sprint velocity (issue completion burn-up)", "",
-                  f"![Completed issues over the sprint]({image_path})", "",
+                  "### Sprint velocity (completed points burn-up)", "",
+                  f"![Completed points over the sprint]({image_path})", "",
+                  f"**{metrics['completed_points']:g} / {metrics['total_points']:g} points complete**.", "",
                   f"**{len(metrics['completed'])} / {len(metrics['issues'])} issues complete**; "
                   f"{len(completed_in_sprint)} closed as completed during this sprint.", "",
-                  "The y-axis maximum is the current sprint issue count. The x-axis spans the full sprint; "
+                  "The y-axis maximum is the sum of Size points for all issues in this sprint. "
+                  "The line adds each completed issue's points once, regardless of its assignees. "
+                  "The x-axis spans the full sprint; "
                   "the line stops at snapshot time. Earlier completions form the starting baseline.", "",
-                  "| Date | Completed issues as of this snapshot |", "| --- | ---: |"]
-        lines += [f"| {day} | {count} |" for day, count in metrics["series"]]
+                  "| Date | Completed points as of this snapshot |", "| --- | ---: |"]
+        lines += [f"| {day} | {points:g} |" for day, points in metrics["series"]]
         lines += ["", "### Completed points by collaborator", "",
                   "Producer team members are excluded. Points are split equally among all current assignees; "
                   "shares belonging to excluded people are not redistributed.", "",
