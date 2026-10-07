@@ -1,0 +1,266 @@
+# HubWorld
+
+## Purpose
+
+The **HubWorld** will be the main shared space in *The Arcade*. It serves as the player's central point throughout the gaming experience, providing an environment where the player can explore, interact with characters, progress through questlines, and decide what to do next.
+
+Bassicly, the HubWorld connect the two main parts of the gamplay loop:
+
+1. Exploring and progressing though individial games or world.
+2. Interact with characters and progressir their questlines.
+
+The HubWolrd shoud function as a persistan and revisitable space, its contents may change as the player progrees thorough the game. 
+
+---
+
+## Role within the Gampley Loop
+
+The player enters the Hub World when one of these conditions is met:
+
+- The players starts the game
+- The player exists another game or world.
+- A story event sends the player back to the Hub.
+- The player choses to return to the Hub (when supported).
+
+While in the HubWorld, the player may:
+
+- Explore avaible areas.
+- Discover and approach characters.
+- Starts conversations with characters.
+- Progress character questlines.
+- Discover different avaible games or objectives.
+- Receive valuable information about the arcade/characters.
+- Notice changes caused by prevous actions.
+- Choose which game, character or objetive to pursue next.
+
+An example of the gamplay loop may follow this structure:
+
+```text
+Explore HubWorld
+      |
+      v
+Interact with a character
+      |
+      v
+Progress dialogue or receive an objective
+      |
+      v
+Enter a game or world
+      |
+      v
+Complete an activity or discover information
+      |
+      v
+Return to HubWorld
+      |
+      v
+Unlock new dialogue, characters, areas, or objectives
+```
+## Player Activities
+
+The following explains the expected player activities in the HubWorld.
+
+### Exploration
+
+The player shoud be able to move throught *only* avaible areas and discover characters, locations, objects and points of interest.
+
+What the exploration may reveal:
+
+- New Characters.
+- New Areas.
+- Objects containing information.
+- Entrance to game or worlds.
+- Events that occur only when the player enters a specific location.
+- Changes caused by story/character questlines progression.
+
+### Character Discovery
+
+As mentioned in the **Exploration** section, this should serve as a resource for discovering characters; it is worth noting that the player will not need to access all of them.
+
+A character may be discovered:
+
+- In a location (knwon location or unknow)
+- During a story event.
+- After completing a game or objective.
+- After meeting a condition involving another character.
+- Through a temporary appearance or special event.
+
+### Iteraction
+
+The player may approach a character or object and attempt to interact with them. 
+
+The HubWorld is responsible for detecting or triggering interactions. The dialogue system handles determining and presenting conversations, but only after the interaction has been accepted by the HubWorld.
+
+### Navigating.
+
+The player should be able to navigate through relevant areas of the Hub World and access available locations.
+
+Navigation may include:
+
+- Walking between connected areas.
+- Entering uncloed rooms or locations.
+- Visiting characters specific areas.
+- Accessing entrances to game or worlds.
+- Posibility to return to previously visited areas.
+
+### Planning & Decision Making
+
+The HubWorld should provide enough information for the player to decide what to do next. For the most part, this information should not be presented in a linear fashion.
+
+This information may be obtained through: 
+
+- Character dialogue.
+- Objects or signs
+- Visible changes in the enviroment
+- Newly avaible interaction.
+- Chages in character behavior or location.
+
+The HubWorld does should not force the player into a single activity unless a specific story event requires it.
+
+--- 
+
+## HubWorld Areas
+
+The Hub World should consist of conceptual areas. (The final areas are outside the scope of this document/current sprint.)
+
+An area may represent:
+
+- A shared central space.
+- A character's usual location.
+- A room or section of the Arcade.
+- A location connected to a specific game or world
+- A room with different ways to interact (See **Interaction** section.)
+- A temporary event location.
+
+Area availability may be:
+
+- Avaible from the beggining
+- Unlocked through story progression.
+- Accessible only after reaching a specific point in the character's questline.
+
+The organization of the areas should support exploration and discovery without requiring the final map to be defined.
+
+---
+
+## Character Representation
+
+The characters in the Hub World should be represented as entities that the player can discover and interact with.
+
+A HubWorld character may provide:
+
+- A visible representation in the enviroment.
+- A current location.
+- An interaction area.
+- Information about whether the character is avaible.
+- Information abou the interaction that should occur.
+- A current state that may affect their behavior or dialogue.
+
+The Hub World will only be responsible for placing and displaying the characters in a shared space.
+
+## Character Location
+
+Characters can be found in different locations depending on their design or the stage of their questline.
+
+### Fixed Locations
+
+A character may remain in one location within the HubWorld
+
+### Conditional Locations
+
+A character may appear in a location only when certain conditions are satisfied.
+
+Examples could be:
+
+- Appearing after the player progreess/complete a questline.
+- Moving to a new area after a story event.
+- Becoming avaible after another character's progression changes (Game Loop adoc)
+
+---
+
+## Character Availabillity
+
+This will determine whether the player can or should encounter and interact with a character in the Hub World.
+
+A character may be:
+
+- Permanently avaible.
+- Unavailable until discovered.
+- Available only after a progression condition.
+- Temporarily unavailable.
+- Present but unable to speak.
+- Present with different dialogue.
+- Removed from the HubWorld after an event.
+
+The HubWorld must use information from the corresponding progression or character systems to determine whether a character should be present. It must not create an independent, duplicate version of the character progression.
+
+---
+
+## Interacting With Characters
+
+An interaction may be initated through:
+
+- A context interaction prompt.
+- Activating a story event associated with the character.
+
+## Transition Between Exploration and Dialogue
+
+The player should be able to transition from free HubWorld exploration into dialogue through an explicit character interaction.
+
+### Starting Dialogue
+
+When the player successfully interacts with a character:
+
+- The HubWorld or interaction system identifies the character.
+- The interaction request is passsed to the DialoguesSystem.
+- Normal movment and unrelated interactions are disabled during the interaction.
+- DialogueSystem selects the appropriate conversation.
+
+### Ending Dialogue
+
+When the conversation ends:
+
+- The DialogueSystem closes the dialogue interface.
+- Any conversation effects are applied (See the next section below)
+- Control is returned to normal gamplay.
+- Any resulting HubWorld changes may become viisible or avaible.
+
+A converstion may cause changes suchs as:
+
+- A character moving.
+- A new character appearing.
+- An new area avaible.
+- A new interaction with a character is avaible.
+- A character becoming temporarily unavaible.
+
+---
+
+## HubWolrd State
+
+HubWorld state is the collection of information describing which areas, characters, interactions, events, and destinations are currently available in the HubWorld. This state is affected by player progression and determines how the HubWorld is presented to the player.
+
+State may include:
+
+- Available zones.
+- Blocked zones.
+- Activate characters.
+- Character locations.
+- Available interaction points.
+- Active environmental events.
+- Available game entrances.
+- Temporary changes.
+- Permanent changes.
+- Current story phase.
+
+## Domain Boundaries
+
+### HubWorld is responsible for
+
+- Providing the shared enviroment between gamplay experiences.
+- Encourage player exploration of the available areas in the HubWorld.
+- Exposing available characters and interaction points.
+- Determining which areas and characters are currently present based on game state.
+- Passing character interaction request to the appropriate system.
+- Applying or displayung HubWorld changes caused by main story progression or questlines.
+- Supporting transitions between HubWorld exploration and other game system.
+- Providing access to avaible games, worlds or destinations.
+
