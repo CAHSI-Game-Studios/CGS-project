@@ -1,3 +1,46 @@
 [gd_scene format=3 uid="uid://cb2mdr62qhikp"]
 
+[ext_resource type="Script" path="res://scenes/start_scene.gd" id="1_start"]
+
+[sub_resource type="Gradient" id="Gradient_white"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_white"]
+gradient = SubResource("Gradient_white")
+
 [node name="StartScene" type="Node2D" unique_id=314275055]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_start")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_white")
+expand_mode = 1
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -25.0
+offset_right = 60.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
