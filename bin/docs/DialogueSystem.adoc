@@ -1,0 +1,250 @@
+# DialogueSystem
+
+## Purpose
+
+The **DialogueSystem** manages conversations between the player and characters throughout *The Arcade*.
+
+---
+
+## Starting Dialogue
+
+A dialogue interaction begins when the player attempts to interact with a character that supports conversation.
+
+Before starting the conversation, the DialogueSystem should determine whether:
+
+- The character can currently be spoken to.
+- The character has dialogue available.
+- Any conditions required for the conversation have been satisfied.
+- A different conversation should be used because of the player's previous actions or discoveries.
+
+Once dialogue begins:
+
+- Normal player movement or unrelated interactions should be temporarily disabled.
+- The speaking character should be identified.
+- The appropriate starting dialogue entry should be selected.
+- The dialogue interface should become active.
+
+---
+
+## Character Dialogue
+
+Each character that can participate in conversations should provide the DialogueSystem with access to their dialogue content.
+
+A character's dialogue may contain:
+
+- Dialogue spoken by the character.
+- Dialogue spoken by the player.
+- Player response options.
+- Connections to other dialogue entries.
+- Conditions that determine whether dialogue or choices are available.
+- Information or game state changes caused by the conversation.
+- One or more possible conversation endings.
+
+Characters are responsible for their own personality, wording, story content, and conversation structure.
+
+The DialogueSystem is responsible for interpreting that structure and presenting the conversation consistently.
+
+---
+
+## Conversation Structure
+
+A conversation is made up of individual **dialogue entries**.
+
+Each dialogue entry represents one step in a conversation and may contain:
+
+- A speaker.
+- Dialogue text.
+- A next dialogue entry.
+- Multiple possible next entries.
+- Optional player choices.
+- Optional conditions.
+- Optional effects caused by reaching or selecting that entry.
+
+A simple conversation may follow a direct sequence:
+
+`Dialogue A → Dialogue B → Dialogue C → End`
+
+More complex conversations may branch:
+
+```text
+Character Dialogue
+        |
+        v
+Player Choice
+   /         \
+Choice A     Choice B
+   |            |
+   v            v
+Dialogue A   Dialogue B
+```
+
+Different branches may reconnect later or lead to completely different conversation endings.
+
+---
+
+## Player Dialogue Choices
+
+Some dialogue entries may allow the player to choose between multiple responses.
+
+When choices are available:
+
+- The conversation should pause until the player selects an option.
+- Only currently available choices should be presented.
+- The selected choice determines which dialogue entry is visited next.
+- A choice may also update information about the player or game world.
+
+Choices may affect:
+
+- The current conversation.
+- Future conversations with the same character.
+- Conversations with other characters.
+- Information available elsewhere in the game.
+
+Characters are not required to provide player choices. Linear conversations should also be supported.
+
+---
+
+## Dialogue Conditions
+
+Dialogue entries and player choices may have conditions that determine whether they are available.
+
+Examples include:
+
+- The player has spoken to a specific character before.
+- The player discovered a particular piece of information.
+- The player completed an event or activity.
+- The player selected a certain response in an earlier conversation.
+- The character is currently in a particular state.
+- A global game condition has changed.
+
+Conditions may determine:
+
+- Which conversation begins.
+- Which dialogue entry appears.
+- Which player choices are visible.
+- Which dialogue branch becomes available.
+- Whether a character can currently be spoken to.
+
+The DialogueSystem should evaluate these conditions but should not be responsible for owning all of the information used by them.
+
+---
+
+## Previously Discovered Information
+
+Information learned elsewhere in *The Arcade* may influence conversations.
+
+For example, the player may discover information by:
+
+- Talking to another character.
+- Examining an object.
+- Completing a minigame.
+- Visiting a location.
+- Triggering a story event.
+
+The DialogueSystem should be able to check this information when determining which dialogue or choices are available.
+
+The DialogueSystem should **read** relevant game state from the system responsible for tracking that information rather than maintaining a separate duplicate version of the same state.
+
+Dialogue may also report new discoveries back to the appropriate game system when something important is learned during a conversation.
+
+---
+
+## Ending Dialogue
+
+A conversation ends when:
+
+- A dialogue entry explicitly ends the conversation.
+- The player selects an option that ends the conversation.
+- The conversation reaches the end of its current branch.
+
+When dialogue ends, the DialogueSystem should:
+
+- Close the dialogue interface.
+- Clear the active conversation and character.
+- Apply any final conversation effects.
+- Return control to normal gameplay.
+- Allow the player to move and interact again.
+
+A conversation may end permanently or may allow the player to speak with the character again later.
+
+---
+
+## Information Required From a Character
+
+A character that supports dialogue should provide enough information for the DialogueSystem to determine:
+
+- Which character is speaking.
+- What dialogue belongs to that character.
+- Which dialogue entry should begin the conversation.
+- Whether an alternate starting conversation should be used.
+- What dialogue entries and choices are available.
+- Where each dialogue entry leads.
+- When the conversation should end.
+
+Character-specific systems may also provide information such as the character's current state when that state affects dialogue.
+
+---
+
+## Collaborator-Created Dialogue
+
+Collaborators should be able to create dialogue for their own characters without changing the core DialogueSystem.
+
+Conceptually, each character's dialogue should describe:
+
+1. **What is said**
+2. **Who is speaking**
+3. **What happens next**
+4. **Which choices the player can make, if any**
+5. **What conditions must be satisfied**
+6. **What changes when a dialogue entry or choice occurs**
+7. **When the conversation ends**
+
+The DialogueSystem should remain generic enough that characters can have very different conversation styles.
+
+For example, one character may have a completely linear conversation while another may have several branching conversations influenced by information discovered throughout the game.
+
+---
+
+## Domain Boundaries
+
+### DialogueSystem is responsible for
+
+- Starting dialogue interactions.
+- Keeping track of the active conversation.
+- Progressing between dialogue entries.
+- Presenting available player choices.
+- Evaluating dialogue conditions using information provided by other systems.
+- Triggering dialogue-related effects.
+- Ending conversations.
+- Returning control to normal gameplay.
+
+### Character Domain is responsible for
+
+- Character identity.
+- Character personality.
+- Character-specific dialogue content.
+- Character-specific conversation branches.
+- Character states that may influence dialogue.
+
+### Player / Interaction Domain is responsible for
+
+- Detecting when the player attempts to interact with a character.
+- Determining whether the player is within interaction range.
+- Passing the interaction request to the DialogueSystem.
+- Handling normal player controls outside of dialogue.
+
+### Game State / Information Domain is responsible for
+
+- Tracking important discoveries.
+- Tracking completed events or progression.
+- Tracking persistent decisions made by the player.
+- Providing this information when dialogue conditions need to be evaluated.
+
+### UI Domain is responsible for
+
+- Displaying character dialogue.
+- Displaying the current speaker.
+- Displaying player response options.
+- Communicating the player's selected option back to the DialogueSystem.
+
+The DialogueSystem determines **what should happen in the conversation**, while the UI determines **how that conversation is displayed to the player**.

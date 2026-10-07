@@ -1,0 +1,59 @@
+name: Daily sprint metrics
+
+on:
+  schedule:
+    # 09:05 America/La_Paz (UTC-4), including weekends.
+    - cron: "5 13 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  discussions: write
+  actions: write
+
+concurrency:
+  group: daily-sprint-metrics
+  cancel-in-progress: false
+
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Check out workflow code
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Detect active sprints
+        id: sprint
+        env:
+          CONTEXT_FILE: ${{ runner.temp }}/sprint-context.json
+          METRICS_TOKEN: ${{ secrets.METRICS_TOKEN }}
+          METRICS_PROJECT_NUMBER: ${{ vars.METRICS_PROJECT_NUMBER }}
+        run: python .github/scripts/sprint_metrics.py detect --context "$CONTEXT_FILE"
+
+      - name: Cancel when no sprint is underway
+        if: steps.sprint.outputs.active == 'false'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python .github/scripts/sprint_metrics.py cancel
+          # Give GitHub time to deliver the cancellation to this runner.
+          sleep 15
+
+      - name: Create check-in and publish metrics
+        if: steps.sprint.outputs.active == 'true'
+        env:
+          CONTEXT_FILE: ${{ runner.temp }}/sprint-context.json
+          REPORT_DIR: ${{ runner.temp }}/sprint-reports
+          METRICS_TOKEN: ${{ secrets.METRICS_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python .github/scripts/sprint_metrics.py publish --context "$CONTEXT_FILE" --output "$REPORT_DIR"

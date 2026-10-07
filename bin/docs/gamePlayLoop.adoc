@@ -1,0 +1,81 @@
+# Gameplay Loop 
+
+## Preface
+
+All suggestion, mechanics, progressions, and interactions mentioned in this document are *tentative*. This document must be kept up to date, as it will accurately describe how the game plays as development progresses.
+
+## The Main Loop
+
+The player, whoever they turn out to be, is, due to a narrative reason, stuck in The Arcade. They will navigate a *Hub*, meeting various other *characters* (aka collaborator *OCs*) that are also stuck in the very same amalgamated dimension. Seeking to figure out the truth behind the merging of various dimensions, the player will enter a diverse selection of *worlds* (aka games). 
+
+The player will have two primary experiences:
+
+- Hub experience
+- Game experience
+
+### Hub experience
+
+The player will enter the *Hub* when booting up the game, and when exiting another *world*. Inside the *Hub*, the player will be able to talk to other *characters*. In ocasions, *talking* with another *character* will *change* something in on of the *worlds*, comencing a sort of *character based side-quest*. Each *character* will have a unique storyline, but progression among the different lines may *depend* on one another.
+
+For example, lets consider three characters:
+
+- Arthur Nash
+- Tek Delta
+- Vix
+
+Each character has their own questline. Lets represent their progression as an integer, so that:
+
+int characterProgression = P[c] where P contains all the character's invidual progression, and c is the ID of the character 
+
+Then, certain quest triggers, like a dialogue option or a character showing up in a game, can be locked behind a condition.
+
+For example, lets say that Tek Delta required that the player have: completed Vix' second quest and completed Arthur's first quest, then:
+
+----
+// 0 = still in the first quest
+// 1 = completed first quest, in second
+bool unlockCondition = P[Vix] >= 2 and P[Arthur] >= 1
+if unlockCondition
+    unlockNextQuest(Tek Delta)
+----
+
+Said unlock conditions could be stored within another data structure, but that behaviour is outside the scope of this document.
+
+The *Hub* will ultimately act as a gathering place where information is exchanged and next steps are planned. 
+
+### Game experience
+
+This section will be vary vague, since as of the time of writing this document, we have not figured out what a 'Game' should be. I will try to describe what it needs to do rather than what it is.
+
+- A game should be *enterable* by the player. 
+- A game should be *exitable* at any time, or make the option frequently available.
+- A game should remember what has happened.
+- A game should have its own, unique, *main story line*, independent of any *character*.
+- A game should be *backtrackable*. 
+- A game should be *alterable* by *events*.
+
+When a player enters a game, they will do one of two things:
+
+- Progress the *main-story line*.
+- Progress a *character-specific* story line.
+
+The gameplay should be distinguishable.
+A player must always know: 
+
+- 'I am gaining *main* story progress.'
+- 'I am gaining *character* story progress.'
+
+## Idea Pool
+All ideas are welcome. The ideas will be discussed during Sprint 2 planning.
+
+* Make all games rogue-like 
+    ** Injecting character specific events becomes easier, eg: trigger a seed.
+    ** We don't need to worry much about backtracking.
+    ** The *Hub* could provide game specific benefits. eg: better luck in gameA, better weapon in gameB.
+* Use a standarized currency
+    ** Instead of interconnecting many story lines, lock each one behind a 'paywall'.
+    ** Completing an objective within a game grants currency. The player spends their currency in the *Hub*. Eg. Hade's ambrosia and relationship levels.
+* Three endings approach
+    ** Bad ending: The player did not engage in a single side-quest.
+    ** OC ending: Upon completion of their entire quest, each OC grants a key item, used in the final room of sorts to trigger their specific cutscene. Eg.  different runes in Elden Ring, Undertale's lvl 2-19 endings.
+    ** Good ending: The player completed all side-quests. Eg. standard completionist ending

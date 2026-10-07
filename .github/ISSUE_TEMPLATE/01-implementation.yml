@@ -1,0 +1,44 @@
+name: Implementation
+description: Request the implementation of a feature, system, mechanic, or behavior.
+title: "[Implementation] "
+labels:
+  - implementation
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > Contributors: fill out the form below only.
+        > Do not assign users, milestones, projects, sprints, or planning metadata.
+        > Producers will manage those fields after review.
+
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: Clearly state what this Issue is intended to accomplish.
+      placeholder: Implement a pause menu that allows the player to resume or exit the game.
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Provide the context, requirements, constraints, and relevant details needed to complete the work.
+      placeholder: Describe the expected behavior and any relevant systems, scenes, files, or dependencies.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Define the conditions that must be satisfied for this Issue to be considered complete.
+      placeholder: |
+        - [ ] Pause menu opens when the pause action is pressed.
+        - [ ] Game processing pauses.
+        - [ ] Resume closes the menu and resumes gameplay.
+        - [ ] Exit returns the player to the main menu.
+    validations:
+      required: true
