@@ -32,11 +32,10 @@ class MetricsError(Exception):
 
 
 class GitHub:
-    def __init__(self, token, token_name="GitHub token"):
+    def __init__(self, token):
         if not token:
-            raise MetricsError(f"Required {token_name} is missing. Check the workflow's Actions secrets.")
+            raise MetricsError("Required token is missing. See bin/docs/SprintMetrics.md.")
         self.token = token
-        self.token_name = token_name
         self.api_url = os.environ.get("GITHUB_API_URL", "https://api.github.com")
         self.graphql_url = os.environ.get("GITHUB_GRAPHQL_URL", "https://api.github.com/graphql")
 
@@ -57,32 +56,17 @@ class GitHub:
             if missing_ok and error.code == 404:
                 return None
             raise MetricsError(
-                f"GitHub {method} {path} using {self.token_name}: HTTP {error.code}. "
+                f"GitHub {method} {path}: HTTP {error.code}. "
                 "Check token permissions, organization authorization, and configuration."
             ) from error
         except URLError as error:
             raise MetricsError(f"Unable to reach GitHub: {error.reason}") from error
 
     def graphql(self, query, **variables):
-        operation = query.split("(", 1)[0].strip().replace("\n", " ")
-        print(f"[DEBUG] {self.token_name} -> GraphQL {operation}", flush=True)
-        try:
-            response = self.request("POST", "graphql", {"query": query, "variables": variables})
-        except MetricsError as error:
-            print(f"[DEBUG] FAILED: {self.token_name} -> GraphQL {operation}: {error}",
-                  file=sys.stderr, flush=True)
-            raise
+        response = self.request("POST", "graphql", {"query": query, "variables": variables})
         if response.get("errors"):
-            messages = []
-            for error in response["errors"]:
-                message = error["message"]
-                if error.get("path"):
-                    message += " [path: " + ".".join(map(str, error["path"])) + "]"
-                messages.append(message)
-            print(f"[DEBUG] FAILED: {self.token_name} -> GraphQL {operation}: "
-                  + "; ".join(messages), file=sys.stderr, flush=True)
-            raise MetricsError(f"GitHub GraphQL {operation} using {self.token_name}: " + "; ".join(messages))
-        print(f"[DEBUG] OK: {self.token_name} -> GraphQL {operation}", flush=True)
+            messages = "; ".join(error["message"] for error in response["errors"])
+            raise MetricsError(f"GitHub GraphQL: {messages}")
         return response["data"]
 
     def connection(self, query, path, **variables):
@@ -100,18 +84,11 @@ class GitHub:
 
     def rest_list(self, path):
         page = 1
-        print(f"[DEBUG] {self.token_name} -> REST GET {path}", flush=True)
         while True:
             separator = "&" if "?" in path else "?"
-            try:
-                values = self.request("GET", f"{path}{separator}per_page=100&page={page}")
-            except MetricsError as error:
-                print(f"[DEBUG] FAILED: {self.token_name} -> REST GET {path}: {error}",
-                      file=sys.stderr, flush=True)
-                raise
+            values = self.request("GET", f"{path}{separator}per_page=100&page={page}")
             yield from values
             if len(values) < 100:
-                print(f"[DEBUG] OK: {self.token_name} -> REST GET {path}", flush=True)
                 return
             page += 1
 
@@ -148,7 +125,7 @@ def detect(api, config, repository, now):
             raise ValueError
     except (TypeError, ValueError) as error:
         raise MetricsError("Set project_number in .github/metrics-config.json or METRICS_PROJECT_NUMBER.") from error
-    query = """query SprintProject($owner: String!, $number: Int!) {
+    query = """query($owner: String!, $number: Int!) {
       organization(login: $owner) { projectV2(number: $number) {
         id title url closed
       } }
@@ -157,7 +134,7 @@ def detect(api, config, repository, now):
     project = organization and organization["projectV2"]
     if not project:
         raise MetricsError("Project not found or METRICS_TOKEN cannot read it.")
-    fields_query = """query SprintIterationFields($id: ID!, $cursor: String) {
+    fields_query = """query($id: ID!, $cursor: String) {
       node(id: $id) { ... on ProjectV2 { fields(first: 100, after: $cursor) {
         nodes { ... on ProjectV2IterationField {
           name configuration {
@@ -202,14 +179,14 @@ def points_for(value, mapping):
 
 def collect_issues(api, context):
     config = context["config"]
-    field = api.graphql("""query SprintSizeField($id: ID!, $name: String!) {
+    field = api.graphql("""query($id: ID!, $name: String!) {
       node(id: $id) { ... on ProjectV2 { field(name: $name) {
         ... on ProjectV2FieldCommon { name dataType }
       } } }
     }""", id=context["project"]["id"], name=config["size_field"])["node"]["field"]
     if not field or field.get("dataType") not in ("NUMBER", "SINGLE_SELECT"):
         raise MetricsError(f"Size field {config['size_field']!r} must exist and be numeric or single-select.")
-    query = """query SprintIssues($id: ID!, $iteration: String!, $size: String!, $cursor: String) {
+    query = """query($id: ID!, $iteration: String!, $size: String!, $cursor: String) {
       node(id: $id) { ... on ProjectV2 { items(first: 100, after: $cursor) {
         nodes {
           iteration: fieldValueByName(name: $iteration) {
@@ -269,7 +246,7 @@ def discussion_marker(context, day):
 
 def discussion_context(api, context):
     owner, name = context["repository"].split("/")
-    repo = api.graphql("""query CheckInCategories($owner: String!, $name: String!) {
+    repo = api.graphql("""query($owner: String!, $name: String!) {
       repository(owner: $owner, name: $name) {
         id hasDiscussionsEnabled discussionCategories(first: 100) { nodes { id name } }
       }
@@ -284,7 +261,7 @@ def discussion_context(api, context):
     today = context["date"]
     yesterday = (date.fromisoformat(today) - timedelta(days=1)).isoformat()
     found = {}
-    query = """query DailyCheckIns($owner: String!, $name: String!, $cursor: String) {
+    query = """query($owner: String!, $name: String!, $cursor: String) {
       repository(owner: $owner, name: $name) {
         discussions(first: 100, after: $cursor, orderBy: {field: CREATED_AT, direction: DESC}) {
           nodes { id number url body } PAGE
@@ -306,12 +283,12 @@ def participation(api, discussion, now):
     counts = Counter()
     if discussion is None:
         return counts
-    query = """query CheckInComments($id: ID!, $cursor: String) {
+    query = """query($id: ID!, $cursor: String) {
       node(id: $id) { ... on Discussion { comments(first: 100, after: $cursor) {
         nodes { id author { login __typename } createdAt } PAGE
       } } }
     }""".replace("PAGE", PAGE)
-    replies = """query CheckInReplies($id: ID!, $cursor: String) {
+    replies = """query($id: ID!, $cursor: String) {
       node(id: $id) { ... on DiscussionComment { replies(first: 100, after: $cursor) {
         nodes { id author { login __typename } createdAt } PAGE
       } } }
@@ -511,55 +488,41 @@ def publish_files(api, repository, files, day):
 
 
 def publish(read_api, repo_api, context, output, now):
-    """Run read-only diagnostics for the publish pipeline.
-
-    This debug build deliberately stops before creating today's Discussion or
-    writing to the metrics branch. It is safe to run repeatedly while tracing
-    authentication and authorization failures.
-    """
     if not context["active_sprints"]:
-        print("[DEBUG] No active sprints. Nothing to diagnose.", flush=True)
         return
-
     zone = local_zone(context["config"]["timezone"])
     if now.astimezone(zone).date().isoformat() != context["date"]:
         raise MetricsError("Calendar date changed after sprint detection; rerun the workflow.")
-
-    print("\n[DEBUG] ===== READ-ONLY SPRINT METRICS DIAGNOSTIC =====", flush=True)
-    print(f"[DEBUG] Repository: {context['repository']}", flush=True)
-    print(f"[DEBUG] Project number: {context['project_number']}", flush=True)
-    print(f"[DEBUG] Active sprints: {len(context['active_sprints'])}", flush=True)
-    print("[DEBUG] No Discussions will be created and the metrics branch will not be modified.\n", flush=True)
-
-    print("[DEBUG] STEP 1/4: Read Project size field and active-sprint issues with METRICS_TOKEN", flush=True)
     issues = collect_issues(read_api, context)
-    print(f"[DEBUG] STEP 1 OK: Read {len(issues)} issue(s) from active sprint scope.\n", flush=True)
-
-    print("[DEBUG] STEP 2/4: Read collaborator and producer team rosters with METRICS_TOKEN", flush=True)
     collaborators, producers = roster(read_api, context["repository"],
                                       context["config"]["collaborator_team_slug"],
                                       context["config"]["producer_team_slug"])
-    print(f"[DEBUG] STEP 2 OK: {len(collaborators)} collaborator(s), "
-          f"{len(producers)} producer(s).\n", flush=True)
-
-    print("[DEBUG] STEP 3/4: Read Discussion categories and recent check-ins with GITHUB_TOKEN", flush=True)
     repo_id, category_id, discussion, yesterday = discussion_context(repo_api, context)
-    print(f"[DEBUG] STEP 3 OK: repositoryId={repo_id}, categoryId={category_id}, "
-          f"today_exists={discussion is not None}, yesterday_exists={yesterday is not None}.\n", flush=True)
-
-    print("[DEBUG] STEP 4/4: Read previous check-in participation with GITHUB_TOKEN", flush=True)
     counts = participation(repo_api, yesterday, now)
-    print(f"[DEBUG] STEP 4 OK: counted participation for {len(counts)} user(s).\n", flush=True)
-
-    print("[DEBUG] Local metrics calculation test...", flush=True)
+    files, results = {}, []
     for sprint in context["active_sprints"]:
         metrics = sprint_metrics(sprint, issues, collaborators, producers, now, zone)
-        print(f"[DEBUG]   {sprint['title']}: {len(metrics['issues'])} issue(s), "
-              f"{metrics['completed_points']:g}/{metrics['total_points']:g} points complete", flush=True)
-
-    print("\n[DEBUG] ALL READ-ONLY DIAGNOSTICS PASSED.", flush=True)
-    print("[DEBUG] This debug build intentionally stopped before CreateDailyCheckIn and publish_files().", flush=True)
-    summary("Sprint metrics debug run passed all read-only API checks. No repository or Discussion changes were made.")
+        filename = f"{context['date']}-{quote(sprint['id'], safe='')}.svg"
+        files[f"charts/{filename}"] = chart_svg(sprint, metrics, now)
+        results.append((sprint, metrics, f"../charts/{filename}"))
+    # Finish reads and validation before posting. Reruns locate the marker and reuse the thread.
+    if discussion is None:
+        discussion = repo_api.graphql("""mutation($input: CreateDiscussionInput!) {
+          createDiscussion(input: $input) { discussion { id number url } }
+        }""", input={"repositoryId": repo_id, "categoryId": category_id,
+                      "title": f"Daily check-in — {context['date']}", "body": discussion_body(context)})["createDiscussion"]["discussion"]
+    report = render_report(context, results, collaborators, counts, discussion, yesterday, now)
+    files[f"daily/{context['date']}.md"] = report
+    files["README.md"] = ("# The Arcade sprint metrics\n\n"
+                          f"[Latest daily report: {context['date']}](daily/{context['date']}.md)\n\n"
+                          f"[All daily reports](daily/) · [Workflow setup](https://github.com/{context['repository']}/blob/HEAD/bin/docs/SprintMetrics.md)\n")
+    output.mkdir(parents=True, exist_ok=True)
+    for path, content in files.items():
+        target = output / path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(content, encoding="utf-8")
+    publish_files(repo_api, context["repository"], files, context["date"])
+    summary(f"Published [{context['date']} metrics](https://github.com/{context['repository']}/blob/metrics/daily/{context['date']}.md).\n")
 
 
 def summary(message):
@@ -580,13 +543,13 @@ def main():
         raise MetricsError("GITHUB_REPOSITORY must be owner/repository.")
     if args.command == "cancel":
         summary("No sprint is underway today. Cancelling without creating discussions or metrics.")
-        GitHub(os.environ.get("GITHUB_TOKEN"), "GITHUB_TOKEN").request(
+        GitHub(os.environ.get("GITHUB_TOKEN")).request(
             "POST", f"/repos/{repository}/actions/runs/{os.environ['GITHUB_RUN_ID']}/cancel")
         return
     if args.context is None:
         parser.error("--context is required")
     now = datetime.now(timezone.utc)
-    api = GitHub(os.environ.get("METRICS_TOKEN"), "METRICS_TOKEN")
+    api = GitHub(os.environ.get("METRICS_TOKEN"))
     if args.command == "detect":
         config = json.loads(CONFIG.read_text(encoding="utf-8"))
         context = detect(api, config, repository, now)
@@ -602,7 +565,7 @@ def main():
         context = json.loads(args.context.read_text(encoding="utf-8"))
         if context["repository"] != repository:
             raise MetricsError("Sprint context belongs to a different repository.")
-        publish(api, GitHub(os.environ.get("GITHUB_TOKEN"), "GITHUB_TOKEN"), context, args.output, now)
+        publish(api, GitHub(os.environ.get("GITHUB_TOKEN")), context, args.output, now)
 
 
 if __name__ == "__main__":
