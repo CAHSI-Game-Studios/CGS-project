@@ -10,15 +10,11 @@ res://
 │   ├── scenes/
 │   │   ├── Hub.tscn
 │   │   ├── Start.tscn
-│   │   ├── Win.tscn
-│   │   ├── Lose.tscn
 │   │   └── Player.tscn
 │   │
 │   ├── scripts/
 │   │   ├── Hub.gd
 │   │   ├── Start.gd
-│   │   ├── Win.gd
-│   │   ├── Lose.gd
 │   │   └── Player.gd
 │   │
 │   └── assets/
@@ -61,12 +57,6 @@ Contains the main shared scenes.
 
 - `StartScreen.tscn`  
   Starting screen of the project.
-
-- `WinScreen.tscn`  
-  Screen shown after a game is won.
-
-- `LoseScreen.tscn`  
-  Screen shown after a game is lost.
 
 - `PlayerScene.tscn`  
   Shared player scene used by the Hub and any games that require the main player.
