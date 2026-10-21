@@ -1,6 +1,20 @@
 [gd_scene format=3 uid="uid://bfkv4nekb7at8"]
 
 [ext_resource type="Script" uid="uid://djn8ewxn5w1r" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://cdqvafbrt8ave" path="res://managers/GameManager.gd" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dapqgqsln8lmq" path="res://core/scenes/DebugTerminal.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://1qppvuk8axph" path="res://games/example0/example0.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cn0htfv4oqs2e" path="res://games/example0/example1.tscn" id="5_lquwl"]
 
-[node name="Main" type="Node" unique_id=1309261153]
+[node name="Main" type="Node" unique_id=1309261153 node_paths=PackedStringArray("terminal")]
 script = ExtResource("1_ig7tw")
+terminal = NodePath("terminal")
+
+[node name="GameManager" type="Node" parent="." unique_id=1170578248]
+script = ExtResource("2_0xm2m")
+metadata/_custom_type_script = "uid://cdqvafbrt8ave"
+
+[node name="terminal" parent="." unique_id=954730807 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_h2yge")]
+visible = false
+game_manager = NodePath("../GameManager")
+games = Array[PackedScene]([ExtResource("4_1bvp3"), ExtResource("5_lquwl")])

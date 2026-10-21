@@ -219,7 +219,7 @@ func exit_game(exitData : Variant = null) -> bool:
 	# Preserve a local reference throughout the asynchronous exit lifecycle.
 	var game := currentGame
 	# Allow the game to perform its own shutdown procedure before deletion.
-	await game.exit()
+	game.exit()
 	# queue_free() schedules the node for deletion at the end of the frame.
 	game.queue_free()
 	# Wait until the game has actually left the SceneTree before reporting

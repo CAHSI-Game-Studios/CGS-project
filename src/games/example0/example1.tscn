@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cn0htfv4oqs2e"]
+
+[ext_resource type="Script" uid="uid://b76ma4in7a725" path="res://games/example0/example_0.gd" id="1_i8ke7"]
+[ext_resource type="PackedScene" uid="uid://f0pcwksu7g6d" path="res://games/example0/scenes/shrine.tscn" id="2_v3e5j"]
+[ext_resource type="Texture2D" uid="uid://81ppbf36wc7r" path="res://core/assets/Nova.png" id="3_ijgjf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qgwgs"]
+radius = 4.1231055
+
+[node name="example0" type="Node" unique_id=331801721]
+script = ExtResource("1_i8ke7")
+
+[node name="Shrine" parent="." unique_id=1229671632 instance=ExtResource("2_v3e5j")]
+modulate = Color(1, 0.19215687, 0.24313726, 1)
+
+[node name="player" type="CharacterBody2D" parent="Shrine" unique_id=96850937]
+position = Vector2(117, 85)
+collision_layer = 0
+collision_mask = 16
+motion_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shrine/player" unique_id=25236143]
+shape = SubResource("CircleShape2D_qgwgs")
+
+[node name="Sprite2D" type="Sprite2D" parent="Shrine/player" unique_id=864497014]
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("3_ijgjf")
+
+[node name="Camera2D" type="Camera2D" parent="Shrine/player" unique_id=1483121211]
+zoom = Vector2(9.09, 9.09)
