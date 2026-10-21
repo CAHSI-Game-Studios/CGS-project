@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://81ppbf36wc7r"
-path="res://.godot/imported/Nova.png-67d243e0bc61b83af63b5744e14f5dcd.ctex"
+path="res://.godot/imported/Nova.png-73ae6e6597db532a354188ed44c9977b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Nova.png"
-dest_files=["res://.godot/imported/Nova.png-67d243e0bc61b83af63b5744e14f5dcd.ctex"]
+source_file="res://core/assets/Nova.png"
+dest_files=["res://.godot/imported/Nova.png-73ae6e6597db532a354188ed44c9977b.ctex"]
 
 [params]
 

@@ -1,44 +1,34 @@
-class_name ArcadeGame
+@abstract class_name ArcadeGame
 extends Node
-
-
-
-
 ## Base class for all minigames in The Arcade.
 ##
 ## Every arcade minigame must inherit from ArcadeGame.
 ##
-## Lifecycle contract:
-## 1. An external system instantiates the game scene.
-## 2. The external system adds the game to the scene tree.
-## 3. The external system calls enter() to start the game.
-## 4. The game emits exit_requested when it wants to close.
-## 5. The external system calls exit() and unloads the game.
+## Lifecycle contract: [br]
+## 1. An external system instantiates the game scene. [br]
+## 2. The external system adds the game to the scene tree. [br]
+## 3. The external system calls enter() to start the game. [br]
+## 4. The game emits exit_requested when it wants to close. [br]
+## 5. The external system calls exit() and unloads the game. [br]
 ##
 ## ArcadeGame never changes scenes or unloads itself.
 ## It has no knowledge of the Hub or game coordinator.
 
 
-## Emitted when the game has started.
-signal game_started
-
 ## Emitted when the game wants to close.
 signal exit_requested
 
-## Emitted when the game has completed its exit lifecycle.
-signal game_exited
-
-
+# -= VIRTUAL METHODS =- 
+# Each game MUST define each of these four methods.
+## Called when the game is added to the scene tree. Note that _ready is called BEFORE enter.
+@abstract func _ready() -> void
+## Called every physics frame. _delta is the seconds between each frame. 
+@abstract func _physics_process(_delta: float) -> void
 ## Called by the external system to start the game.
-func enter() -> void:
-	game_started.emit()
-
-
-## Called by the external system before unloading.
-func exit() -> void:
-	game_exited.emit()
-
+@abstract func enter( _enterData : Variant = null) -> void
+## Called by the external system before unloading. Each game is responsible for defining their exit function.
+@abstract func exit() -> void
 
 ## Called by the game when it wants to close.
-func request_exit() -> void:
-	exit_requested.emit()
+func request_exit(_exitData : Variant = null) -> void:
+	exit_requested.emit(_exitData)
