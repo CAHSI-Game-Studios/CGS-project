@@ -27,23 +27,27 @@ func parseInput( inputText : String) -> void:
 		"help", "?":
 			logLine("""
 				game_manager load,start [num]- starts the game at index num
+				game_manager load,start [path]- starts the game at specified path
 				game_manager exit,quit- exits the current game
 				game_manager valid,games- returns list of valid indexes
 				help, ?- display command list
 				stop- terminates main scene
 			""")
 			
-		"game_manager":
+		"game_manager","gm":
 			currentWord += 1
 			if currentWord <= inputSize:
 				match inputs[1]:
-					"load","start":
+					"load","start","s":
 						currentWord+=1
 						if currentWord <= inputSize:
 							if inputs[currentWord].is_valid_int():
 								if int(inputs[currentWord]) <= games.size():
 									game_manager.start_game_from_packed_scene(games[int(inputs[currentWord])])
-					"quit", "exit":
+							elif inputs[currentWord].begins_with("path:"):
+								var path : String = inputs[currentWord].replace("path:", "")
+								game_manager.start_game_from_path(path)
+					"quit", "exit","q":
 						game_manager._on_game_exit_requested(null)
 					"valid","games":
 						var valids : Array = []
