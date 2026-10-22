@@ -24,9 +24,12 @@ metadata/_custom_type_script = "uid://cyjg17ffshdae"
 [node name="dialogueBox" type="Panel" parent="." unique_id=792591457]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.7623457
-anchor_right = 1.0
-anchor_bottom = 1.0015432
+anchor_left = 0.00078125
+anchor_top = 0.67638886
+anchor_right = 1.0398438
+anchor_bottom = 0.9169753
+offset_right = -53.0
+offset_bottom = 56.77777
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_s8vln")
@@ -90,5 +93,14 @@ anchor_bottom = 0.85154843
 offset_right = -0.3199997
 offset_bottom = 0.0099983215
 metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="dialogueBox" unique_id=951032042]
+layout_mode = 0
+offset_left = 1048.0
+offset_top = 17.00003
+offset_right = 1226.0
+offset_bottom = 207.00003
+expand_mode = 1
+flip_h = true
 
 [connection signal="gui_input" from="dialogueBox" to="." method="_on_dialogue_box_gui_input"]
