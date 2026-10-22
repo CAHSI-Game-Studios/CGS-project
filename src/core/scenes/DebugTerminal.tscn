@@ -23,8 +23,8 @@ border_width_bottom = 2
 oversampling_override = 1.0
 title = "Terminal"
 position = Vector2i(0, 36)
-size = Vector2i(512, 256)
-unresizable = true
+size = Vector2i(960, 512)
+min_size = Vector2i(512, 256)
 script = ExtResource("1_dldkg")
 
 [node name="Control" type="Control" parent="." unique_id=1168687167]
@@ -56,7 +56,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_qgwgs")
 vertical_alignment = 2
-autowrap_mode = 2
 
 [node name="input" type="LineEdit" parent="Control/VBoxContainer" unique_id=783869842]
 layout_mode = 2
