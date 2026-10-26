@@ -8,7 +8,7 @@ signal lost_player
 @export_flags_2d_physics var wall_mask: int = 4
 @export var detection_area: Area2D
 
-@onready var enemy : Enemy = get_parent()
+@onready var enemy : Enemy_A = get_parent()
 
 var is_chasing := false
 var trail: BreadcrumbTrail

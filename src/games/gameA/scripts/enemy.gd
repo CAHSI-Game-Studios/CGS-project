@@ -1,4 +1,4 @@
-class_name Enemy
+class_name Enemy_A
 extends CharacterBody2D
 
 @onready var chase: ChaseComponent = $ChaseComponent
