@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bqwwxohqe6up2"]
 
-[ext_resource type="Script" uid="uid://tsjdgjm6fuwa" path="res://Scripts/player.gd" id="1_mhyra"]
-[ext_resource type="Texture2D" uid="uid://81ppbf36wc7r" path="res://Assets/Nova.png" id="2_ttk74"]
+[ext_resource type="Script" uid="uid://tsjdgjm6fuwa" path="res://core/scripts/player.gd" id="1_mhyra"]
+[ext_resource type="Texture2D" uid="uid://81ppbf36wc7r" path="res://core/assets/Nova.png" id="2_ttk74"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
 
