@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c5h5eyfv6w61s"]
+
+[ext_resource type="Script" uid="uid://cngnmol7h6bug" path="res://games/gameA/scripts/breadcrumtail.gd" id="1_k07yr"]
+
+[node name="BreadcrumTail" type="Node2D" unique_id=259848368]
+script = ExtResource("1_k07yr")
+
+[node name="Spawn" type="Timer" parent="." unique_id=973893331]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="Spawn" to="." method="_on_spawn_timeout"]

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bkhrp35f4hk6s"]
+
+[ext_resource type="Script" uid="uid://dvlriheawtlpl" path="res://games/gameA/scripts/enemy.gd" id="1_d015f"]
+[ext_resource type="Script" uid="uid://cg046qqc0vw51" path="res://games/gameA/scripts/chase_component.gd" id="2_dgtbd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5hl2e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bb0j3"]
+size = Vector2(26, 28)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6tu7v"]
+radius = 71.00704
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1294680230]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_d015f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=851980965]
+shape = SubResource("CircleShape2D_5hl2e")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=446969420]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=2104982027]
+shape = SubResource("RectangleShape2D_bb0j3")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=954136629]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1889978453]
+position = Vector2(0, -58)
+shape = SubResource("CircleShape2D_6tu7v")
+
+[node name="ChaseComponent" type="Node" parent="." unique_id=577923598 node_paths=PackedStringArray("detection_area")]
+script = ExtResource("2_dgtbd")
+detection_area = NodePath("../DetectionArea")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

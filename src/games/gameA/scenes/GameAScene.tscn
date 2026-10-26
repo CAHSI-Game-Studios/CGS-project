@@ -1,3 +1,68 @@
 [gd_scene format=3 uid="uid://4d7esgljfl3w"]
 
+[ext_resource type="Script" uid="uid://cwjlce1tfb2bq" path="res://games/gameA/scripts/game_a.gd" id="1_f1ouk"]
+[ext_resource type="PackedScene" uid="uid://c5h5eyfv6w61s" path="res://games/gameA/scenes/breadcrum_tail.tscn" id="2_keys2"]
+[ext_resource type="PackedScene" uid="uid://bkhrp35f4hk6s" path="res://games/gameA/scenes/enemy.tscn" id="3_5hl2e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6tu7v"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5hl2e"]
+radius = 33.567513
+height = 570.9591
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5hl2e"]
+
 [node name="GameAScene" type="Node2D" unique_id=2141663944]
+script = ExtResource("1_f1ouk")
+
+[node name="player" type="CharacterBody2D" parent="." unique_id=249402269]
+position = Vector2(276, 59)
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player" unique_id=438712015]
+shape = SubResource("RectangleShape2D_6tu7v")
+
+[node name="BreadcrumTail" parent="." unique_id=259848368 node_paths=PackedStringArray("player") instance=ExtResource("2_keys2")]
+player = NodePath("../player")
+
+[node name="Enemy" parent="." unique_id=1294680230 instance=ExtResource("3_5hl2e")]
+position = Vector2(274, 436)
+
+[node name="Obstacles" type="Node" parent="." unique_id=2134522691]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Obstacles" unique_id=1384812121]
+position = Vector2(324, 155)
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D" unique_id=742068644]
+position = Vector2(20.463516, -34.160995)
+rotation = 1.5732538
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("CapsuleShape2D_5hl2e")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Obstacles" unique_id=1900877105]
+position = Vector2(437, 213)
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D2" unique_id=1987739551]
+shape = SubResource("CircleShape2D_5hl2e")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Obstacles" unique_id=759011794]
+position = Vector2(104, 231)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D3" unique_id=1993451930]
+shape = SubResource("CircleShape2D_5hl2e")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Obstacles" unique_id=1425435852]
+position = Vector2(150, 374)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D4" unique_id=1365944626]
+shape = SubResource("CircleShape2D_5hl2e")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Obstacles" unique_id=1190643587]
+position = Vector2(419, 359)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D5" unique_id=2040403773]
+shape = SubResource("CircleShape2D_5hl2e")
