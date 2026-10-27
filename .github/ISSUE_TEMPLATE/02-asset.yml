@@ -43,3 +43,44 @@ body:
         - [ ] Asset is placed in the appropriate audio directory.
     validations:
       required: true
+
+  - type: input
+    id: suggested-lead-reviewer
+    attributes:
+      label: Suggested lead reviewer
+      placeholder: GitHub username
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: Lead suggests a producer for review after having reviewed the issue preliminarily.
+
+  - type: input
+    id: suggested-producer-reviewer
+    attributes:
+      label: Suggested producer reviewer
+      placeholder: GitHub username
+    validations:
+      required: false
+
+  - type: input
+    id: suggested-assignee
+    attributes:
+      label: Suggested assignee
+      placeholder: GitHub username
+    validations:
+      required: false
+
+  - type: dropdown
+    id: suggested-size
+    attributes:
+      label: Suggested size
+      options:
+        - XS
+        - S
+        - M
+        - L
+        - XL
+    validations:
+      required: false
