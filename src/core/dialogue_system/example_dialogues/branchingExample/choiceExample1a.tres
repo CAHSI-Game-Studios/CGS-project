@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://crij7enm4wm08"]
+
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_7tlng"]
+
+[resource]
+script = ExtResource("1_7tlng")
+id = &"choiceExample0"
+dialogue_type = 2
+speaker = "NuHazd"
+text = "It sounds complicated, but the entire thing is documented inside [b]DialogueSystem.gd[/b]! I invite you to take a look at the implementation, and perhaps even find a better approach."
+metadata/_custom_type_script = "uid://pxo52x3jat8o"
