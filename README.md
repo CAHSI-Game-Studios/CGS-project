@@ -1,5 +1,5 @@
 # The Arcade sprint metrics
 
-[Latest daily report: 2026-10-07](daily/2026-10-07.md)
+[Latest daily report: 2026-10-27](daily/2026-10-27.md)
 
 [All daily reports](daily/) · [Workflow setup](https://github.com/CAHSI-Game-Studios/TheArcade/blob/HEAD/bin/docs/SprintMetrics.md)

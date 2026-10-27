@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="380" viewBox="0 0 960 380" role="img" aria-labelledby="title desc">
+<title id="title">Sprint 2: completed points</title>
+<desc id="desc">Sprint scope: 59 points. Completed: 3 points. Line stops at report time.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<g font-family="system-ui, sans-serif" font-size="13" fill="#24292f">
+<text x="70" y="28" font-size="18">Completed points / 59 points in sprint</text>
+<line x1="70" x2="930" y1="300.00" y2="300.00" stroke="#d0d7de"/>
+<text x="58" y="305.00" text-anchor="end">0</text>
+<line x1="70" x2="930" y1="251.60" y2="251.60" stroke="#d0d7de"/>
+<text x="58" y="256.60" text-anchor="end">11.8</text>
+<line x1="70" x2="930" y1="203.20" y2="203.20" stroke="#d0d7de"/>
+<text x="58" y="208.20" text-anchor="end">23.6</text>
+<line x1="70" x2="930" y1="154.80" y2="154.80" stroke="#d0d7de"/>
+<text x="58" y="159.80" text-anchor="end">35.4</text>
+<line x1="70" x2="930" y1="106.40" y2="106.40" stroke="#d0d7de"/>
+<text x="58" y="111.40" text-anchor="end">47.2</text>
+<line x1="70" x2="930" y1="58.00" y2="58.00" stroke="#d0d7de"/>
+<text x="58" y="63.00" text-anchor="end">59</text>
+<text x="70.00" y="326" text-anchor="middle">10-22</text>
+<text x="192.86" y="326" text-anchor="middle">10-24</text>
+<text x="377.14" y="326" text-anchor="middle">10-27</text>
+<text x="500.00" y="326" text-anchor="middle">10-29</text>
+<text x="622.86" y="326" text-anchor="middle">10-31</text>
+<text x="807.14" y="326" text-anchor="middle">11-03</text>
+<text x="930.00" y="326" text-anchor="middle">11-05</text>
+<path d="M 70 58 V 300 H 930" fill="none" stroke="#57606a"/>
+<polyline points="70.00,287.69 404.31,287.69" fill="none" stroke="#0969da" stroke-width="3"/>
+<text x="480" y="362" text-anchor="middle">Sprint dates (last tick is the exclusive end boundary)</text></g></svg>
