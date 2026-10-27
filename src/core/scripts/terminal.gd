@@ -56,11 +56,11 @@ func parseInput( inputText : String) -> void:
 			
 		"game_manager","gm":
 			currentWord += 1
-			if currentWord <= inputSize:
+			if currentWord < inputSize:
 				match inputs[1]:
 					"start","s":
 						currentWord+=1
-						if currentWord <= inputSize:
+						if currentWord < inputSize:
 							if games.has(inputs[currentWord]):
 								game_manager.start_game_from_packed_scene(games[inputs[currentWord]])
 							elif inputs[currentWord].begins_with("path:"):
@@ -74,7 +74,7 @@ func parseInput( inputText : String) -> void:
 						logLine("Unrecognized command. Enter help or ? for command list.")
 		"dialogue_system", "ds":
 			currentWord += 1
-			if currentWord <= inputSize:
+			if currentWord < inputSize:
 				match inputs[1]:
 					"close", "c":
 						dialogue_system.close_system()
@@ -82,7 +82,7 @@ func parseInput( inputText : String) -> void:
 						dialogue_system.open_system()
 					"set", "s":
 						currentWord += 1
-						if currentWord <= inputSize:
+						if currentWord < inputSize:
 							if inputs[currentWord].begins_with("path:"):
 								var pth : String = inputs[currentWord].replace("path:","")
 								if ResourceLoader.exists(pth):
