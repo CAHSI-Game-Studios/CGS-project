@@ -6,5 +6,6 @@
 script = ExtResource("1_cu2av")
 id = &"vixStare"
 dialogue_type = 2
-text = "(stareeeeeeeeeeeeee...)"
+speaker = "Vix"
+text = "..."
 metadata/_custom_type_script = "uid://pxo52x3jat8o"

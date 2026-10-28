@@ -36,7 +36,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		start_interaction()
 ## Begins an interaction using the current [member interaction_data].
 func start_interaction() -> void:
-	dialogue_system_reference.set_current_dialogue(interaction_data.interaction_dialogue)
+	dialogue_system_reference.set_current_dialogue(interaction_data.dialogue)
 	dialogue_system_reference.open_system()
 	marker.hide()
 	interacted = true
@@ -50,9 +50,9 @@ func setup_location(data : CharacterInteraction, dialogue_system : DialogueSyste
 	interaction_data = data
 	character_display.flip_h = interaction_data.flip_h
 	character_display.sprite_frames = interaction_data.animations
+	character_display.position = interaction_data.sprite_offset
 	character_display.play(interaction_data.animation_to_play)
 	marker.region_rect = Rect2 (priority*16, 0 ,16, 16)
-	position = interaction_data.sprite_offset
 	marker.position = interaction_data.marker_offset
 	monitoring = not interaction_data.display_only
 	dialogue_system_reference = dialogue_system
@@ -99,11 +99,11 @@ func catch_errors(data : CharacterInteraction) -> bool:
 		errs.push_back("Null animation identifier beign set.")
 	elif not data.animations.has_animation(data.animation_to_play):
 		errs.push_back("SpriteFrames resource does not contain: %s " % data.animation_to_play)
-	if data.initial_dialogue == null and not data.display_only:
+	if data.dialogue == null and not data.display_only:
 		errs.push_back("Null dialogue resource.")
 	if not errs.is_empty():
 		push_error("At: %s, %d errors:" % [self.name, errs.size()])
 		for err : String in errs:
 			push_error(err)
-		return false
-	return true
+		return true
+	return false

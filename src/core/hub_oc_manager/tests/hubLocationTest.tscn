@@ -11,12 +11,12 @@ script/source = "extends Node
 # A simple test harness.
 # The HubLocation must be given a CollisionShape.
 # Expects the player to be in collision layer 1
-
+@export var dialogue_system : DialogueSystem
 @export var chair_left : HubLocation
 @export var chair_right : HubLocation
 @export var by_door : HubLocation
 
-@export var temp_interactions : Dictionary[String, CharacterInteraction] = {
+var temp_interactions : Dictionary[String, CharacterInteraction] = {
 	\"vixStare\" : CharacterInteraction.new( # See CharacterInteraction._init().
 		\"vixStare\",
 		ResourceLoader.load(\"res://core/hub_oc_manager/temp/vixSpriteFrames.tres\"),
@@ -26,24 +26,31 @@ script/source = "extends Node
 	\"vixSleep\" : CharacterInteraction.new( # See CharacterInteraction._init().
 		\"vixSleep\",
 		ResourceLoader.load(\"res://core/hub_oc_manager/temp/vixSpriteFrames.tres\"),
-		ResourceLoader.load(\"res://core/hub_oc_manager/temp/dialogues/vixStare.tres\"),
+		ResourceLoader.load(\"res://core/hub_oc_manager/temp/dialogues/vixSleep.tres\"),
 		\"sleep\",
-		false, true
+		false, false
 		),
 	\"himekoAboutTheShrine\" : CharacterInteraction.new( # See CharacterInteraction._init().
 		\"himekoAboutTheShrine\",
-		ResourceLoader.load(\"res://core/hub_oc_manager/temp/vixSpriteFrames.tres\"),
-		ResourceLoader.load(\"res://core/hub_oc_manager/temp/dialogues/vixStare.tres\"),
-		\"idleRight\"
+		ResourceLoader.load(\"res://core/hub_oc_manager/temp/himekoSpriteFrames.tres\"),
+		ResourceLoader.load(\"res://core/hub_oc_manager/temp/dialogues/himekoAboutTheShrine.tres\"),
+		\"idleUp\"
 		),
 }
 
 
 
 func _ready() -> void:
-	pass
+	testTwo()
 
-		
+
+func testOne() -> void:
+	chair_left.setup_location(temp_interactions[\"vixStare\"],dialogue_system)
+	chair_right.setup_location(temp_interactions[\"himekoAboutTheShrine\"], dialogue_system)
+
+func testTwo() -> void:
+	chair_left.setup_location(temp_interactions[\"vixSleep\"],dialogue_system)
+	chair_right.setup_location(temp_interactions[\"himekoAboutTheShrine\"], dialogue_system)
 	
 "
 
@@ -54,15 +61,18 @@ size = Vector2(32, 32)
 script/source = "extends CharacterBody2D
 
 func _physics_process(_delta: float) -> void:
-	velocity = Input.get_vector(\"ui_left\", \"ui_right\",\"ui_up\",\"ui_right\") * 300
+	velocity = Input.get_vector(\"move_left\", \"move_right\",\"move_up\",\"move_down\") * 300
 	move_and_slide()
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qgwgs"]
 
-[node name="HubLocationTest" type="Node" unique_id=488566056 node_paths=PackedStringArray("chair_left")]
+[node name="HubLocationTest" type="Node" unique_id=488566056 node_paths=PackedStringArray("dialogue_system", "chair_left", "chair_right", "by_door")]
 script = SubResource("GDScript_qy8p7")
+dialogue_system = NodePath("CanvasLayer/DialogueSystem")
 chair_left = NodePath("chairLeft")
+chair_right = NodePath("chairRight")
+by_door = NodePath("byDoor")
 
 [node name="back" type="TileMapLayer" parent="." unique_id=1190830419]
 position = Vector2(0, 25)
@@ -93,10 +103,11 @@ position = Vector2(176, 120)
 shape = SubResource("RectangleShape2D_fvs06")
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=86246417]
+position = Vector2(144, 60)
 script = SubResource("GDScript_qgwgs")
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=1560390228]
-zoom = Vector2(2, 2)
+zoom = Vector2(4, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player" unique_id=239661166]
 shape = SubResource("CircleShape2D_qgwgs")
@@ -106,5 +117,7 @@ position = Vector2(-8, -8)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(0, 0, 0, 16, 16, 16, 16, 0)
 
-[node name="DialogueSystem" parent="." unique_id=1918673968 instance=ExtResource("2_qy8p7")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=512805690]
+
+[node name="DialogueSystem" parent="CanvasLayer" unique_id=1918673968 instance=ExtResource("2_qy8p7")]
 visible = false
