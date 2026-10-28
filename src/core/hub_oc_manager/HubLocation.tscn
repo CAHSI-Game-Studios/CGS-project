@@ -41,17 +41,17 @@ _data = {
 &"up_down": SubResource("Animation_15fhg")
 }
 
-[node name="HubLocation" type="Area2D" unique_id=1346217520 node_paths=PackedStringArray("marker", "character_display")]
+[node name="HubLocation" type="Area2D" unique_id=1346217520]
 monitoring = false
 monitorable = false
 script = ExtResource("1_chnol")
-marker = NodePath("characterDisplay/marker")
-character_display = NodePath("characterDisplay")
 metadata/_custom_type_script = "uid://dckf5uigweukv"
 
 [node name="characterDisplay" type="AnimatedSprite2D" parent="." unique_id=789788914]
 
 [node name="marker" type="Sprite2D" parent="characterDisplay" unique_id=161238459]
+visible = false
+position = Vector2(0, -32)
 texture = ExtResource("2_hjocr")
 region_enabled = true
 region_rect = Rect2(32, 0, 16, 16)
