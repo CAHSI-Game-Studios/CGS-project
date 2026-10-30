@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CharacterInteraction" format=3 uid="uid://cdduomnb7eo4q"]
+
+[ext_resource type="SpriteFrames" uid="uid://baeus8htymbor" path="res://core/hub_oc_manager/temp/sprite_frames/coloredCharacterSpriteFrames.tres" id="1_fq8xc"]
+[ext_resource type="Script" uid="uid://cs10tpo1x3n0d" path="res://core/hub_oc_manager/characterInteraction.gd" id="3_ylon5"]
+
+[resource]
+script = ExtResource("3_ylon5")
+id = &"redDisplaySide"
+animations = ExtResource("1_fq8xc")
+animation_to_play = "redIdleSide"
+display_only = true
+metadata/_custom_type_script = "uid://cs10tpo1x3n0d"

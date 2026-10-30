@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CharacterInteraction" format=3 uid="uid://cqhkiq6nddup1"]
+
+[ext_resource type="SpriteFrames" uid="uid://baeus8htymbor" path="res://core/hub_oc_manager/temp/sprite_frames/coloredCharacterSpriteFrames.tres" id="1_wxbcp"]
+[ext_resource type="Resource" uid="uid://dmiaoxnhwbfbp" path="res://core/hub_oc_manager/temp/dialogues/blue/option0/blue0.tres" id="2_474j3"]
+[ext_resource type="Script" uid="uid://cs10tpo1x3n0d" path="res://core/hub_oc_manager/characterInteraction.gd" id="3_p6g1k"]
+
+[resource]
+script = ExtResource("3_p6g1k")
+id = &"blueTrutle"
+animations = ExtResource("1_wxbcp")
+animation_to_play = "blueIdleSide"
+dialogue = ExtResource("2_474j3")
+flip_h = true
+metadata/_custom_type_script = "uid://cs10tpo1x3n0d"

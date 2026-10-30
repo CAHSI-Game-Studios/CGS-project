@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HubState" format=3 uid="uid://cn4lbbdn364nu"]
+
+[ext_resource type="Script" uid="uid://cs10tpo1x3n0d" path="res://core/hub_oc_manager/characterInteraction.gd" id="1_ecfuf"]
+[ext_resource type="Resource" uid="uid://ncly2ubhcylq" path="res://core/hub_oc_manager/temp/interactions/yellow/yellowQuestionSide.tres" id="2_lidgi"]
+[ext_resource type="Script" uid="uid://d1dgea5neqeai" path="res://core/hub_oc_manager/hubState.gd" id="2_ppjvj"]
+
+[resource]
+script = ExtResource("2_ppjvj")
+id = &"yellowOnly"
+interactions = Dictionary[int, ExtResource("1_ecfuf")]({
+2: ExtResource("2_lidgi")
+})
+metadata/_custom_type_script = "uid://d1dgea5neqeai"

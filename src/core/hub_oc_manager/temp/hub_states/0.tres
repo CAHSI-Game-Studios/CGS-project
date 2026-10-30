@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="HubState" format=3 uid="uid://mtsflqm4xedv"]
+
+[ext_resource type="Script" uid="uid://cs10tpo1x3n0d" path="res://core/hub_oc_manager/characterInteraction.gd" id="1_3ri63"]
+[ext_resource type="Resource" uid="uid://t3bmks47xtm7" path="res://core/hub_oc_manager/temp/interactions/green/greenQuestionSide.tres" id="2_8uac8"]
+[ext_resource type="Script" uid="uid://d1dgea5neqeai" path="res://core/hub_oc_manager/hubState.gd" id="2_gnxqr"]
+[ext_resource type="SpriteFrames" uid="uid://baeus8htymbor" path="res://core/hub_oc_manager/temp/sprite_frames/coloredCharacterSpriteFrames.tres" id="3_3aps2"]
+[ext_resource type="Resource" uid="uid://17dgoc83e4ha" path="res://core/hub_oc_manager/temp/dialogues/red/option0/red0.tres" id="4_whutq"]
+
+[sub_resource type="Resource" id="Resource_m4pf5"]
+script = ExtResource("1_3ri63")
+id = &"redStrangePlace"
+animations = ExtResource("3_3aps2")
+animation_to_play = "redIdleSide"
+dialogue = ExtResource("4_whutq")
+flip_h = true
+metadata/_custom_type_script = "uid://cs10tpo1x3n0d"
+
+[resource]
+script = ExtResource("2_gnxqr")
+id = &"GreenRed"
+interactions = Dictionary[int, ExtResource("1_3ri63")]({
+2: SubResource("Resource_m4pf5"),
+3: ExtResource("2_8uac8")
+})
+metadata/_custom_type_script = "uid://d1dgea5neqeai"

@@ -1,3 +1,4 @@
+# author: nu-hazd, rev: Oct 29, 2026
 class_name HubInteractionsManager extends Node
 
 @export var current_hub_state : HubState
@@ -13,9 +14,9 @@ enum HUB_LOCATION {
 	HUB_LOCATION.EAST : null,
 	HUB_LOCATION.WEST : null
 }
-func _ready() -> void:
-	print(HUB_LOCATION.keys()[location_markers.keys()[0]])
 
+func _ready() -> void:
+	check_integrity()
 
 func set_interactions_from_hub_state(hub_state : HubState) -> bool:
 	reset_locations()

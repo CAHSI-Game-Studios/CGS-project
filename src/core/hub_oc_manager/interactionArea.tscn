@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c1ajoul1eerja"]
 
-[ext_resource type="Script" uid="uid://dckf5uigweukv" path="res://core/hub_oc_manager/hubLocation.gd" id="1_chnol"]
+[ext_resource type="Script" uid="uid://dckf5uigweukv" path="res://core/hub_oc_manager/interactionArea.gd" id="1_chnol"]
 [ext_resource type="Texture2D" uid="uid://dnb6427cb0ody" path="res://core/hub_oc_manager/interactionMarker.png" id="2_hjocr"]
 
 [sub_resource type="Animation" id="Animation_hjocr"]

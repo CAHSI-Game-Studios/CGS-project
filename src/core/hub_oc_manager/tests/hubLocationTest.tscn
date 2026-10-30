@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://dahssbewte1h8"]
 
-[ext_resource type="PackedScene" uid="uid://c1ajoul1eerja" path="res://core/hub_oc_manager/HubLocation.tscn" id="1_k81y0"]
+[ext_resource type="PackedScene" uid="uid://c1ajoul1eerja" path="res://core/hub_oc_manager/interactionArea.tscn" id="1_k81y0"]
 [ext_resource type="TileSet" uid="uid://cb8i4ujotx1lq" path="res://games/example0/assets/tiles.tres" id="1_rte3u"]
 [ext_resource type="PackedScene" uid="uid://8u7o87nryac0" path="res://core/dialogue_system/DialogueSystem.tscn" id="2_qy8p7"]
 
@@ -12,9 +12,9 @@ script/source = "extends Node
 # The HubLocation must be given a CollisionShape.
 # Expects the player to be in collision layer 1
 @export var dialogue_system : DialogueSystem
-@export var chair_left : HubLocation
-@export var chair_right : HubLocation
-@export var by_door : HubLocation
+@export var chair_left : InteractionArea
+@export var chair_right : InteractionArea
+@export var by_door : InteractionArea
 
 var temp_interactions : Dictionary[String, CharacterInteraction] = {
 	\"vixStare\" : CharacterInteraction.new( # See CharacterInteraction._init().

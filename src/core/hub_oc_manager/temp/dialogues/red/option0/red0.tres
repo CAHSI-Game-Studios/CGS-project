@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://17dgoc83e4ha"]
+
+[ext_resource type="Resource" uid="uid://yol1ycado62v" path="res://core/hub_oc_manager/temp/dialogues/red/option0/red1.tres" id="1_lqnu2"]
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="2_td5x0"]
+
+[resource]
+script = ExtResource("2_td5x0")
+id = &"redAboutTheRoom0"
+speaker = "Red"
+text = "What a strange place we find ourselves in..."
+text_duration = 3.0
+next_dialogue = ExtResource("1_lqnu2")
+metadata/_custom_type_script = "uid://pxo52x3jat8o"
