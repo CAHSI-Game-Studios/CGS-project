@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cre0vybbvy3n3"]
+
+[ext_resource type="Script" uid="uid://cdsc2vracn6l3" path="res://games/gameA/scripts/projectile.gd" id="1_0rlnb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6tu7v"]
+
+[node name="Projectile" type="Area2D" unique_id=2020004551]
+collision_layer = 0
+script = ExtResource("1_0rlnb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=641606164]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_6tu7v")

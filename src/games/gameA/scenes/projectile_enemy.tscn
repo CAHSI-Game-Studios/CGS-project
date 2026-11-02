@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://beyeagdeaihuo"]
+
+[ext_resource type="PackedScene" uid="uid://bypmotrg51bse" path="res://games/gameA/scenes/GameAEnemy.tscn" id="1_pbcw7"]
+[ext_resource type="Script" uid="uid://bdkg75lm1hc7f" path="res://games/gameA/scripts/projectile_enemy.gd" id="2_m0t6q"]
+
+[node name="projectileEnemy" unique_id=1796773824 instance=ExtResource("1_pbcw7")]
+script = ExtResource("2_m0t6q")
+projectile_scene = null
+attack_distance = 40.0
+windup_time = 0.8
+projectile_speed = 250.0
+cooldown_time = 1.0
+damage = 1.0
