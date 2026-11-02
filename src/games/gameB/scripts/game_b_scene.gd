@@ -65,6 +65,7 @@ func lose_game():
 func _on_spawn_timer_timeout() -> void:
 	if minigame_timer.time_left > 0:
 		var note_instance = note.instantiate() 
-		note_instance.position = note_spawner.position 
+		add_child(note_instance)
+		note_instance.global_position = note_spawner.global_position 
 		note_instance.velocity = note_speed
-		get_tree().current_scene.add_child(note_instance)
+		
