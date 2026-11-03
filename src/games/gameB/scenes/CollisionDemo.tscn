@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c6ub2s4yw2xww"]
+
+[ext_resource type="Script" uid="uid://dbjjs2tfo352o" path="res://games/gameB/scripts/RhythmCollisionDemo.gd" id="1_d3516"]
+[ext_resource type="Texture2D" uid="uid://wgjqarjaldp0" path="res://games/gameB/assets/background_Concept.png" id="2_h4u7c"]
+
+[node name="RhythmCollisionDemo" type="Node2D" unique_id=1108226209]
+script = ExtResource("1_d3516")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=639814967]
+position = Vector2(640, 360)
+scale = Vector2(2, 2)
+texture = ExtResource("2_h4u7c")
