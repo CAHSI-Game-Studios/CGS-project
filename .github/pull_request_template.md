@@ -12,10 +12,11 @@ GitHub fills the description from this template; enter the title manually.
 Refs #<issue-number> — <original issue title>
 
 
-## Summary
+## Summary (required)
 
-<!-- Describe what changed and how it addresses the original issue. -->
-* 
+<!-- Describe what changed and how it addresses the original issue.
+A blank summary or untouched template will fail the PR description check. -->
+- 
 
 ## Testing
 
