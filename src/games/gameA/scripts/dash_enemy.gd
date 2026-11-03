@@ -21,10 +21,6 @@ var dash_target: Vector2
 var dash_direction: Vector2
 
 
-func _ready() -> void:
-	hitbox.monitoring = false
-	hitbox.body_entered.connect(_on_hitbox_body_entered)
-
 func update_behavior(delta: float) -> void:
 	match state:
 		State.CHASE:
@@ -74,16 +70,8 @@ func start_dash() -> void:
 	modulate = Color.WHITE
 	dash_target = player.global_position
 	dash_direction = global_position.direction_to(dash_target)
-	# active hitbox detection
-	hitbox.set_deferred("monitoring", true)
 
 
 func start_cooldown() -> void:
 	state = State.COOLDOWN
 	state_timer = cooldown_time
-	hitbox.set_deferred("monitoring", false)
-
-
-func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body == player:
-		hitbox.set_deferred("monitoring", false) 

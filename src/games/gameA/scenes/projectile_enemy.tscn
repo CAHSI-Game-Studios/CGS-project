@@ -10,4 +10,3 @@ attack_distance = 40.0
 windup_time = 0.8
 projectile_speed = 250.0
 cooldown_time = 1.0
-damage = 1.0

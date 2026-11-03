@@ -9,7 +9,7 @@ enum State { CHASE, WINDUP, COOLDOWN }
 @export var windup_time : float = 0.8
 @export var projectile_speed : float = 250.0
 @export var cooldown_time : float = 1.0
-@export var damage : float = 1.0
+
 
 var state : State = State.CHASE
 var state_timer : float = 0.0
@@ -56,7 +56,7 @@ func start_cooldown():
 func set_up_projectile(projectile : GameAProjectile)->void:
 	projectile.direction = global_position.direction_to(player.global_position)
 	projectile.speed = projectile_speed
-	projectile.damage = damage
+	projectile.damage = dmg
 	
 	
 	

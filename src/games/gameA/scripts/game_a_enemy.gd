@@ -5,13 +5,14 @@ extends CharacterBody2D
 @onready var hitbox: Area2D = $Hitbox
 @export var player: CharacterBody2D
 @export var SPEED: float = 50
-@export var health : int = 20
+@export var health : int = 100
+@export var dmg : int = 20
+@onready var health_bar: ProgressBar = $UI/HealthBar
 
 var can_chase: bool = true
 
 func _ready() -> void:
-	hitbox.body_entered.connect(_on_area_entered)
-
+	health_bar.value = health
 
 func _physics_process(delta: float) -> void:
 	if player == null:
@@ -22,19 +23,16 @@ func _physics_process(delta: float) -> void:
 func update_behavior(_delta: float) -> void:
 	chase_target(player)
 	
-func _on_area_entered(area : Area2D):
-	if area.get_parent() == null:
-		return
-	# check if its the player area
-	if area.get_parent() is CharacterBody2D and area.get_parent() == player:
-		# for now its just one dmg
-		take_damage(1)
 
 func take_damage(amount):
-	if amount > health:
+	if amount >= health:
 		health = 0
+		# the enemy is dead
+		queue_free()
 	else:
 		health -= amount
+	health_bar.value = health
+	print("Enemy : ", name, " , health : " ,health)
 
 ## ------- Chase Behavior ----------------
 func chase_target(target: Node2D) -> void:
@@ -69,5 +67,6 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 func stop_moving() -> void:
 	velocity = Vector2.ZERO
 	move_and_slide()
+
 func distance_to_player() -> float:
 	return global_position.distance_to(player.global_position)

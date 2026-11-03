@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6tu7v"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njvlo"]
+bg_color = Color(0.75158876, 0.025840001, 0.050708726, 1)
+
 [node name="Enemy" type="CharacterBody2D" unique_id=1796773824]
 collision_layer = 2
 collision_mask = 4
@@ -18,14 +21,43 @@ shape = SubResource("CircleShape2D_6tu7v")
 path_desired_distance = 5.0
 target_desired_distance = 5.0
 avoidance_enabled = true
+radius = 6.0
 debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=492361761]
-collision_layer = 0
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1634634792]
 shape = SubResource("RectangleShape2D_6tu7v")
+
+[node name="UI" type="Control" parent="." unique_id=996165540]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="ProgressBar" parent="UI" unique_id=1076545017]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -12.0
+offset_top = 5.0
+offset_right = 12.0
+offset_bottom = 9.0
+grow_horizontal = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_njvlo")
+step = 5.0
+show_percentage = false
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

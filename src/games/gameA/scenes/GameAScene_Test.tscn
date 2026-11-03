@@ -1,18 +1,17 @@
 [gd_scene format=3 uid="uid://8nboo2a2c2ta"]
 
 [ext_resource type="Script" uid="uid://cwjlce1tfb2bq" path="res://games/gameA/scripts/game_a.gd" id="1_wi5bm"]
+[ext_resource type="PackedScene" uid="uid://crqmfpbfm38mk" path="res://games/gameA/scenes/player.tscn" id="2_d11v3"]
 [ext_resource type="PackedScene" uid="uid://dq5h8x22b2lap" path="res://games/gameA/scenes/dash_enemy.tscn" id="2_wlono"]
 [ext_resource type="PackedScene" uid="uid://cre0vybbvy3n3" path="res://games/gameA/scenes/projectile.tscn" id="3_nqjrd"]
 [ext_resource type="PackedScene" uid="uid://beyeagdeaihuo" path="res://games/gameA/scenes/projectile_enemy.tscn" id="3_wi5bm"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6tu7v"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_loah6"]
 vertices = PackedVector2Array(44, 227, 340.96094, 332.97656, -326.9375, 332.0078, -83, 227, -324.04688, -161.28125, -83, 124, 339.03125, -180.6875, 44, 124)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(5, 4, 6, 7), PackedInt32Array(7, 6, 1, 0)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-334, -171, -337, 342, 351, 343, 349, -191)])
 source_geometry_mode = 1
-source_geometry_group_name = &"navigation"
+source_geometry_group_name = &"gameANavigation"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8ugx"]
 size = Vector2(107, 83)
@@ -20,24 +19,13 @@ size = Vector2(107, 83)
 [node name="GameAScene_Test" type="Node2D" unique_id=2141663944]
 script = ExtResource("1_wi5bm")
 
-[node name="player" type="CharacterBody2D" parent="." unique_id=1666324964]
-position = Vector2(0, 81)
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player" unique_id=1902453527]
-shape = SubResource("RectangleShape2D_6tu7v")
-
-[node name="Camera2D" type="Camera2D" parent="player" unique_id=1104609357]
-position = Vector2(0, 1)
-zoom = Vector2(2, 2)
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=49807746]
 position = Vector2(-25, -5)
 navigation_polygon = SubResource("NavigationPolygon_loah6")
 
 [node name="Collisions" type="Node" parent="." unique_id=181931554]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Collisions" unique_id=748366589 groups=["navigation"]]
+[node name="StaticBody2D" type="StaticBody2D" parent="Collisions" unique_id=748366589 groups=["gameANavigation"]]
 position = Vector2(-1, 202)
 collision_layer = 4
 collision_mask = 0
@@ -49,7 +37,14 @@ shape = SubResource("RectangleShape2D_e8ugx")
 [node name="projectileEnemy" parent="." unique_id=444337982 node_paths=PackedStringArray("player") instance=ExtResource("3_wi5bm")]
 projectile_scene = ExtResource("3_nqjrd")
 attack_distance = 80.0
-player = NodePath("../player")
+player = NodePath("../Player")
 
 [node name="DashEnemy" parent="." unique_id=1796773824 node_paths=PackedStringArray("player") instance=ExtResource("2_wlono")]
-player = NodePath("../player")
+windup_time = 0.2
+player = NodePath("../Player")
+
+[node name="Player" parent="." unique_id=102526350 instance=ExtResource("2_d11v3")]
+position = Vector2(96, 107)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=2056419700]
+zoom = Vector2(3, 3)
