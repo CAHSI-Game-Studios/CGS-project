@@ -1,9 +1,9 @@
 <!--
-Set the PR TITLE above to: [#<issue-number>] <original issue title>
-Example: [#106] [Implementation] Implement Reusable Pause System
+Set the PR TITLE above to: [<issue-number>] <original issue title>
+Example: [106] [Implementation] Implement Reusable Pause System
 
 For multiple issues, include every number and a shared description:
-[#122, #124] Game A win and lose functions
+[122, 124] Game A win and lose functions
 List every original issue and its full title below.
 GitHub fills the description from this template; enter the title manually.
 -->
