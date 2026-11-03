@@ -22,15 +22,6 @@ body:
       required: true
 
   - type: textarea
-    id: description
-    attributes:
-      label: Description
-      description: Provide the context, requirements, constraints, and relevant details needed to complete the work.
-      placeholder: Describe the expected behavior and any relevant systems, scenes, files, or dependencies.
-    validations:
-      required: true
-
-  - type: textarea
     id: acceptance-criteria
     attributes:
       label: Acceptance Criteria
