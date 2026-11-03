@@ -20,16 +20,6 @@ body:
     validations:
       required: true
 
-  - type: textarea
-    id: description
-    attributes:
-      label: Description
-      description: Provide relevant context, tone, characters, setting, narrative constraints, and any existing material that should be followed.
-      placeholder: |
-        The dialogue should introduce the hub world without directly explaining every mechanic.
-        The NPC should sound energetic but slightly suspicious of the player.
-    validations:
-      required: true
 
   - type: textarea
     id: acceptance-criteria
