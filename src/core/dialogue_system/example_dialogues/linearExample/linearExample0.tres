@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://d02fj3y1ocjyn"]
+
+[ext_resource type="Resource" uid="uid://mm7ubic4lpic" path="res://core/dialogue_system/example_dialogues/linearExample/linearExample1.tres" id="1_efyto"]
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="2_mhvtb"]
+
+[resource]
+script = ExtResource("2_mhvtb")
+id = &"linearExample0"
+speaker = "NuHazd"
+text = "Hello! This is an example linear dialogue. A dialogue is a Resource that contains various values that tell the DialogueSystem what to do with it. 
+Try clicking anywhere in the text box!"
+text_duration = 6.0
+next_dialogue = ExtResource("1_efyto")
+metadata/_custom_type_script = "uid://pxo52x3jat8o"

@@ -10,7 +10,7 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
 
-[node name="DialogueSystem" type="Control" unique_id=1918673968]
+[node name="DialogueSystem" type="Control" unique_id=1918673968 node_paths=PackedStringArray("dialogue_text", "choice_button_container", "speaker")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,14 +19,20 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_k2dv1")
+dialogue_text = NodePath("dialogueBox/dialogueText")
+choice_button_container = NodePath("dialogueBox/choiceButtonContainer")
+speaker = NodePath("dialogueBox/speaker")
 metadata/_custom_type_script = "uid://cyjg17ffshdae"
 
 [node name="dialogueBox" type="Panel" parent="." unique_id=792591457]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.7623457
-anchor_right = 1.0
-anchor_bottom = 1.0015432
+anchor_left = 0.00078125
+anchor_top = 0.67638886
+anchor_right = 1.0398438
+anchor_bottom = 0.9169753
+offset_right = -53.0
+offset_bottom = 56.77777
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_s8vln")
@@ -50,7 +56,7 @@ bbcode_enabled = true
 text = "Dialogue text"
 metadata/_edit_use_anchors_ = true
 
-[node name="choiceButtons" type="VBoxContainer" parent="dialogueBox" unique_id=513449498]
+[node name="choiceButtonContainer" type="VBoxContainer" parent="dialogueBox" unique_id=513449498]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.8550347
@@ -80,15 +86,14 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="icon" type="TextureRect" parent="dialogueBox" unique_id=940634049]
-visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.045138888
-anchor_top = 0.12903225
-anchor_right = 0.14611112
-anchor_bottom = 0.85154843
-offset_right = -0.3199997
-offset_bottom = 0.0099983215
+anchor_left = 0.8198904
+anchor_top = 0.095652394
+anchor_right = 0.96001685
+anchor_bottom = 0.8181686
+offset_right = 1.0584717
+offset_bottom = 13.821259
 metadata/_edit_use_anchors_ = true
 
 [connection signal="gui_input" from="dialogueBox" to="." method="_on_dialogue_box_gui_input"]

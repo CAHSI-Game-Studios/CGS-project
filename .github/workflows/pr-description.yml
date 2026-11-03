@@ -1,0 +1,71 @@
+name: PR description
+
+on:
+  # Validate metadata only, including PRs targeting intermediate branches.
+  # Never check out or execute code from the pull request.
+  pull_request_target:
+    types: [opened, edited, reopened, synchronize, ready_for_review]
+
+permissions: {}
+
+jobs:
+  check-description:
+    name: PR description is filled in
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Check for an authored description
+        shell: python
+        run: |
+          import html
+          import json
+          import os
+          import re
+          import sys
+
+          with open(os.environ["GITHUB_EVENT_PATH"], encoding="utf-8") as event_file:
+              body = json.load(event_file)["pull_request"].get("body") or ""
+
+          # Comments, headings, and empty template bullets are not a description.
+          body = re.sub(r"<!--.*?(?:-->|$)", "", body, flags=re.DOTALL)
+          body = html.unescape(body)
+          summary = re.search(
+              r"(?ims)^#{1,6}[ \t]+Summary[^\r\n]*\r?\n(.*?)(?=^#{1,6}[ \t]+|\Z)",
+              body,
+          )
+          if summary:
+              description = summary.group(1)
+          elif re.search(
+              r"(?im)^#{1,6}[ \t]+(?:Original issue|Testing|Dependencies and remaining work)\b",
+              body,
+          ):
+              description = ""
+          else:
+              # Plain descriptions without the template are also supported.
+              description = body
+
+          placeholders = {"none", "n/a", "na", "todo", "tbd", "description here"}
+          has_description = False
+          for line in description.splitlines():
+              text = re.sub(r"^\s*(?:[-*+]|\d+[.)])(?:\s+|$)", "", line).strip()
+              text = re.sub(r"^\[[ xX]\]\s*", "", text).strip()
+              if re.match(r"^#{1,6}(?:\s|$)", text) or text.startswith(("```", "~~~")):
+                  continue
+              if re.fullmatch(r"(?:refs|closes|fixes|resolves)\s+#\S+(?:\s+[-—]\s+.*)?", text, re.I):
+                  continue
+              if re.fullmatch(r"<[^>]+>", text):
+                  continue
+              text = re.sub(r"[*_`~]", "", text).strip()
+              if text.casefold() not in placeholders and re.search(r"[^\W_]", text):
+                  has_description = True
+                  break
+
+          if not has_description:
+              print(
+                  "::error title=Description required::"
+                  "Fill in Summary with what changed and how it addresses the issue. "
+                  "An empty body or untouched template does not count."
+              )
+              sys.exit(1)
+
+          print("PR description contains an authored summary.")
