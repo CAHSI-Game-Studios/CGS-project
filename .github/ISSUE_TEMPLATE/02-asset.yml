@@ -21,16 +21,6 @@ body:
       required: true
 
   - type: textarea
-    id: description
-    attributes:
-      label: Description
-      description: Describe the asset, its intended use, style, format, dimensions, or other relevant requirements.
-      placeholder: |
-        The sound should be a short retro-style UI effect that plays whenever a selectable menu button receives focus.
-    validations:
-      required: true
-
-  - type: textarea
     id: acceptance-criteria
     attributes:
       label: Acceptance Criteria
