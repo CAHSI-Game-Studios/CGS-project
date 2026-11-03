@@ -21,12 +21,6 @@ For partial work or PRs targeting another feature branch, keep "Refs #106". -->
 <!-- Describe what changed and how it addresses the original issue. -->
 -
 
-## Acceptance criteria
-
-<!-- Copy the original issue's acceptance criteria. Check only verified items.
-Explain any incomplete criteria under Dependencies and remaining work. -->
-- [ ]
-
 ## Testing
 
 <!-- Include the scene or file to open, exact steps, and observed results.
@@ -38,9 +32,3 @@ For artwork or documentation, describe how the output was reviewed. -->
 <!-- List prerequisite PRs, the intended base branch, and unfinished criteria.
 Write "None" if there are no dependencies or remaining work. -->
 
-## Review checklist
-
-- [ ] The PR title includes the original issue number and title, or all issue numbers for combined work.
-- [ ] The linked issues and acceptance criteria match the changes.
-- [ ] The base branch is correct and dependencies are listed.
-- [ ] Testing steps and results are documented.
