@@ -20,14 +20,6 @@ body:
     validations:
       required: true
 
-  - type: textarea
-    id: description
-    attributes:
-      label: Description
-      description: Describe the problem and provide any useful context.
-      placeholder: Explain what is happening, where it occurs, and anything that may help reproduce the problem.
-    validations:
-      required: true
 
   - type: textarea
     id: reproduction
