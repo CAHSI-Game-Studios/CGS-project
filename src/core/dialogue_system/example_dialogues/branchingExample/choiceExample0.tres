@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://cxdhefigyp2sh"]
+
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_ogit6"]
+[ext_resource type="Resource" uid="uid://crij7enm4wm08" path="res://core/dialogue_system/example_dialogues/branchingExample/choiceExample1a.tres" id="2_8lhfi"]
+[ext_resource type="Resource" uid="uid://dervv2jiw2vvu" path="res://core/dialogue_system/example_dialogues/branchingExample/choiceExample1b.tres" id="3_fw4jw"]
+
+[resource]
+script = ExtResource("1_ogit6")
+id = &"choiceExample0"
+dialogue_type = 1
+speaker = "NuHazd"
+text = "A dialogue can also be a [b]choice[/b]. These types of dialogues contain a dictionary of [String, Dialogue]. The string key is used as the text for the ChoiceButton; the clicking of said button tells the DialogueSystem to set the current dialogue to dict[response_str]. "
+responses = Dictionary[String, ExtResource("1_ogit6")]({
+"\"Huh?\"": ExtResource("2_8lhfi"),
+"\"Neat!\"": ExtResource("3_fw4jw")
+})
+metadata/_custom_type_script = "uid://pxo52x3jat8o"
