@@ -15,7 +15,7 @@ Refs #<issue-number> — <original issue title>
 ## Summary
 
 <!-- Describe what changed and how it addresses the original issue. -->
--
+* 
 
 ## Testing
 
