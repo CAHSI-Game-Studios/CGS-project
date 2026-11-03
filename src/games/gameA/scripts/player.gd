@@ -116,8 +116,6 @@ func _physics_process(_delta: float) -> void:
 
 	update_attack_area(facing_direction)
 	
-	print(health)
-
 # -------------------------
 # MOVEMENT ANIMATIONS
 # -------------------------

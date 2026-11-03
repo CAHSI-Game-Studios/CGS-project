@@ -32,7 +32,6 @@ func take_damage(amount):
 	else:
 		health -= amount
 	health_bar.value = health
-	print("Enemy : ", name, " , health : " ,health)
 
 ## ------- Chase Behavior ----------------
 func chase_target(target: Node2D) -> void:
