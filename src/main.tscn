@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bfkv4nekb7at8"]
+
+[ext_resource type="Script" uid="uid://djn8ewxn5w1r" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://cdqvafbrt8ave" path="res://managers/GameManager.gd" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dapqgqsln8lmq" path="res://core/scenes/DebugTerminal.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://1qppvuk8axph" path="res://games/example0/example0.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cn0htfv4oqs2e" path="res://games/example0/example1.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://8u7o87nryac0" path="res://core/dialogue_system/DialogueSystem.tscn" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="7_5vw27"]
+[ext_resource type="Resource" uid="uid://d02fj3y1ocjyn" path="res://core/dialogue_system/example_dialogues/linearExample/linearExample0.tres" id="8_5vw27"]
+[ext_resource type="Resource" uid="uid://cxdhefigyp2sh" path="res://core/dialogue_system/example_dialogues/branchingExample/choiceExample0.tres" id="9_kek77"]
+
+[node name="Main" type="Node" unique_id=1309261153 node_paths=PackedStringArray("terminal")]
+script = ExtResource("1_ig7tw")
+terminal = NodePath("terminal")
+
+[node name="GameManager" type="Node" parent="." unique_id=1170578248]
+script = ExtResource("2_0xm2m")
+metadata/_custom_type_script = "uid://cdqvafbrt8ave"
+
+[node name="DialogueSystem" parent="." unique_id=1237704265 instance=ExtResource("6_7mycd")]
+visible = false
+
+[node name="terminal" parent="." unique_id=954730807 node_paths=PackedStringArray("game_manager", "dialogue_system") instance=ExtResource("3_h2yge")]
+visible = false
+game_manager = NodePath("../GameManager")
+games = Dictionary[String, PackedScene]({
+"example0": ExtResource("4_1bvp3"),
+"example1": ExtResource("5_lquwl")
+})
+dialogue_system = NodePath("../DialogueSystem")
+test_dialogues = Dictionary[String, ExtResource("7_5vw27")]({
+"choiceExample0": ExtResource("9_kek77"),
+"linearExample0": ExtResource("8_5vw27")
+})

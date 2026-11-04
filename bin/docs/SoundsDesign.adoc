@@ -1,0 +1,41 @@
+# Open source, royalty free sound design software
+
+##LMMS
+Website: https://lmms.io/
+OS: Windows, macOS, Linux.
+License/Cost: Free and open source (GPL).
+Size/Resources: Lightweight compared with professional DAWs; exact RAM usage depends on instruments and plugins.
+Features: Piano-roll editor, MIDI sequencing, synthesizers, samples, beat editor, automation, and timeline arrangement. Good for creating melodies, beats, and repeating loops.
+Export: WAV, OGG, MP3, and MIDI.
+Pros: Free, open source, cross-platform, good for beginners, and well suited for creating looping game music.
+Cons: Interface can be less polished than commercial DAWs and has fewer advanced features.
+Installation: Download the Windows or macOS installer from the official website, run/open it, and follow the installation instructions.
+The Arcade: A strong option because it is free, works on both major desktop platforms, and can export audio formats compatible with Godot.
+
+
+##Bosca Ceoil Blue
+Website/Repository: https://github.com/YuriSizov/boscaceoil-blue. 
+OS: Windows, macOS, Linux.
+License/Cost: Free and open source.
+Size/Resources: Very lightweight compared with full DAWs; official RAM requirements are not specified.
+Features: Simple pattern-based music creation, melodies, instruments, and song arrangement. Designed around quickly creating repeating musical patterns.
+Export: Supports formats such as MIDI, MML, and XM; additional conversion may be needed for some Godot workflows.
+Pros: Extremely easy to learn, lightweight, free, and excellent for simple game loops.
+Cons: Fewer instruments, effects, mixing tools, and professional features than LMMS, Cakewalk, or FL Studio.
+Installation: Download the appropriate Windows or macOS release from GitHub, extract/open it, and launch the application.
+The Arcade: Excellent for collaborators with little music-production experience or lower-spec computers, especially when creating short looping background tracks.
+
+
+##Hydrogen
+Website: https://hydrogen-music.org/
+Repository: https://github.com/hydrogen-music/hydrogen
+
+OS: Windows, macOS, Linux.
+License/Cost: Free and open source (GPL).
+Size/Resources: Relatively lightweight; official minimum RAM requirements are not specified.
+Features: Pattern-based drum machine, drum sequencing, sample management, MIDI support, and song arrangement. Particularly useful for creating rhythmic loops and arcade-style beats.
+Export: WAV, FLAC, OGG, MP3, AIFF, and other formats.
+Pros: Free, open source, cross-platform, good for drum loops, and supports formats that work well with Godot.
+Cons: Primarily focused on drums and percussion, so it is less suitable as a complete music-composition solution.
+Installation: Download the Windows or macOS version from the official website/GitHub, install or open the application, and launch it.
+The Arcade: Good for creating rhythmic or electronic background music, but may need to be combined with another application for melodies and more complex compositions.

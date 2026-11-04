@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://dapqgqsln8lmq"]
+
+[ext_resource type="Script" uid="uid://dnf66rfdsycsa" path="res://core/scripts/terminal.gd" id="1_dldkg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qgwgs"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fklfo"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dldkg"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[node name="terminal" type="Window" unique_id=954730807]
+oversampling_override = 1.0
+title = "Terminal"
+position = Vector2i(0, 36)
+size = Vector2i(960, 512)
+min_size = Vector2i(512, 256)
+script = ExtResource("1_dldkg")
+
+[node name="Control" type="Control" parent="." unique_id=1168687167]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1063819838]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="Control/VBoxContainer" unique_id=363315408]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.57
+
+[node name="output" type="Label" parent="Control/VBoxContainer/ScrollContainer2" unique_id=1022527460]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_qgwgs")
+vertical_alignment = 2
+
+[node name="input" type="LineEdit" parent="Control/VBoxContainer" unique_id=783869842]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.05
+theme_override_styles/normal = SubResource("StyleBoxFlat_fklfo")
+theme_override_styles/focus = SubResource("StyleBoxFlat_dldkg")
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="text_submitted" from="Control/VBoxContainer/input" to="." method="_on_input_text_submitted"]

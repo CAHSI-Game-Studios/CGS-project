@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dmdf4onbenjh8"]
+
+[ext_resource type="Script" uid="uid://bm4py32clmgr5" path="res://core/dialogue_system/choiceButton.gd" id="1_e06om"]
+
+[sub_resource type="FontFile" id="FontFile_dldkg"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e06om"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[node name="ChoiceButton" type="Button" unique_id=1639527140]
+custom_minimum_size = Vector2(96, 32)
+theme_override_fonts/font = SubResource("FontFile_dldkg")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_e06om")
+text = "Choice 1"
+script = ExtResource("1_e06om")
+metadata/_custom_type_script = "uid://bm4py32clmgr5"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
