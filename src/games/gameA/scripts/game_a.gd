@@ -6,9 +6,7 @@ func _ready() -> void:
 	pass
 
 func _physics_process(_delta: float) -> void:
-	var direction := Input.get_vector("move_left","move_right","move_up","move_down")
-	$player.velocity = direction * SPEED
-	$player.move_and_slide()
+	pass
 
 func enter( _enterData : Variant = null) -> void:
 	pass
