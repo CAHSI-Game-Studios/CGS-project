@@ -20,6 +20,14 @@ body:
     validations:
       required: true
 
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the problem and provide any useful context.
+      placeholder: Explain what is happening, where it occurs, and anything that may help reproduce the problem.
+    validations:
+      required: true
 
   - type: textarea
     id: reproduction
@@ -54,44 +62,3 @@ body:
         - [ ] Existing pause functionality continues to work.
     validations:
       required: true
-
-  - type: input
-    id: suggested-lead-reviewer
-    attributes:
-      label: Suggested lead reviewer
-      placeholder: GitHub username
-    validations:
-      required: false
-
-  - type: markdown
-    attributes:
-      value: Lead suggests a producer for review after having reviewed the issue preliminarily.
-
-  - type: input
-    id: suggested-producer-reviewer
-    attributes:
-      label: Suggested producer reviewer
-      placeholder: GitHub username
-    validations:
-      required: false
-
-  - type: input
-    id: suggested-assignee
-    attributes:
-      label: Suggested assignee
-      placeholder: GitHub username
-    validations:
-      required: false
-
-  - type: dropdown
-    id: suggested-size
-    attributes:
-      label: Suggested size
-      options:
-        - XS
-        - S
-        - M
-        - L
-        - XL
-    validations:
-      required: false

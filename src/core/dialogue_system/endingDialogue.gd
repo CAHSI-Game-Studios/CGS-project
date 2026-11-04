@@ -1,0 +1,2 @@
+extends Dialogue
+class_name EndingDialogue

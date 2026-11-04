@@ -22,6 +22,15 @@ body:
       required: true
 
   - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Provide the context, requirements, constraints, and relevant details needed to complete the work.
+      placeholder: Describe the expected behavior and any relevant systems, scenes, files, or dependencies.
+    validations:
+      required: true
+
+  - type: textarea
     id: acceptance-criteria
     attributes:
       label: Acceptance Criteria
@@ -33,44 +42,3 @@ body:
         - [ ] Exit returns the player to the main menu.
     validations:
       required: true
-
-  - type: input
-    id: suggested-lead-reviewer
-    attributes:
-      label: Suggested lead reviewer
-      placeholder: GitHub username
-    validations:
-      required: false
-
-  - type: markdown
-    attributes:
-      value: Lead suggests a producer for review after having reviewed the issue preliminarily.
-
-  - type: input
-    id: suggested-producer-reviewer
-    attributes:
-      label: Suggested producer reviewer
-      placeholder: GitHub username
-    validations:
-      required: false
-
-  - type: input
-    id: suggested-assignee
-    attributes:
-      label: Suggested assignee
-      placeholder: GitHub username
-    validations:
-      required: false
-
-  - type: dropdown
-    id: suggested-size
-    attributes:
-      label: Suggested size
-      options:
-        - XS
-        - S
-        - M
-        - L
-        - XL
-    validations:
-      required: false
