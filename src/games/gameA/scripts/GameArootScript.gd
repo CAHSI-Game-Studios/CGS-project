@@ -12,6 +12,15 @@ const GAMEPLAY_SCENE = preload(
 var _run_ended := false
 
 
+# Required by the shared ArcadeGame superclass.
+func _ready() -> void:
+	pass
+
+
+func _physics_process(_delta: float) -> void:
+	pass
+
+
 func win_game() -> void:
 	if _run_ended:
 		return
