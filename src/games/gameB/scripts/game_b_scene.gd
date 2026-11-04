@@ -13,7 +13,7 @@ var score = 20
 var pass_score =10
 
 #Tells the game to check wether win or lose was achieved
-signal game_end
+signal gameplay_B_end
 
 #Determines the frequency at which "notes" spawn
 #Planned to be replaced in the future with preset note layouts
@@ -47,7 +47,7 @@ func request_exit(_exitData : Variant = null) -> void:
 func _on_minigame_duration_timeout() -> void:
 	note_timer.stop()
 	print("MINIGAME OVER")
-	await game_end
+	await gameplay_B_end
 	print(score >= pass_score)
 	if score >= pass_score:
 		print("YOU WIN")
@@ -85,9 +85,10 @@ func _on_note_despawner_area_entered(area: Area2D) -> void:
 	$WaitTime.start()
 	await $WaitTime.timeout
 	if get_tree().get_nodes_in_group("Notes").is_empty():
-		game_end.emit()
+		gameplay_B_end.emit()
 
 func win_game():
 	#note_speed +=10
 	#Add logic to return to difficulty select scene
+	#Currently only sends the request_exit signal
 	exit()
