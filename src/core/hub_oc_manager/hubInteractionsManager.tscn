@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dmk118lvb6iqv"]
+
+[ext_resource type="Script" uid="uid://wmottv1kh8ut" path="res://core/hub_oc_manager/hubInteractionsManager.gd" id="1_n3ail"]
+
+[node name="HubInteractionsManager" type="Node2D" unique_id=1202185699]
+script = ExtResource("1_n3ail")

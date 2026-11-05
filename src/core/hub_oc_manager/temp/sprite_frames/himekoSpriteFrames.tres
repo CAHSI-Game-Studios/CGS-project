@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://o2rkicqmsidy"]
+
+[ext_resource type="Texture2D" uid="uid://bexokhl8k01n2" path="res://core/hub_oc_manager/temp/himekoIdle.png" id="1_wcv2i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfv30"]
+atlas = ExtResource("1_wcv2i")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yi87o"]
+atlas = ExtResource("1_wcv2i")
+region = Rect2(32, 64, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfv30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yi87o")
+}],
+"loop": 1,
+"name": &"idleUp",
+"speed": 5.0
+}]

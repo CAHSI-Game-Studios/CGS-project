@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://d03w744hgfnuq"]
+
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_ntiik"]
+
+[resource]
+script = ExtResource("1_ntiik")
+id = &"blueOutside"
+dialogue_type = 2
+speaker = "Blue"
+text = "I was chaing a turtle and ended up outsideeee!!! HEEEEEEELPPPP MEEEEEE :("
+text_duration = 5.0
+metadata/_custom_type_script = "uid://pxo52x3jat8o"

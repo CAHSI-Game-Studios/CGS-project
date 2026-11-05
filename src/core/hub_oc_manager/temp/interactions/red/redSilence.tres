@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CharacterInteraction" format=3 uid="uid://do61gbadcrnqb"]
+
+[ext_resource type="SpriteFrames" uid="uid://baeus8htymbor" path="res://core/hub_oc_manager/temp/sprite_frames/coloredCharacterSpriteFrames.tres" id="1_lulbq"]
+[ext_resource type="Script" uid="uid://cs10tpo1x3n0d" path="res://core/hub_oc_manager/characterInteraction.gd" id="1_owuu1"]
+[ext_resource type="Resource" uid="uid://c2t8ai4iri6im" path="res://core/hub_oc_manager/temp/dialogues/red/option1/red2.tres" id="2_eykqn"]
+
+[resource]
+script = ExtResource("1_owuu1")
+id = &"redSilence"
+animations = ExtResource("1_lulbq")
+animation_to_play = "redIdleDown"
+dialogue = ExtResource("2_eykqn")
+priority = 1
+metadata/_custom_type_script = "uid://cs10tpo1x3n0d"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://dmdbqjjewmeel"]
+
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_cu2av"]
+
+[resource]
+script = ExtResource("1_cu2av")
+id = &"vixStare"
+dialogue_type = 2
+speaker = "Vix"
+text = "..."
+metadata/_custom_type_script = "uid://pxo52x3jat8o"

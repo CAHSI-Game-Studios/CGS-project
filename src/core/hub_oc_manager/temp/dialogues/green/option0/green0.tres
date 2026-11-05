@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://cl7ccq6bx4vyb"]
+
+[ext_resource type="Resource" uid="uid://dlp3ag5puy2ar" path="res://core/hub_oc_manager/temp/dialogues/green/option0/green1.tres" id="1_8q0md"]
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="2_iyxni"]
+
+[resource]
+script = ExtResource("2_iyxni")
+id = &"greenIntroduction"
+speaker = "Green"
+text = "Greetings. My name is Green."
+text_duration = 3.0
+next_dialogue = ExtResource("1_8q0md")
+metadata/_custom_type_script = "uid://pxo52x3jat8o"

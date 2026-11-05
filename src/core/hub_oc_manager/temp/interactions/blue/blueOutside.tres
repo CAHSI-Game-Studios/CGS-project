@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CharacterInteraction" format=3 uid="uid://blxqv02643yow"]
+
+[ext_resource type="Script" uid="uid://cs10tpo1x3n0d" path="res://core/hub_oc_manager/characterInteraction.gd" id="1_asglb"]
+[ext_resource type="SpriteFrames" uid="uid://baeus8htymbor" path="res://core/hub_oc_manager/temp/sprite_frames/coloredCharacterSpriteFrames.tres" id="1_map83"]
+[ext_resource type="Resource" uid="uid://d03w744hgfnuq" path="res://core/hub_oc_manager/temp/dialogues/blue/option2/4.tres" id="2_jh2t0"]
+
+[resource]
+script = ExtResource("1_asglb")
+id = &"blueOutside"
+animations = ExtResource("1_map83")
+animation_to_play = "blueIdleSide"
+dialogue = ExtResource("2_jh2t0")
+flip_h = true
+sprite_offset = Vector2i(32, 0)
+marker_offset = Vector2i(-32, -16)
+metadata/_custom_type_script = "uid://cs10tpo1x3n0d"

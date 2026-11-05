@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://ccjnkik4hlpq4"]
+
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_xf8wt"]
+
+[resource]
+script = ExtResource("1_xf8wt")
+id = &"himekoAboutTheShrine"
+dialogue_type = 2
+speaker = "Himeko"
+text = "Don't mind Vix, she is harmless... most of the time, that is. "
+text_duration = 3.0
+metadata/_custom_type_script = "uid://pxo52x3jat8o"
