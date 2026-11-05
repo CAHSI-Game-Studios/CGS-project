@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://c1ajoul1eerja"]
+
+[ext_resource type="Script" uid="uid://dckf5uigweukv" path="res://core/hub_oc_manager/hubLocation.gd" id="1_chnol"]
+[ext_resource type="Texture2D" uid="uid://dnb6427cb0ody" path="res://core/hub_oc_manager/interactionMarker.png" id="2_hjocr"]
+
+[sub_resource type="Animation" id="Animation_hjocr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("characterDisplay/marker:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_15fhg"]
+resource_name = "up_down"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("characterDisplay/marker:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -4.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q1o4t"]
+_data = {
+&"RESET": SubResource("Animation_hjocr"),
+&"up_down": SubResource("Animation_15fhg")
+}
+
+[node name="HubLocation" type="Area2D" unique_id=1346217520]
+monitoring = false
+monitorable = false
+script = ExtResource("1_chnol")
+metadata/_custom_type_script = "uid://dckf5uigweukv"
+
+[node name="characterDisplay" type="AnimatedSprite2D" parent="." unique_id=789788914]
+
+[node name="marker" type="Sprite2D" parent="characterDisplay" unique_id=161238459]
+visible = false
+position = Vector2(0, -32)
+texture = ExtResource("2_hjocr")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)
+
+[node name="effects" type="AnimationPlayer" parent="." unique_id=616486244]
+libraries/ = SubResource("AnimationLibrary_q1o4t")
+autoplay = &"up_down"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
