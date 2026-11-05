@@ -1085,6 +1085,8 @@ shape = SubResource("CapsuleShape2D_gfkss")
 
 [node name="attack_area" type="Area2D" parent="." unique_id=1650152667]
 position = Vector2(0, 15)
+collision_layer = 0
+collision_mask = 2
 
 [node name="attack_collision" type="CollisionShape2D" parent="attack_area" unique_id=137975417]
 shape = SubResource("RectangleShape2D_esnmb")
@@ -1094,6 +1096,7 @@ position = Vector2(0, -15)
 polygon = PackedVector2Array(-10, 9, -10, 21, 10, 21, 10, 9)
 
 [node name="hitbox_area" type="Area2D" parent="." unique_id=867674304]
+collision_mask = 6
 
 [node name="hitbox_collision" type="CollisionShape2D" parent="hitbox_area" unique_id=1252629992]
 shape = SubResource("CapsuleShape2D_gmybj")
@@ -1133,6 +1136,7 @@ offset_bottom = 22.0
 rotation = 1.5707964
 theme_override_colors/font_color = Color(0.59909576, 0.043463156, 0.10819592, 1)
 theme_override_styles/fill = SubResource("StyleBoxFlat_hqcub")
+step = 5.0
 fill_mode = 3
 show_percentage = false
 
@@ -1142,8 +1146,9 @@ autostart = true
 [node name="attack_cooldown" type="Timer" parent="." unique_id=1408741538]
 one_shot = true
 
+[connection signal="area_entered" from="attack_area" to="." method="_on_attack_area_area_entered"]
 [connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]
-[connection signal="body_entered" from="hitbox_area" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="hitbox_area" to="." method="_on_hitbox_area_area_entered"]
 [connection signal="body_entered" from="hitbox_area" to="." method="_on_hitbox_area_body_entered"]
 [connection signal="timeout" from="dash_cooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="stamina_regen" to="." method="_on_stamina_regen_timeout"]

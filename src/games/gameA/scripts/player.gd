@@ -115,8 +115,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 	update_attack_area(facing_direction)
-
-
+	
 # -------------------------
 # MOVEMENT ANIMATIONS
 # -------------------------
@@ -244,7 +243,6 @@ func heal(amount):
 
 	$UI/health_bar.value = health
 
-
 # -------------------------
 # STAMINA
 # -------------------------
@@ -257,18 +255,37 @@ func regen_stamina(amount):
 	$UI/stamina_bar.value = stamina
 
 
+func take_damage(dmg : int):
+	if dmg >= health:
+		health = 0
+		# game loss logic would go here
+	else:
+		health -= dmg
+	$UI/health_bar.value = health
+		
 # -------------------------
 # COLLISION SIGNALS
 # -------------------------
 
+func _on_attack_area_area_entered(area: Area2D) -> void:
+	if area.get_parent() == null: return
+	var enemy := area.get_parent()
+	if enemy is GameAEnemy:
+		# we should put a varaible for dmg 
+		enemy.take_damage(20)
+	
+func _on_hitbox_area_area_entered(area: Area2D) -> void:
+	# make sure area its the enemy hitbox
+	if area.get_parent() == null: return
+	var enemy := area.get_parent()
+	if enemy is GameAEnemy:
+		take_damage(enemy.dmg)
+
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	pass
-	# Will be handled later.
 
 func _on_hitbox_area_body_entered(body: Node2D) -> void:
 	pass
-	# Will be handled later.
-
 
 # -------------------------
 # COOLDOWN / REGEN TIMERS
@@ -277,18 +294,14 @@ func _on_hitbox_area_body_entered(body: Node2D) -> void:
 func _on_dash_cooldown_timeout() -> void:
 	is_dash_cooldown = false
 
-
 func _on_attack_cooldown_timeout() -> void:
 	is_attack_cooldown = false
-
 
 func _on_stamina_regen_timeout() -> void:
 	is_stamina_regen = true
 	$regen.start()
-
-
+	
 func _on_regen_timeout() -> void:
-
 	if is_stamina_regen:
 		regen_stamina(50)
 

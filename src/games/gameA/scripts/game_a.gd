@@ -1,7 +1,5 @@
 extends ArcadeGame
 
-@export var SPEED: float = 200.0
-
 var _game_scene: PackedScene
 var _running: bool = false
 var _finished: bool = false
@@ -26,10 +24,6 @@ func _start_if_standalone() -> void:
 func _physics_process(_delta: float) -> void:
 	if not _running or _finished or _restarting:
 		return
-	var player: CharacterBody2D = $player
-	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	player.velocity = direction * SPEED
-	player.move_and_slide()
 
 
 func enter(_enterData: Variant = null) -> void:
@@ -91,7 +85,8 @@ func _restart_gameplay() -> void:
 func _stop_gameplay() -> void:
 	_running = false
 	process_mode = Node.PROCESS_MODE_DISABLED
-	var player: CharacterBody2D = $player
+	var player: CharacterBody2D = get_node_or_null('player')
+	if not player: return 
 	player.velocity = Vector2.ZERO
 
 
