@@ -17,3 +17,12 @@
 ** BPM — how fast the notes move
 ** Difficulty — how many notes appear per beat
 * Try to keep the game limited to one scene. Notes can be their own scene.
+
+
+== Sprint 3 work programmers:
+
+Uriel: Scoring System, Gameplay to Difficulty Select
+
+Javier: Difficulty Select to gameplay, Allow multiple keys to be played
+
+Sebastian: Standardizing the gameplay (Bug fixing), Pausing
