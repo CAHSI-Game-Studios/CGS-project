@@ -85,7 +85,8 @@ func _restart_gameplay() -> void:
 func _stop_gameplay() -> void:
 	_running = false
 	process_mode = Node.PROCESS_MODE_DISABLED
-	var player: CharacterBody2D = $player
+	var player: CharacterBody2D = get_node_or_null('player')
+	if not player: return 
 	player.velocity = Vector2.ZERO
 
 
