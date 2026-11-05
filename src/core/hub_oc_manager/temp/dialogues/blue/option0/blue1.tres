@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://csg20e4elt8lr"]
+
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_1shbh"]
+
+[resource]
+script = ExtResource("1_1shbh")
+id = &"blueYay"
+dialogue_type = 2
+speaker = "Blue"
+text = "Blueeeeeeeeeee yayyyyy"
+text_duration = 2.0
+allow_skip_at = 0.2
+metadata/_custom_type_script = "uid://pxo52x3jat8o"

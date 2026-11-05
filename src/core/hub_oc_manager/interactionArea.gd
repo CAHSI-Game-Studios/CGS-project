@@ -1,8 +1,8 @@
 # author nu-hazd, rev: oct 28, 2026
 extends Area2D
 ## A representation of an interaction area inside the Hub. Uses a [CharacterInteraction] resource
-## passed by the [HubManager]
-class_name HubLocation
+## passed by the [HubInteractionsManager]
+class_name InteractionArea
 
 ## Emitted upon [method start_interaction] being called. Note that a single [CharacterInteraction]
 ## may result multiple emissions of this signal.
@@ -13,13 +13,13 @@ signal interactionStarted(interactionID : String)
 ## Reference to the interaction exclamation mark [Sprite2D].
 @onready var marker : Sprite2D = $characterDisplay/marker 
 
-## A reference to the [DialogueSystem]. Is [code]null[/code] until initialized by [HubManager].
+## A reference to the [DialogueSystem]. Is [code]null[/code] until initialized by [HubInteractionsManager].
 var dialogue_system_reference : DialogueSystem
 
-## A reference to the data obtained upon [HubManager] calling [method.setup_location].
+## A reference to the data obtained upon [HubInteractionsManager] calling [method.setup_location].
 var interaction_data : CharacterInteraction 
 
-var interacted : bool = false ## Whether this HubLocation has called its [method start_interaction].
+var interacted : bool = false ## Whether this InteractionArea has called its [method start_interaction].
 
 ## By default, do not recieve player input until [method _on_body_entered]
 func _ready() -> void:
@@ -42,7 +42,7 @@ func start_interaction() -> void:
 	interacted = true
 	interactionStarted.emit(interaction_data.id)
 
-## Initializes a the [HubLocation] given a [CharacterInteraction]. 
+## Initializes a the [InteractionArea] given a [CharacterInteraction]. 
 ## A reference to the [DialogueSystem] is passed and then stored in [member dialogue_system_reference].
 func setup_location(data : CharacterInteraction, dialogue_system : DialogueSystem) -> bool:
 	if catch_errors(data):
@@ -52,13 +52,13 @@ func setup_location(data : CharacterInteraction, dialogue_system : DialogueSyste
 	character_display.sprite_frames = interaction_data.animations
 	character_display.position = interaction_data.sprite_offset
 	character_display.play(interaction_data.animation_to_play)
-	marker.region_rect = Rect2 (priority*16, 0 ,16, 16)
+	marker.region_rect = Rect2 (interaction_data.priority*16, 0 ,16, 16)
 	marker.position = interaction_data.marker_offset
 	monitoring = not interaction_data.display_only
 	dialogue_system_reference = dialogue_system
 	return true
 
-## Restores a [HubLocation] to its disabled state. 
+## Restores a [InteractionArea] to its disabled state. 
 ## May be useful for Hub transitions between games, and certain events.
 func reset_location() -> void:
 	interacted = false
@@ -71,14 +71,14 @@ func reset_location() -> void:
 	set_process_unhandled_input(false)
 	self.monitoring = false
 
-## Called upon [param body] entering the [HubLocation]'s [CollisionShape2D] while [member monitoring] is
+## Called upon [param body] entering the [InteractionArea]'s [CollisionShape2D] while [member monitoring] is
 ## [code]true[/code]. If the [param body] is the player, it enables the input.
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D: ## TODO: Replace with "HubPlayer" class or similar.
 		set_process_unhandled_input(true)
 		if not (interaction_data.one_shot and interacted):
 			marker.show()
-## Called upon [param body] exiting the [HubLocation]'s [CollisionShape2D] while [member monitoring] is
+## Called upon [param body] exiting the [InteractionArea]'s [CollisionShape2D] while [member monitoring] is
 ## [code]true[/code]. If the [param body] is the player, it disables the input and closes the
 ## [member dialogue_system_reference].
 func _on_body_exited(body: Node2D) -> void:
@@ -92,7 +92,8 @@ func _on_body_exited(body: Node2D) -> void:
 func catch_errors(data : CharacterInteraction) -> bool:
 	var errs : Array[String] = []
 	if data == null:
-		errs.push_back("Null character interaction beign set")
+		push_error("Null character interaction beign set")
+		return true
 	if data.animation_to_play == "":
 		errs.push_back("Empty animation identifier beign set.")
 	if data.animations == null:
@@ -106,4 +107,5 @@ func catch_errors(data : CharacterInteraction) -> bool:
 		for err : String in errs:
 			push_error(err)
 		return true
+
 	return false

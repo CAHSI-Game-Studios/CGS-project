@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="HubState" format=3 uid="uid://do38kxk3n8ulr"]
+
+[ext_resource type="Script" uid="uid://cs10tpo1x3n0d" path="res://core/hub_oc_manager/characterInteraction.gd" id="1_3bimd"]
+[ext_resource type="Script" uid="uid://d1dgea5neqeai" path="res://core/hub_oc_manager/hubState.gd" id="2_cr54a"]
+[ext_resource type="Resource" uid="uid://mfyy762bma80" path="res://core/hub_oc_manager/temp/interactions/yellow/yellowIntro.tres" id="2_oiocf"]
+[ext_resource type="SpriteFrames" uid="uid://baeus8htymbor" path="res://core/hub_oc_manager/temp/sprite_frames/coloredCharacterSpriteFrames.tres" id="3_iuomo"]
+[ext_resource type="Resource" uid="uid://cl7ccq6bx4vyb" path="res://core/hub_oc_manager/temp/dialogues/green/option0/green0.tres" id="4_mggnm"]
+[ext_resource type="Resource" uid="uid://cqhkiq6nddup1" path="res://core/hub_oc_manager/temp/interactions/blue/blueTurtle.tres" id="5_n2w3i"]
+[ext_resource type="Resource" uid="uid://cdduomnb7eo4q" path="res://core/hub_oc_manager/temp/interactions/red/redDisplaySide.tres" id="6_n2w3i"]
+
+[sub_resource type="Resource" id="Resource_loapl"]
+script = ExtResource("1_3bimd")
+id = &"greenIntroUp"
+animations = ExtResource("3_iuomo")
+animation_to_play = "greenIdleUp"
+dialogue = ExtResource("4_mggnm")
+one_shot = true
+metadata/_custom_type_script = "uid://cs10tpo1x3n0d"
+
+[resource]
+script = ExtResource("2_cr54a")
+id = &"All"
+interactions = Dictionary[int, ExtResource("1_3bimd")]({
+0: ExtResource("2_oiocf"),
+1: SubResource("Resource_loapl"),
+2: ExtResource("5_n2w3i"),
+3: ExtResource("6_n2w3i")
+})
+metadata/_custom_type_script = "uid://d1dgea5neqeai"
