@@ -1,12 +1,73 @@
 [gd_scene format=3 uid="uid://c6ub2s4yw2xww"]
 
-[ext_resource type="Script" uid="uid://dbjjs2tfo352o" path="res://games/gameB/scripts/RhythmCollisionDemo.gd" id="1_d3516"]
+[ext_resource type="Script" uid="uid://dbjjs2tfo352o" path="res://games/gameB/scripts/CollisionDemo.gd" id="1_d3516"]
 [ext_resource type="Texture2D" uid="uid://wgjqarjaldp0" path="res://games/gameB/assets/background_Concept.png" id="2_h4u7c"]
 
-[node name="RhythmCollisionDemo" type="Node2D" unique_id=1108226209]
+[sub_resource type="CircleShape2D" id="CircleShape2D_target"]
+radius = 26.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hit"]
+size = Vector2(35, 47)
+
+[node name="RhythmCollisionDemo" type="Node2D" unique_id=1118242434]
 script = ExtResource("1_d3516")
 
-[node name="Background" type="Sprite2D" parent="." unique_id=639814967]
+[node name="Background" type="Sprite2D" parent="." unique_id=255916158]
 position = Vector2(640, 360)
 scale = Vector2(2, 2)
 texture = ExtResource("2_h4u7c")
+
+[node name="Lanes" type="Node2D" parent="." unique_id=857763325]
+
+[node name="Lane1" type="Node2D" parent="Lanes" unique_id=671062371]
+
+[node name="Bar" type="ColorRect" parent="Lanes/Lane1" unique_id=1864120311]
+offset_left = 62.0
+offset_top = 258.0
+offset_right = 539.0
+offset_bottom = 286.0
+
+[node name="Spawn" type="Marker2D" parent="Lanes/Lane1" unique_id=953648076]
+position = Vector2(63, 271)
+
+[node name="Target" type="Area2D" parent="Lanes/Lane1" unique_id=652540454]
+position = Vector2(528, 271)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanes/Lane1/Target" unique_id=919872425]
+shape = SubResource("CircleShape2D_target")
+
+[node name="Lane2" type="Node2D" parent="Lanes" unique_id=962495665]
+
+[node name="Bar" type="ColorRect" parent="Lanes/Lane2" unique_id=543499456]
+offset_left = 734.0
+offset_top = 257.0
+offset_right = 1247.0
+offset_bottom = 285.0
+
+[node name="Spawn" type="Marker2D" parent="Lanes/Lane2" unique_id=1344625796]
+position = Vector2(743, 270)
+
+[node name="Target" type="Area2D" parent="Lanes/Lane2" unique_id=1051387418]
+position = Vector2(1237, 277)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanes/Lane2/Target" unique_id=1946573614]
+position = Vector2(-4, -6)
+shape = SubResource("CircleShape2D_target")
+
+[node name="HitLine" type="Area2D" parent="." unique_id=1598691458]
+position = Vector2(1016.5, 275.5)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitLine" unique_id=1745176502]
+shape = SubResource("RectangleShape2D_hit")
+
+[node name="Bar" type="ColorRect" parent="HitLine" unique_id=1745176503]
+offset_left = -12.5
+offset_top = -44.5
+offset_right = 9.5
+offset_bottom = 37.5
+color = Color(1, 0, 0, 1)
