@@ -9,7 +9,7 @@ extends CharacterBody2D
 # MOVEMENT
 # -------------------------
 
-var SPEED = 300.0
+var SPEED = 100
 var facing_direction = Vector2.DOWN
 
 
@@ -68,7 +68,7 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("game_a_dash") && !is_dash_cooldown && stamina >= 20:
 		$hitbox_area/hitbox_collision.disabled = true
 
-		SPEED = 700
+		SPEED = 225
 
 		is_dash_cooldown = true
 		is_stamina_regen = false
@@ -81,7 +81,7 @@ func _physics_process(_delta: float) -> void:
 
 		await get_tree().create_timer(0.2).timeout
 
-		SPEED = 300
+		SPEED = 100
 		$hitbox_area/hitbox_collision.disabled = false
 
 
