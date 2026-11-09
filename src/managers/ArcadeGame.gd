@@ -25,9 +25,11 @@ signal exit_requested
 ## Called every physics frame. _delta is the seconds between each frame. 
 @abstract func _physics_process(_delta: float) -> void
 ## Called by the external system to start the game.
-@abstract func enter( _enterData : Variant = null) -> void
+func enter( _enterData : Variant = null) -> void:
+	pass
 ## Called by the external system before unloading. Each game is responsible for defining their exit function.
-@abstract func exit() -> void
+func exit() -> void:
+	pass
 
 ## Called by the game when it wants to close.
 func request_exit(_exitData : Variant = null) -> void:

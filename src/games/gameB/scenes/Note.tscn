@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cxwn75lcbi2ta"]
+
+[ext_resource type="Script" uid="uid://d188rm5b2jelw" path="res://games/gameB/scripts/note.gd" id="1_qyxr6"]
+[ext_resource type="Texture2D" uid="uid://81ppbf36wc7r" path="res://core/assets/Nova.png" id="2_88m8d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ogo3"]
+size = Vector2(50, 50)
+
+[node name="Note" type="Node2D" unique_id=1982299990]
+script = ExtResource("1_qyxr6")
+
+[node name="NoteArea" type="Area2D" parent="." unique_id=739300319]
+
+[node name="NoteSprite" type="Sprite2D" parent="NoteArea" unique_id=1112569617]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(24.000002, 24.000002)
+scale = Vector2(0.038744587, 0.04155844)
+texture = ExtResource("2_88m8d")
+
+[node name="NoteCollision" type="CollisionShape2D" parent="NoteArea" unique_id=2083671775]
+position = Vector2(24, 24)
+shape = SubResource("RectangleShape2D_6ogo3")
+
+[connection signal="area_entered" from="NoteArea" to="." method="_on_note_area_area_entered"]

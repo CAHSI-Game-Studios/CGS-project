@@ -20,15 +20,6 @@ body:
     validations:
       required: true
 
-  - type: textarea
-    id: description
-    attributes:
-      label: Description
-      description: Provide context, intended audience, affected files, and any information that must be included.
-      placeholder: |
-        Update GettingStarted.adoc with a short section explaining how new collaborators should clone the repository using GitHub Desktop.
-    validations:
-      required: true
 
   - type: textarea
     id: acceptance-criteria
