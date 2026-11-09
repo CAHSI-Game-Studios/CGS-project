@@ -1,5 +1,12 @@
 extends ArcadeGame
 
+@export_group("Dialogue")
+@export var opening_dialogue: Dialogue
+@export var before_fight_dialogue: Dialogue
+@export var after_fight_dialogue: Dialogue
+@export var boss_fight_dialogue: Dialogue
+@export var ending_dialogue: Dialogue
+
 var _game_scene: PackedScene
 var _running: bool = false
 var _finished: bool = false
@@ -29,8 +36,26 @@ func _physics_process(_delta: float) -> void:
 func enter(_enterData: Variant = null) -> void:
 	if _finished:
 		return
-	_running = true
-	process_mode = Node.PROCESS_MODE_INHERIT
+	_resume_gameplay()
+	play_dialogue(opening_dialogue)
+
+
+func play_dialogue(dialogue: Dialogue) -> void:
+	if not _running or dialogue == null:
+		return
+	_stop_gameplay()
+	await _show_dialogue(dialogue)
+	if not _finished:
+		_resume_gameplay()
+
+
+func _show_dialogue(dialogue: Dialogue) -> void:
+	var system := get_node_or_null("DialogueLayer/DialogueSystem") as DialogueSystem
+	if not system:
+		return
+	system.set_current_dialogue(dialogue)
+	system.open_system()
+	await system.visibility_changed
 
 
 func exit() -> void:
@@ -44,6 +69,8 @@ func win() -> void:
 	# Guard first: an exit listener may synchronously call exit().
 	_finished = true
 	_stop_gameplay()
+	if ending_dialogue:
+		await _show_dialogue(ending_dialogue)
 	request_exit()
 
 
@@ -78,6 +105,10 @@ func _restart_gameplay() -> void:
 		add_child(child)
 	fresh_game.free()
 	_restarting = false
+	_resume_gameplay()
+
+
+func _resume_gameplay() -> void:
 	_running = true
 	process_mode = Node.PROCESS_MODE_INHERIT
 
@@ -85,9 +116,9 @@ func _restart_gameplay() -> void:
 func _stop_gameplay() -> void:
 	_running = false
 	process_mode = Node.PROCESS_MODE_DISABLED
-	var player: CharacterBody2D = get_node_or_null('player')
-	if not player: return 
-	player.velocity = Vector2.ZERO
+	var player: CharacterBody2D = get_node_or_null("Player")
+	if player:
+		player.velocity = Vector2.ZERO
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -96,6 +127,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event is not InputEventKey or not event.pressed or event.echo:
 		return
 	# Temporary debug controls, scoped to the active Game A instance.
+	var dialogue: Dialogue
 	match event.keycode:
 		KEY_1:
 			get_viewport().set_input_as_handled()
@@ -103,3 +135,12 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		KEY_2:
 			get_viewport().set_input_as_handled()
 			restart()
+		KEY_3:
+			dialogue = before_fight_dialogue
+		KEY_4:
+			dialogue = after_fight_dialogue
+		KEY_5:
+			dialogue = boss_fight_dialogue
+	if dialogue:
+		get_viewport().set_input_as_handled()
+		play_dialogue(dialogue)
