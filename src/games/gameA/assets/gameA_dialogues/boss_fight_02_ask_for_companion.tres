@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3]
+
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_dialogue"]
+[ext_resource type="Resource" path="res://games/gameA/assets/gameA_dialogues/boss_fight_03_your_pet.tres" id="2_next"]
+
+[resource]
+script = ExtResource("1_dialogue")
+id = &"boss_fight_02_ask_for_companion"
+dialogue_type = 0
+speaker = "THE KNIGHT OF THE DEAD WEIGHT"
+text = "Where is [insert name of wolf companion]?"
+next_dialogue = ExtResource("2_next")

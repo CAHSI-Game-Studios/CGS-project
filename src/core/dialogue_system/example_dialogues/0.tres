@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="LinearDialogue" format=3 uid="uid://dgcryps0x2tcp"]
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://dgcryps0x2tcp"]
 
-[ext_resource type="Script" uid="uid://dj16gw3p22q7l" path="res://core/dialogue_system/linearDialogue.gd" id="1_l5aqh"]
-[ext_resource type="Resource" uid="uid://dk5viwli0vvb7" path="res://core/dialogue_system/example_dialogues/1.tres" id="1_t2cf3"]
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_dialogue"]
+[ext_resource type="Resource" uid="uid://dk5viwli0vvb7" path="res://core/dialogue_system/example_dialogues/1.tres" id="2_next"]
 
 [resource]
-script = ExtResource("1_l5aqh")
-nextDialogue = ExtResource("1_t2cf3")
+script = ExtResource("1_dialogue")
+id = &"testBegin0"
 speaker = "Some OC"
 text = "This is an example text.
 It supports [b] bold [/b] and [i] italic [/i] formats.
 There are many more special effects."
-metadata/_custom_type_script = "uid://dj16gw3p22q7l"
+next_dialogue = ExtResource("2_next")

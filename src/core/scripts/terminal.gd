@@ -17,7 +17,7 @@ func logLine(line : String) -> void:
 func _on_input_text_submitted(inputText: String) -> void:
 	if inputText.length() == 0:
 		return
-	if inputText.length() > 64:
+	if inputText.length() > 128:
 		logLine("Invalid input size.")
 		return
 	input.clear()
@@ -77,9 +77,9 @@ func parseInput( inputText : String) -> void:
 			if currentWord <= inputSize:
 				match inputs[1]:
 					"close", "c":
-						dialogue_system.closeSystem()
+						dialogue_system.close_system()
 					"open", "o":
-						dialogue_system.openSystem()
+						dialogue_system.open_system()
 					"set", "s":
 						currentWord += 1
 						if currentWord <= inputSize:
@@ -88,13 +88,13 @@ func parseInput( inputText : String) -> void:
 								if ResourceLoader.exists(pth):
 									var dlg :=  ResourceLoader.load(pth)
 									if dlg is Dialogue:	
-										dialogue_system.setCurrentDialogue(dlg)
+										dialogue_system.set_current_dialogue(dlg)
 									else:
 										logLine("Path: %s does not return a valid Dialogue resoure." % pth)
 								else:
 										logLine("Path: %s does not exists." % pth)
 							elif test_dialogues.has(inputs[currentWord]):
-								dialogue_system.setCurrentDialogue(test_dialogues[inputs[currentWord]])
+								dialogue_system.set_current_dialogue(test_dialogues[inputs[currentWord]])
 							else:
 								logLine("Unrecognized command. Enter help or ? for command list.")
 								

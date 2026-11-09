@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="EndingDialogue" format=3 uid="uid://dk5viwli0vvb7"]
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://dk5viwli0vvb7"]
 
-[ext_resource type="Script" uid="uid://m3h8f1n660rg" path="res://core/dialogue_system/endingDialogue.gd" id="1_ogux0"]
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_dialogue"]
 
 [resource]
-script = ExtResource("1_ogux0")
+script = ExtResource("1_dialogue")
+id = &"testEnd1"
+dialogue_type = 2
 speaker = "Other OC"
 text = "They can also chain between other OCs!
 "
-metadata/_custom_type_script = "uid://m3h8f1n660rg"
