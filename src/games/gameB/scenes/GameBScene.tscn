@@ -46,6 +46,7 @@ one_shot = true
 [node name="WaitTime" type="Timer" parent="." unique_id=1233303639]
 
 [node name="GameBplayer" parent="." unique_id=1405707498 instance=ExtResource("3_svbff")]
+position = Vector2(206, 960)
 
 [connection signal="timeout" from="NoteHandler/NoteSpawner/SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="area_entered" from="NoteHandler/NoteDespawner" to="." method="_on_note_despawner_area_entered"]
