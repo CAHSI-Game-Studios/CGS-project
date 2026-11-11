@@ -50,3 +50,4 @@ one_shot = true
 [connection signal="timeout" from="NoteHandler/NoteSpawner/SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="area_entered" from="NoteHandler/NoteDespawner" to="." method="_on_note_despawner_area_entered"]
 [connection signal="timeout" from="NoteHandler/MinigameDuration" to="." method="_on_minigame_duration_timeout"]
+[connection signal="lane_pressed" from="GameBplayer" to="." method="_on_game_bplayer_lane_pressed"]
