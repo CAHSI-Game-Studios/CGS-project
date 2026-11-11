@@ -6,6 +6,8 @@ extends ArcadeGame
 @onready var minigame_timer = get_node("NoteHandler").get_node("MinigameDuration")
 @onready var note_spawner = get_node("NoteHandler").get_node("NoteSpawner")
 @onready var note_timer = note_spawner.get_node("SpawnTimer")
+@onready var gameplay_scene = preload("res://games/gameB/scenes/CollisionDemo.tscn")
+@onready var difficulty_select_scene = preload("res://games/gameB/scenes/Difficulty_Select.tscn")
 #Keep track of the score to determine wether the game was won or lost
 var score = 20
 #Score required to pass the minigame
@@ -22,9 +24,14 @@ var note_frequency = 1
 #Determines the speed at which "notes" travel
 var note_speed = 300
 
+var remaining_rounds = 0
+
+var current_scene
 
 ## Called when the game is added to the scene tree. Note that _ready is called BEFORE enter.
 func _ready() -> void:
+	current_scene = gameplay_scene.instantiate()
+	add_child(current_scene)
 	#temporary boot-up will be replaced with code that does not start the player immediately in the game portion
 	lose_game()
 ## Called every physics frame. _delta is the seconds between each frame. 
@@ -88,7 +95,23 @@ func _on_note_despawner_area_entered(area: Area2D) -> void:
 		gameplay_B_end.emit()
 
 func win_game():
-	#note_speed +=10
+	
+	#note_speed +=20
 	#Add logic to return to difficulty select scene
 	#Currently only sends the request_exit signal
-	exit()
+	if remaining_rounds <=0:
+		current_scene.queue_free()
+		exit()
+	else:
+		
+		note_speed += 20
+		remaining_rounds -=1
+		to_difficulty_select()
+	
+	
+	
+func to_difficulty_select():
+	print("changing scene")
+	current_scene.queue_free()
+	current_scene = difficulty_select_scene.instantiate()
+	add_child(difficulty_select_scene)
