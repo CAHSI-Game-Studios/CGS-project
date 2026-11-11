@@ -12,8 +12,6 @@ const NOTE_ACTIONS: Array[String] = [
 ]
 
 func _input(event: InputEvent) -> void:
-	print("RAW EVENT DETECTED: ", event.as_text())
-	
 	for i in range(NOTE_ACTIONS.size()):
 		if event.is_action_pressed(NOTE_ACTIONS[i]):
 			lane_pressed.emit(i)
