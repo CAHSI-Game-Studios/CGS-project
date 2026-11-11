@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://fccett110nfo"]
 
 [ext_resource type="Script" uid="uid://bmq8qfl3ykybk" path="res://games/gameB/scripts/game_bplayer.gd" id="1_jltyl"]
+[ext_resource type="Texture2D" uid="uid://81ppbf36wc7r" path="res://core/assets/Nova.png" id="2_8vqiv"]
 
 [node name="GameBplayer" type="Node2D" unique_id=1405707498]
 script = ExtResource("1_jltyl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1164506287]
+texture = ExtResource("2_8vqiv")

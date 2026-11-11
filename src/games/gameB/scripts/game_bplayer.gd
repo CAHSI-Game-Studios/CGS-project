@@ -12,11 +12,10 @@ const NOTE_ACTIONS: Array[String] = [
 ]
 
 func _input(event: InputEvent) -> void:
+	print("RAW EVENT DETECTED: ", event.as_text())
+	
 	for i in range(NOTE_ACTIONS.size()):
 		if event.is_action_pressed(NOTE_ACTIONS[i]):
-			# Emit the signal passing the lane index
 			lane_pressed.emit(i)
-			
-			# Mark input as handled so other nodes don't re-trigger it
 			get_viewport().set_input_as_handled()
 			break

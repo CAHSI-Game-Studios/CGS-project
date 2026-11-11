@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c8kuojmhcsipm" path="res://games/gameB/scripts/game_b_scene.gd" id="1_gcj08"]
 [ext_resource type="Texture2D" uid="uid://81ppbf36wc7r" path="res://core/assets/Nova.png" id="2_o4htw"]
+[ext_resource type="PackedScene" uid="uid://fccett110nfo" path="res://games/gameB/scenes/game_bplayer.tscn" id="3_svbff"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ogo3"]
 size = Vector2(48, 113)
@@ -43,6 +44,8 @@ wait_time = 2.0
 one_shot = true
 
 [node name="WaitTime" type="Timer" parent="." unique_id=1233303639]
+
+[node name="GameBplayer" parent="." unique_id=1405707498 instance=ExtResource("3_svbff")]
 
 [connection signal="timeout" from="NoteHandler/NoteSpawner/SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="area_entered" from="NoteHandler/NoteDespawner" to="." method="_on_note_despawner_area_entered"]

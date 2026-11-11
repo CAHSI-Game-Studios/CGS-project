@@ -6,6 +6,7 @@ extends ArcadeGame
 @onready var minigame_timer = get_node("NoteHandler").get_node("MinigameDuration")
 @onready var note_spawner = get_node("NoteHandler").get_node("NoteSpawner")
 @onready var note_timer = note_spawner.get_node("SpawnTimer")
+@onready var player = $GameBplayer
 #Keep track of the score to determine wether the game was won or lost
 var score = 20
 #Score required to pass the minigame
@@ -25,6 +26,8 @@ var note_speed = 300
 
 ## Called when the game is added to the scene tree. Note that _ready is called BEFORE enter.
 func _ready() -> void:
+	if player:
+		player.lane_pressed.connect(_on_player_lane_pressed)
 	#temporary boot-up will be replaced with code that does not start the player immediately in the game portion
 	lose_game()
 ## Called every physics frame. _delta is the seconds between each frame. 
@@ -92,3 +95,6 @@ func win_game():
 	#Add logic to return to difficulty select scene
 	#Currently only sends the request_exit signal
 	exit()
+#tests if the player pressed the key
+func _on_player_lane_pressed(note_index: int) -> void:
+	print("Interaction signal received correctly Lane: ", note_index)
