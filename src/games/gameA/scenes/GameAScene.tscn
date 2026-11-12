@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://cwjlce1tfb2bq" path="res://games/gameA/scripts/game_a.gd" id="1_f1ouk"]
 [ext_resource type="PackedScene" uid="uid://crqmfpbfm38mk" path="res://games/gameA/scenes/player.tscn" id="2_5hl2e"]
 [ext_resource type="Texture2D" uid="uid://1pu0hmo236om" path="res://games/gameA/assets/MinigameA_TileMap1.jpg" id="3_w3ayw"]
+[ext_resource type="PackedScene" uid="uid://dq5h8x22b2lap" path="res://games/gameA/scenes/dash_enemy.tscn" id="4_vu5wp"]
+[ext_resource type="PackedScene" uid="uid://beyeagdeaihuo" path="res://games/gameA/scenes/projectile_enemy.tscn" id="5_rxn4i"]
+[ext_resource type="PackedScene" uid="uid://cre0vybbvy3n3" path="res://games/gameA/scenes/projectile.tscn" id="6_rxn4i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esnmb"]
 size = Vector2(67, 1708)
@@ -114,6 +117,13 @@ size = Vector2(21.000015, 585)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2nrw"]
 size = Vector2(67, 703)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ips4e"]
+vertices = PackedVector2Array(4108, 1558, 4119, 1172.5, 4308.2813, -170.00781, 4367.703, 1886, 4108, 1714, 4119, 1022, 3323.8594, 1008.4531, 3323.7578, 1005.64844, 3331.8516, 1005.64844, 3495, 1399, 1987.5, 1024.5, 1975.2422, 1024.5, 2000.0703, 76.5, 2126.4688, 532.35156, 3266.961, 950.8281, 2939.5781, 962.27344, 2939.4688, 955.35156, 3096.5938, 782.8594, 1377.9609, 1723.4219, 1377.8984, 1720, 2086, 1720, 1183.0469, -49.546875, 1183.5469, -21.5, 17, -21.5, 2256.6875, 1723.1563, 2920, 1711.5781, 2920, 1714, -123.97656, 1888.9922, 303.4297, 158.88281, 329.46094, 1650.6719, 73.4375, 1650.6719, 84.50781, 65.5, 1082.3438, 65.5, 390.40625, 157.38281, 1376.2813, 1627, 1369.4766, 1237, 1416.9766, 1237, 1417.1797, 1248.1719, 1957.75, 1572.5, 1957.75, 1627, 1635.4297, 1244.3594, 1732.5, 1253.5, 1949.7422, 1429.1172, 667.53906, 1571.0234, 660.8594, 1188, 837, 1188, 909.25, 1188.3281, 1143.0078, 1650.6719, 830.65625, 1051.3438, 824.02344, 671, 1092.9219, 671, 1092.9688, 673.97656, 837, 1051.3438, 1409.5391, 810.52344, 1412.5469, 983, 1207.6328, 983, 1264.1797, 671, 1280, 671, 734.7422, 540.96094, 743.6406, 1051.3438, 543.5, 1051.3438, 483.54688, 638.53125, 480.52344, 464.92188, 395.79688, 466.3828, 391.9297, 244, 932.5, 244, 738, 389.75, 1131.6172, 997.7031, 1132.8672, 1070, 909.25, 1070, 2136.2734, 1094.2578, 2074.2578, 1180.8828, 1987.5, 1182.3828, 17, -10.140625, -1.96875, -10.28125, -121.00781, -175.97656, 1299.1406, 1727.1484, 1299.0938, 1724.7813, 2245.6719, 1092.3438, 2254.0469, 1572.5, 2078.5469, 1426.8672, 416.4922, 1650.6719, 398.82813, 640.0078, 543.5, 1188, 1629.3672, 898.03906, 1775.8984, 895.47656, 1732.5, 1024.5, 4104, 1022, 4104, 910.75, 4109, 53.5, 3882, 910.75, 3882, 1022, 3699, 1022, 3881.7813, 730.03906, 3293.5, 204, 3293.5, 209.49219, 3266.961, 209.49219, 3083.8672, 53.5, 4036.5469, 53.5, 4036.5469, 423, 3881.7813, 423, 3881.7813, 426, 3550.4531, 426, 3550.4531, 424.92188, 3495, 424.92188, 3495, 426, 3484, 426, 3331.8516, 267, 3484, 467, 3495, 467, 3509, 1399, 3509, 1401, 3550.4531, 1290, 3550.4531, 467, 3881.7813, 467, 4102, 423, 4101.453, 423, 4101.453, 53.5, 2535, -33.5, 2535, -10.5, 1363.8125, -10.5, 1363.0625, -52.6875, 2086, 1665.5, 2255.6797, 1665.5, 4103.7188, 1558, 4103.7188, 1172.5, 1144.3984, 1729.8516, 1596.1016, 290.52344, 1605.1094, 807.0781, 1374.9375, 627.5469, 1365.9766, 114.5, -14.03125, 1717.6719, 2, 1717.7813, 2, 1724, 1144.2969, 1724, 2949.9922, 1558, 2940.6172, 1021.8125, 1280, 629.2031, 1134.9375, 1188.3281, 2433.6875, 76.5, 2446.2266, 794.21875, 2275.7266, 529.7422, 548.6719, 1188, 555.39844, 1572.9688, 1946.6719, 1253.5, 1207.6328, 996.3672, 932.5, 167.5, 390.59375, 167.5, 1088, 389.75, 738, 540.89844, 1926.5, 114.5, 1765.2813, 287.5625, 1902.6563, 1024.5, 4109, -33.5, 2283.3516, 966.78906, 3546, 204, 3546, 267, 4102, 730.03906, 4048.2813, 1558, 3881, 1401, 4048.2813, 1172.5, 3881, 1290, 3699, 1172.5)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(2, 1, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(18, 19, 20), PackedInt32Array(21, 22, 23), PackedInt32Array(24, 25, 26, 27), PackedInt32Array(28, 29, 30, 31), PackedInt32Array(28, 31, 32, 33), PackedInt32Array(34, 35, 36, 37), PackedInt32Array(38, 39, 34, 37, 40, 41, 42), PackedInt32Array(43, 44, 45, 46, 47), PackedInt32Array(48, 49, 50, 51, 52), PackedInt32Array(53, 54, 55, 56, 57), PackedInt32Array(58, 59, 60, 61, 62), PackedInt32Array(62, 63, 64, 65, 66), PackedInt32Array(51, 67, 68, 69, 52), PackedInt32Array(70, 71, 72, 10, 13), PackedInt32Array(23, 73, 74, 75), PackedInt32Array(76, 77, 18), PackedInt32Array(70, 78, 79, 80, 71), PackedInt32Array(81, 82, 61, 60, 83), PackedInt32Array(40, 84, 85, 86), PackedInt32Array(2, 5, 87, 88, 89), PackedInt32Array(90, 91, 92, 93), PackedInt32Array(94, 95, 96, 97), PackedInt32Array(98, 99, 100), PackedInt32Array(100, 101, 102, 103), PackedInt32Array(104, 105, 106, 107), PackedInt32Array(108, 109, 9, 8), PackedInt32Array(9, 110, 111), PackedInt32Array(112, 113, 114, 92), PackedInt32Array(115, 116, 117, 89), PackedInt32Array(118, 119, 120, 121), PackedInt32Array(20, 122, 123, 24), PackedInt32Array(0, 124, 125, 1), PackedInt32Array(4, 3, 27, 26), PackedInt32Array(18, 20, 24, 27, 76), PackedInt32Array(126, 76, 27), PackedInt32Array(127, 128, 53, 129, 130), PackedInt32Array(131, 132, 133, 27), PackedInt32Array(133, 134, 126, 27), PackedInt32Array(131, 27, 75, 74), PackedInt32Array(135, 136, 6, 9), PackedInt32Array(57, 137, 129, 53), PackedInt32Array(46, 138, 47), PackedInt32Array(12, 139, 140, 141), PackedInt32Array(83, 142, 143, 81), PackedInt32Array(41, 144, 42), PackedInt32Array(55, 145, 67), PackedInt32Array(146, 147, 33, 32), PackedInt32Array(146, 32, 148, 65), PackedInt32Array(65, 148, 66), PackedInt32Array(62, 66, 149, 58), PackedInt32Array(47, 81, 143, 43), PackedInt32Array(69, 46, 45, 52), PackedInt32Array(67, 51, 56, 55), PackedInt32Array(127, 130, 150, 151), PackedInt32Array(151, 150, 152, 85), PackedInt32Array(85, 152, 86), PackedInt32Array(40, 86, 41), PackedInt32Array(38, 42, 80, 79), PackedInt32Array(23, 75, 2, 21), PackedInt32Array(121, 21, 2), PackedInt32Array(118, 121, 2, 153), PackedInt32Array(141, 13, 12), PackedInt32Array(154, 141, 140), PackedInt32Array(16, 154, 140, 17), PackedInt32Array(96, 14, 17, 97), PackedInt32Array(155, 98, 100, 103, 156), PackedInt32Array(89, 153, 2), PackedInt32Array(115, 89, 88, 157), PackedInt32Array(157, 88, 90, 93), PackedInt32Array(94, 97, 98, 155), PackedInt32Array(156, 103, 104, 107), PackedInt32Array(8, 107, 106, 108), PackedInt32Array(158, 135, 9, 111), PackedInt32Array(158, 111, 159), PackedInt32Array(160, 158, 159, 161), PackedInt32Array(162, 160, 161, 112), PackedInt32Array(92, 162, 112), PackedInt32Array(93, 92, 114)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-131, -186, -134, 1899, 4378, 1896, 4318, -180)])
+source_geometry_mode = 1
+source_geometry_group_name = &"gameANavigation"
 
 [node name="GameAScene" type="Node2D" unique_id=2141663944]
 script = ExtResource("1_f1ouk")
@@ -346,3 +356,17 @@ metadata/_edit_lock_ = true
 texture = ExtResource("3_w3ayw")
 centered = false
 metadata/_edit_lock_ = true
+
+[node name="Enemies" type="Node" parent="." unique_id=983519384]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Enemies" unique_id=94602094]
+navigation_polygon = SubResource("NavigationPolygon_ips4e")
+
+[node name="DashEnemy" parent="Enemies" unique_id=1796773824 node_paths=PackedStringArray("player") instance=ExtResource("4_vu5wp")]
+position = Vector2(160, 1079)
+player = NodePath("../../Player")
+
+[node name="projectileEnemy" parent="Enemies" unique_id=1672406883 node_paths=PackedStringArray("player") instance=ExtResource("5_rxn4i")]
+position = Vector2(222, 1348)
+projectile_scene = ExtResource("6_rxn4i")
+player = NodePath("../../Player")
