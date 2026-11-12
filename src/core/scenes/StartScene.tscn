@@ -1,3 +1,47 @@
 [gd_scene format=3 uid="uid://cb2mdr62qhikp"]
 
-[node name="StartScene" type="Node2D" unique_id=314275055]
+[ext_resource type="Script" uid="uid://ds6g4pkhjix6d" path="res://core/scenes/start_scene.gd" id="1_tvop4"]
+
+[sub_resource type="Gradient" id="Gradient_31qdd"]
+offsets = PackedFloat32Array(0, 0.029787242)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yf5fn"]
+gradient = SubResource("Gradient_31qdd")
+
+[node name="StartScene" type="Control" unique_id=1759806274]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_tvop4")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=780042705]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_yf5fn")
+
+[node name="EnterButton" type="Button" parent="." unique_id=364165002]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -52.25
+offset_right = 155.0
+offset_bottom = 52.25
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Enter the Hub"
+
+[connection signal="pressed" from="EnterButton" to="." method="_on_enter_button_pressed"]
