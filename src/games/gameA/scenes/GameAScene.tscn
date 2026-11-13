@@ -129,7 +129,7 @@ source_geometry_group_name = &"gameANavigation"
 script = ExtResource("1_f1ouk")
 
 [node name="Player" parent="." unique_id=102526350 instance=ExtResource("2_5hl2e")]
-position = Vector2(200, 1500)
+position = Vector2(189, 1510)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1358353285]
 zoom = Vector2(3, 3)
@@ -364,9 +364,16 @@ navigation_polygon = SubResource("NavigationPolygon_ips4e")
 
 [node name="DashEnemy" parent="Enemies" unique_id=1796773824 node_paths=PackedStringArray("player") instance=ExtResource("4_vu5wp")]
 position = Vector2(160, 1079)
+windup_time = 0.2
+dash_speed = 290.0
+dash_max_time = 3.0
 player = NodePath("../../Player")
+SPEED = 100.0
 
 [node name="projectileEnemy" parent="Enemies" unique_id=1672406883 node_paths=PackedStringArray("player") instance=ExtResource("5_rxn4i")]
 position = Vector2(222, 1348)
 projectile_scene = ExtResource("6_rxn4i")
+attack_distance = 80.0
+windup_time = 0.2
 player = NodePath("../../Player")
+SPEED = 100.0

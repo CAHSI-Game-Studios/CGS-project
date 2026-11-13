@@ -29,26 +29,22 @@ func update_behavior(delta: float) -> void:
 			else:
 				## see GameAEnemy class
 				super(delta)
-		
 		State.WINDUP:
 			stop_moving()
 			state_timer -= delta
 			# wait for the timer
 			if state_timer <= 0.0:
 				start_dash()
-
 		State.DASH:
 			state_timer -= delta
 			velocity = dash_direction * dash_speed
 			move_and_slide()
-			
 			var reached := global_position.distance_to(dash_target) <= dash_speed * delta
 			## if the enemys movement reached the position, or
 			## the hitbox (Area2D) came into contact with the player's body, or
 			## the timer stopped
 			if reached or get_slide_collision_count() > 0 or state_timer <= 0.0:
 				start_cooldown()
-
 		State.COOLDOWN:
 			stop_moving()
 			state_timer -= delta
