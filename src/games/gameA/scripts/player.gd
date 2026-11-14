@@ -359,7 +359,7 @@ func shoot():
 	projectile.direction = facing_direction.normalized()
 	projectile.speed = 250.0
 	projectile.damage = 10
-	get_tree().current_scene.add_child(projectile)
+	get_parent().add_child(projectile)
 	projectile.global_position = global_position + facing_direction.normalized() * 30
 	
 func _on_hitbox_area_area_entered(area: Area2D) -> void:

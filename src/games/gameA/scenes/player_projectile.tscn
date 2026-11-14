@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ice8ybrngstv"]
 
-[ext_resource type="Script" uid="uid://832ngpe5yujc" path="res://games/gameA/scenes/player_projectile.gd" id="1_6gpdq"]
+[ext_resource type="Script" uid="uid://832ngpe5yujc" path="res://games/gameA/scripts/player_projectile.gd" id="1_6gpdq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_us073"]
 
