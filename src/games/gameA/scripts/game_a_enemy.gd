@@ -7,13 +7,22 @@ extends CharacterBody2D
 @export var SPEED: float = 50
 @export var health : int = 100
 @export var dmg : int = 20
-@onready var health_bar: ProgressBar = $UI/HealthBar
+var health_bar: ProgressBar
 
 var can_chase: bool = true
 
 func _ready() -> void:
-	health_bar.value = health
-	
+	health_bar = get_health_bar()
+	if health_bar:
+		health_bar.max_value = health
+		health_bar.value = health
+
+# This is to ensure the code works for child objects that are bosses, 
+# bosses have a canvas layer for the HealthBar, while regular enemies do not.
+
+func get_health_bar() -> ProgressBar:
+	return get_node_or_null("UI/HealthBar")
+
 func _physics_process(delta: float) -> void:
 	if player == null:
 		return
