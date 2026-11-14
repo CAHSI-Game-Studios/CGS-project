@@ -6,6 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://dq5h8x22b2lap" path="res://games/gameA/scenes/dash_enemy.tscn" id="4_vu5wp"]
 [ext_resource type="PackedScene" uid="uid://beyeagdeaihuo" path="res://games/gameA/scenes/projectile_enemy.tscn" id="5_rxn4i"]
 [ext_resource type="PackedScene" uid="uid://cre0vybbvy3n3" path="res://games/gameA/scenes/projectile.tscn" id="6_rxn4i"]
+[ext_resource type="PackedScene" uid="uid://8u7o87nryac0" path="res://core/dialogue_system/DialogueSystem.tscn" id="4_dialogue_system"]
+[ext_resource type="Resource" path="res://games/gameA/assets/gameA_dialogues/opening_01_arrival.tres" id="5_opening"]
+[ext_resource type="Resource" path="res://games/gameA/assets/gameA_dialogues/before_fight_01_spot_creatures.tres" id="6_before_fight"]
+[ext_resource type="Resource" path="res://games/gameA/assets/gameA_dialogues/after_fight_01_monsters_defeated.tres" id="7_after_fight"]
+[ext_resource type="Resource" path="res://games/gameA/assets/gameA_dialogues/boss_fight_01_wight_knight_greeting.tres" id="8_boss_fight"]
+[ext_resource type="Resource" path="res://games/gameA/assets/gameA_dialogues/ending_01_companion_reunion.tres" id="9_ending"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esnmb"]
 size = Vector2(67, 1708)
@@ -127,6 +133,11 @@ source_geometry_group_name = &"gameANavigation"
 
 [node name="GameAScene" type="Node2D" unique_id=2141663944]
 script = ExtResource("1_f1ouk")
+opening_dialogue = ExtResource("5_opening")
+before_fight_dialogue = ExtResource("6_before_fight")
+after_fight_dialogue = ExtResource("7_after_fight")
+boss_fight_dialogue = ExtResource("8_boss_fight")
+ending_dialogue = ExtResource("9_ending")
 
 [node name="Player" parent="." unique_id=102526350 instance=ExtResource("2_5hl2e")]
 position = Vector2(189, 1510)
@@ -377,3 +388,9 @@ attack_distance = 80.0
 windup_time = 0.2
 player = NodePath("../../Player")
 SPEED = 150.0
+[node name="DialogueLayer" type="CanvasLayer" parent="."]
+process_mode = 1
+layer = 2
+
+[node name="DialogueSystem" parent="DialogueLayer" instance=ExtResource("4_dialogue_system")]
+visible = false
