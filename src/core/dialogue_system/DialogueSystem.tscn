@@ -10,7 +10,7 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
 
-[node name="DialogueSystem" type="Control" unique_id=1918673968]
+[node name="DialogueSystem" type="Control" unique_id=1918673968 node_paths=PackedStringArray("dialogue_text", "choice_button_container", "speaker")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +19,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_k2dv1")
+dialogue_text = NodePath("dialogueBox/dialogueText")
+choice_button_container = NodePath("dialogueBox/choiceButtonContainer")
+speaker = NodePath("dialogueBox/speaker")
 metadata/_custom_type_script = "uid://cyjg17ffshdae"
 
 [node name="dialogueBox" type="Panel" parent="." unique_id=792591457]
@@ -50,7 +53,7 @@ bbcode_enabled = true
 text = "Dialogue text"
 metadata/_edit_use_anchors_ = true
 
-[node name="choiceButtons" type="VBoxContainer" parent="dialogueBox" unique_id=513449498]
+[node name="choiceButtonContainer" type="VBoxContainer" parent="dialogueBox" unique_id=513449498]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.8550347
