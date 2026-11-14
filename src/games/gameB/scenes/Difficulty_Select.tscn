@@ -1,3 +1,26 @@
 [gd_scene format=3 uid="uid://cu50v86rnruto"]
 
 [node name="DifficultySelect" type="Node2D" unique_id=114060325]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1413096720]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.5354209, 0.5354209, 0.5354209, 1)
+
+[node name="Easy" type="Button" parent="." unique_id=2046158779]
+offset_left = 168.0
+offset_top = 256.0
+offset_right = 304.0
+offset_bottom = 528.0
+
+[node name="Medium" type="Button" parent="." unique_id=1853537461]
+offset_left = 544.0
+offset_top = 256.0
+offset_right = 680.0
+offset_bottom = 528.0
+
+[node name="Hard" type="Button" parent="." unique_id=1780276780]
+offset_left = 904.0
+offset_top = 256.0
+offset_right = 1040.0
+offset_bottom = 528.0

@@ -24,7 +24,7 @@ var note_frequency = 1
 #Determines the speed at which "notes" travel
 var note_speed = 300
 
-var remaining_rounds = 0
+var remaining_rounds = 2
 
 var current_scene
 
@@ -113,5 +113,6 @@ func win_game():
 func to_difficulty_select():
 	print("changing scene")
 	current_scene.queue_free()
+
 	current_scene = difficulty_select_scene.instantiate()
-	add_child(difficulty_select_scene)
+	add_child(current_scene)
