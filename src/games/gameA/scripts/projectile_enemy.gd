@@ -45,7 +45,7 @@ func shoot():
 	var projectile: GameAProjectile = projectile_scene.instantiate()
 	set_up_projectile(projectile)
 	## add the projectile scene to the ACTUALLY game, not this enemy
-	get_tree().current_scene.add_child(projectile)
+	get_parent().add_child(projectile)
 	## projectile position its the enemy position
 	projectile.global_position = global_position
 
