@@ -368,7 +368,7 @@ windup_time = 0.2
 dash_speed = 290.0
 dash_max_time = 3.0
 player = NodePath("../../Player")
-SPEED = 100.0
+SPEED = 150.0
 
 [node name="projectileEnemy" parent="Enemies" unique_id=1672406883 node_paths=PackedStringArray("player") instance=ExtResource("5_rxn4i")]
 position = Vector2(222, 1348)
@@ -376,4 +376,4 @@ projectile_scene = ExtResource("6_rxn4i")
 attack_distance = 80.0
 windup_time = 0.2
 player = NodePath("../../Player")
-SPEED = 100.0
+SPEED = 150.0

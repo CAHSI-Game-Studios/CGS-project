@@ -9,7 +9,7 @@ extends CharacterBody2D
 # MOVEMENT
 # -------------------------
 
-var SPEED = 100
+var SPEED = 80
 var facing_direction = Vector2.DOWN
 
 
