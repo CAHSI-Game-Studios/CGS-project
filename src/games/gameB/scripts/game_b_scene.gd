@@ -6,11 +6,13 @@ extends ArcadeGame
 @onready var minigame_timer = get_node("NoteHandler").get_node("MinigameDuration")
 @onready var note_spawner = get_node("NoteHandler").get_node("NoteSpawner")
 @onready var note_timer = note_spawner.get_node("SpawnTimer")
+
+@onready var enemy = $Enemy 
 #Keep track of the score to determine wether the game was won or lost
 var score = 20
 #Score required to pass the minigame
 #Will be determined by checking the score obtained by the enemy AI
-var pass_score =10
+var pass_score =enemy.get_enemy_score()
 
 #Tells the game to check wether win or lose was achieved
 signal gameplay_B_end
@@ -60,6 +62,7 @@ func _on_minigame_duration_timeout() -> void:
 #sets obejects to their game start state
 func lose_game():
 	minigame_timer.start()
+	enemy.reset()
 	note_timer.wait_time = note_frequency
 	note_timer.start()
 	score = 20
