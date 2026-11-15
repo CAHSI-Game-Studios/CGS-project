@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://dei2aenducc6t"]
 
 [ext_resource type="PackedScene" uid="uid://cjikp6rypqpvi" path="res://games/gameA/scenes/GameAScene.tscn" id="1_vymsj"]
-[ext_resource type="PackedScene" uid="uid://cvn0cjj8l01yg" path="res://games/gameA/scenes/boss.tscn" id="2_hbpco"]
+[ext_resource type="PackedScene" uid="uid://vvwtswnncswr" path="res://games/gameA/scenes/game_a_skeleton_boss.tscn" id="2_hbpco"]
 
 [node name="GameASceneTest" unique_id=2141663944 instance=ExtResource("1_vymsj")]
 
 [node name="Player" parent="." index="0" unique_id=102526350]
 position = Vector2(3628, 1027)
 
-[node name="Boss" parent="Enemies" parent_id_path=PackedInt32Array(983519384) index="3" unique_id=1796773824 node_paths=PackedStringArray("player") instance=ExtResource("2_hbpco")]
-position = Vector2(3720, 911)
+[node name="Skeleton" parent="Enemies" parent_id_path=PackedInt32Array(983519384) index="3" unique_id=1796773824 node_paths=PackedStringArray("player") instance=ExtResource("2_hbpco")]
+position = Vector2(3702, 912)
 player = NodePath("../../Player")

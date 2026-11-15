@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cvn0cjj8l01yg"]
 
 [ext_resource type="PackedScene" uid="uid://bypmotrg51bse" path="res://games/gameA/scenes/GameAEnemy.tscn" id="1_0mysa"]
-[ext_resource type="Script" uid="uid://d6wrutcu7ftx" path="res://games/gameA/scripts/boss.gd" id="2_x8s46"]
+[ext_resource type="Script" uid="uid://d6wrutcu7ftx" path="res://games/gameA/scripts/game_a_boss.gd" id="2_x8s46"]
 [ext_resource type="Script" uid="uid://5w7ifnaowl2k" path="res://games/gameA/scripts/boss_ui.gd" id="3_5ne1n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x8s46"]
@@ -9,13 +9,18 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ne1n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8s46"]
-bg_color = Color(0.38250569, 0.08567136, 4.813075e-08, 1)
+bg_color = Color(0.97859687, 0.94811296, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njvlo"]
 bg_color = Color(0.75158876, 0.025840001, 0.050708726, 1)
 
 [node name="Boss" unique_id=1796773824 instance=ExtResource("1_0mysa")]
 script = ExtResource("2_x8s46")
+windup_time = 0.8
+recovery_time = 0.8
+attack_cooldown = 1.5
+cooldown_randomness = 0.5
+death_delay = 1.5
 health = 300
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=1901063338]
@@ -24,14 +29,8 @@ shape = SubResource("CircleShape2D_x8s46")
 [node name="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(492361761) index="0" unique_id=1634634792]
 shape = SubResource("RectangleShape2D_5ne1n")
 
-[node name="UI" parent="." index="3" unique_id=996165540]
+[node name="UI" parent="." index="3" unique_id=957125623]
 visible = false
-anchors_preset = 7
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-offset_bottom = 0.0
-grow_vertical = 0
 
 [node name="HealthBar" parent="UI" index="0" unique_id=1076545017]
 offset_left = -11.0

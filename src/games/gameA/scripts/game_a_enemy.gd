@@ -19,7 +19,6 @@ func _ready() -> void:
 
 # This is to ensure the code works for child objects that are bosses, 
 # bosses have a canvas layer for the HealthBar, while regular enemies do not.
-
 func get_health_bar() -> ProgressBar:
 	return get_node_or_null("UI/HealthBar")
 
@@ -32,17 +31,19 @@ func _physics_process(delta: float) -> void:
 func update_behavior(_delta: float) -> void:
 	chase_target(player)
 	
-
 func take_damage(amount):
 	if amount >= health:
 		health = 0
 		# the enemy is dead
-		queue_free()
+		die()
 	else:
 		health -= amount
 	health_bar.value = health
 
-## ------- Chase Behavior ----------------
+func die():
+	queue_free()
+
+## ------- CHASE BEHAVIOR ----------------
 func chase_target(target: Node2D) -> void:
 	if can_chase:
 		chase(target)
@@ -66,6 +67,7 @@ func has_line_of_sight(target: Node2D) -> bool:
 	)
 	
 	return space.intersect_ray(query).is_empty()
+
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	if not can_chase:
 		return

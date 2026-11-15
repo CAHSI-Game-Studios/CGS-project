@@ -11,9 +11,10 @@ var damage_tween: Tween
 
 
 func _ready() -> void:
-	# reminder : the ready of the childs run first (didnt know that lmao)
+	# remainder : the ready of the childs run first (didnt know that lmao)
 	await get_parent().ready
 	health_bar = get_parent().health_bar
+	
 	damage_bar.max_value = health_bar.max_value
 	damage_bar.value = health_bar.value
 	setup_label_name()
