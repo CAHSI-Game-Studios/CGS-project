@@ -12,7 +12,7 @@ extends ArcadeGame
 var score = 20
 #Score required to pass the minigame
 #Will be determined by checking the score obtained by the enemy AI
-var pass_score =enemy.get_enemy_score()
+var pass_score: int = 0 
 
 #Tells the game to check wether win or lose was achieved
 signal gameplay_B_end
@@ -50,6 +50,7 @@ func _on_minigame_duration_timeout() -> void:
 	note_timer.stop()
 	print("MINIGAME OVER")
 	await gameplay_B_end
+	pass_score = enemy.get_enemy_score()
 	print(score >= pass_score)
 	if score >= pass_score:
 		print("YOU WIN")
