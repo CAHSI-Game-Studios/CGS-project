@@ -1179,8 +1179,8 @@ one_shot = true
 
 [connection signal="area_entered" from="attack_area" to="." method="_on_attack_area_area_entered"]
 [connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]
-[connection signal="area_entered" from="heavy_attack_area" to="." method="_on_attack_area_area_entered"]
 [connection signal="area_entered" from="heavy_attack_area" to="." method="_on_heavy_attack_area_area_entered"]
+[connection signal="area_entered" from="heavy_attack_area" to="." method="_on_attack_area_area_entered"]
 [connection signal="body_entered" from="heavy_attack_area" to="." method="_on_attack_area_body_entered"]
 [connection signal="area_entered" from="hitbox_area" to="." method="_on_hitbox_area_area_entered"]
 [connection signal="body_entered" from="hitbox_area" to="." method="_on_hitbox_area_body_entered"]
