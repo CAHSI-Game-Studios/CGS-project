@@ -29,6 +29,7 @@ func _physics_process(delta: float) -> void:
 
 ## the childs will override this function
 func update_behavior(_delta: float) -> void:
+	# chase player
 	chase_target(player)
 	
 func take_damage(amount):
@@ -44,16 +45,16 @@ func die():
 	queue_free()
 
 ## ------- CHASE BEHAVIOR ----------------
-func chase_target(target: Node2D) -> void:
+func chase_target(target : Node2D) -> void:
 	if can_chase:
-		chase(target)
+		move_towards_point(target.global_position, SPEED)
 
-func chase(target: Node2D) -> void:
-	navigation.target_position = target.global_position
+func move_towards_point(point : Vector2, speed : float) -> void:
+	navigation.target_position = point
 	var new_velocity := Vector2.ZERO
 	if not navigation.is_navigation_finished():
 		var next_path_pos := navigation.get_next_path_position()
-		new_velocity = global_position.direction_to(next_path_pos) * SPEED
+		new_velocity = global_position.direction_to(next_path_pos) * speed
 
 	if navigation.avoidance_enabled:
 		navigation.velocity = new_velocity

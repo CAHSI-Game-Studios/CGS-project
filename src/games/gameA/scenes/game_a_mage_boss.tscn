@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://vvwtswnncswr"]
+
+[ext_resource type="PackedScene" uid="uid://cvn0cjj8l01yg" path="res://games/gameA/scenes/boss.tscn" id="1_cf4ra"]
+[ext_resource type="Script" uid="uid://d1r33ge40oa54" path="res://games/gameA/scripts/game_a_mage_boss.gd" id="2_8chql"]
+[ext_resource type="PackedScene" uid="uid://cre0vybbvy3n3" path="res://games/gameA/scenes/projectile.tscn" id="3_boon8"]
+[ext_resource type="PackedScene" uid="uid://cjf5pvelv1lrf" path="res://games/gameA/scenes/shockwave.tscn" id="4_cw3kn"]
+[ext_resource type="PackedScene" uid="uid://csgep2nq2u1c4" path="res://games/gameA/scenes/homing_orb.tscn" id="5_kb2hc"]
+
+[node name="GameASkeletonBoss" unique_id=1796773824 instance=ExtResource("1_cf4ra")]
+script = ExtResource("2_8chql")
+prefereed_min_distance = 30.0
+preferred_max_distance = 80.0
+retreat_speed = 40.0
+strafe_speed = 30.0
+strafe_switch_min = 0.0
+strafe_switch_max = 0.0
+arrow_scene = ExtResource("3_boon8")
+arrow_damage = 10
+shockwave_scene = ExtResource("4_cw3kn")
+shockwave_damage = 15
+orb_scene = ExtResource("5_kb2hc")
+orb_speed = 120.0
+orb_damage = 20
+attack_cooldown = 0.5
+health = 100

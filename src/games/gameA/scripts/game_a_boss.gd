@@ -15,7 +15,7 @@ class BossAttack:
 		self.max_range = _max_range
 		self.weight = _weight
 
-enum State { CHASE, ATTACK ,COOLDOWN , DEAD}
+enum State { MOVE, ATTACK ,COOLDOWN , DEAD}
 
 #@export var boss_name : String = "Boss"
 @export var windup_time: float = 0.8
@@ -24,7 +24,7 @@ enum State { CHASE, ATTACK ,COOLDOWN , DEAD}
 @export var cooldown_randomness : float = 0.5
 @export var death_delay : float = 1.5
 
-var state : State = State.CHASE
+var state : State = State.MOVE
 
 var attacks : Array[BossAttack] = []
 var last_attack : BossAttack
@@ -37,26 +37,32 @@ func add_attack(action, min_range, max_range, weight : float = 1.0):
 
 func update_behavior(delta : float) -> void:
 	match state:
-		State.CHASE:
+		State.MOVE:
 			cooldown_timer -= delta
 			if cooldown_timer <= 0.0:
 				var attack : BossAttack = choose_attack()
 				if attack:
 					start_attack(attack)
 					return
-			super(delta)
+			# not attack avaible yet
+			move_between_attacks(delta)
 		
 		State.COOLDOWN:
 			stop_moving()
 			recovery_timer -= delta
 			if recovery_timer <= 0.0:
-				state = State.CHASE
+				state = State.MOVE
 				can_chase = true
 				cooldown_timer = attack_cooldown + randf_range(-cooldown_randomness, cooldown_randomness)
 		
 		_:
 			pass
 				
+# how the boss moves while waiting for its next attack.
+# by default it chases the player. child bosses override this
+# to move differently.
+func move_between_attacks(_delta : float)->void:
+	chase_target(player)
 
 func choose_attack() -> BossAttack:
 	var distance = distance_to_player()
@@ -93,7 +99,6 @@ func start_attack(attack : BossAttack) -> void:
 	can_chase = false
 	stop_moving()
 	
-	#TODO document this
 	await attack.action.call()
 	
 	if is_dead():
@@ -106,6 +111,7 @@ func start_attack(attack : BossAttack) -> void:
 func take_damage(amount : int) -> void:
 	if is_dead():
 		return
+	# the parent class (GameAEnemy) handle the take_damage func.
 	super(amount)
 
 # TODO 
