@@ -1,5 +1,7 @@
 extends Node
 var currency: int = 0
+var game_b_score: int = 0
+var game_b_won: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -1,0 +1,78 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://games/gameB/scripts/GameplayB.gd" id="1_gameplay"]
+[ext_resource type="Texture2D" uid="uid://wgjqarjaldp0" path="res://games/gameB/assets/background_Concept.png" id="2_background"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_target"]
+radius = 26.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hit"]
+size = Vector2(35, 47)
+
+[node name="GameplayB" type="Node2D"]
+script = ExtResource("1_gameplay")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(2, 2)
+texture = ExtResource("2_background")
+
+[node name="Lanes" type="Node2D" parent="."]
+
+[node name="Lane1" type="Node2D" parent="Lanes"]
+
+[node name="Bar" type="ColorRect" parent="Lanes/Lane1"]
+offset_left = 62.0
+offset_top = 258.0
+offset_right = 539.0
+offset_bottom = 286.0
+
+[node name="Spawn" type="Marker2D" parent="Lanes/Lane1"]
+position = Vector2(63, 271)
+
+[node name="Target" type="Area2D" parent="Lanes/Lane1"]
+position = Vector2(528, 271)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanes/Lane1/Target"]
+shape = SubResource("CircleShape2D_target")
+
+[node name="Lane2" type="Node2D" parent="Lanes"]
+
+[node name="Bar" type="ColorRect" parent="Lanes/Lane2"]
+offset_left = 734.0
+offset_top = 257.0
+offset_right = 1247.0
+offset_bottom = 285.0
+
+[node name="Spawn" type="Marker2D" parent="Lanes/Lane2"]
+position = Vector2(743, 270)
+
+[node name="Target" type="Area2D" parent="Lanes/Lane2"]
+position = Vector2(1237, 277)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lanes/Lane2/Target"]
+position = Vector2(-4, -6)
+shape = SubResource("CircleShape2D_target")
+
+[node name="HitLine" type="Area2D" parent="."]
+position = Vector2(1016.5, 275.5)
+collision_layer = 4
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitLine"]
+shape = SubResource("RectangleShape2D_hit")
+
+[node name="Bar" type="ColorRect" parent="HitLine"]
+offset_left = -12.5
+offset_top = -44.5
+offset_right = 9.5
+offset_bottom = 37.5
+color = Color(1, 0, 0, 1)
+
+[node name="RoundTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
