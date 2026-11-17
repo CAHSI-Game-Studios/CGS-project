@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name GameAPlayer
 
 # ->> W,A,S,D FOR MOVEMENT J,K FOR DASH AND ATTACK <<-
 # ->> W,A,S,D FOR MOVEMENT J,K FOR DASH AND ATTACK <<-
