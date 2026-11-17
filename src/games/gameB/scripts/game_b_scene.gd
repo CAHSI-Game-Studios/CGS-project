@@ -25,6 +25,7 @@ var note_speed = 300
 
 ## Called when the game is added to the scene tree. Note that _ready is called BEFORE enter.
 func _ready() -> void:
+	
 	#temporary boot-up will be replaced with code that does not start the player immediately in the game portion
 	lose_game()
 ## Called every physics frame. _delta is the seconds between each frame. 
