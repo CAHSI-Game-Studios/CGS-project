@@ -77,7 +77,7 @@ func strafe(delta : float) -> void:
 	var side = direction_to_player.orthogonal() * strafe_direction
 	move_towards_point(global_position + side * 50.0, strafe_speed)
 
-
+#------------------------- ATTACKS --------------------------
 
 # ---------------- Arrow Attack -------------------
 func attack_triple_shot() -> void:
