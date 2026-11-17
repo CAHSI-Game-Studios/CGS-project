@@ -8,6 +8,6 @@
 [node name="Player" parent="." index="0" unique_id=102526350]
 position = Vector2(232, 1392)
 
-[node name="Skeleton" parent="Enemies" parent_id_path=PackedInt32Array(983519384) index="3" unique_id=1779614909 node_paths=PackedStringArray("player") instance=ExtResource("2_hbpco")]
+[node name="Mage" parent="Enemies" parent_id_path=PackedInt32Array(983519384) index="3" unique_id=1779614909 node_paths=PackedStringArray("player") instance=ExtResource("2_hbpco")]
 position = Vector2(3702, 912)
 player = NodePath("../../Player")
