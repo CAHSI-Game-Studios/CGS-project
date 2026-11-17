@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cmqgvbnajfmnw" path="res://games/gameA/assets/The Male adventurer - Free/Death/death_normal_down.png" id="2_gmivo"]
 [ext_resource type="Texture2D" uid="uid://bfmk650vfyfvl" path="res://games/gameA/assets/The Male adventurer - Free/Idle/idle_down.png" id="2_helh4"]
 [ext_resource type="Texture2D" uid="uid://doyc17efavgrm" path="res://games/gameA/assets/The Male adventurer - Free/Walk/walk_down.png" id="2_i75ac"]
+[ext_resource type="PackedScene" uid="uid://ice8ybrngstv" path="res://games/gameA/scenes/player_projectile.tscn" id="2_q6d60"]
 [ext_resource type="Texture2D" uid="uid://bbgp4e38vwya1" path="res://games/gameA/assets/The Male adventurer - Free/Walk/walk_right_down.png" id="2_s0poa"]
 [ext_resource type="Texture2D" uid="uid://c01nfc7egl8v" path="res://games/gameA/assets/The Male adventurer - Free/Walk/walk_left_down.png" id="3_2s8eo"]
 [ext_resource type="Texture2D" uid="uid://b0clbuwlevlbu" path="res://games/gameA/assets/The Male adventurer - Free/Idle/idle_left_down.png" id="3_gmivo"]
@@ -1075,6 +1076,7 @@ bg_color = Color(0.751587, 0.026963688, 0.04558686, 1)
 [node name="Player" type="CharacterBody2D" unique_id=102526350]
 collision_mask = 4
 script = ExtResource("1_18y4s")
+player_projectile_scene = ExtResource("2_q6d60")
 
 [node name="animations" type="AnimatedSprite2D" parent="." unique_id=207314538]
 sprite_frames = SubResource("SpriteFrames_gmybj")
@@ -1089,10 +1091,30 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="attack_collision" type="CollisionShape2D" parent="attack_area" unique_id=137975417]
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_esnmb")
 
 [node name="temp_visual" type="Polygon2D" parent="attack_area" unique_id=284217516]
-position = Vector2(0, -15)
+visible = false
+position = Vector2(0, -30)
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(-10, 9, -10, 21, 10, 21, 10, 9)
+
+[node name="heavy_attack_area" type="Area2D" parent="." unique_id=892469099]
+position = Vector2(0, 15)
+collision_layer = 0
+collision_mask = 2
+
+[node name="attack_collision" type="CollisionShape2D" parent="heavy_attack_area" unique_id=176649105]
+position = Vector2(0, 18)
+scale = Vector2(4, 5)
+shape = SubResource("RectangleShape2D_esnmb")
+debug_color = Color(0.9220858, 0.08970549, 0.6476154, 0.41960785)
+
+[node name="temp_visual" type="Polygon2D" parent="heavy_attack_area" unique_id=974216836]
+visible = false
+position = Vector2(0, -57)
+scale = Vector2(4, 5)
 polygon = PackedVector2Array(-10, 9, -10, 21, 10, 21, 10, 9)
 
 [node name="hitbox_area" type="Area2D" parent="." unique_id=867674304]
@@ -1144,13 +1166,30 @@ show_percentage = false
 autostart = true
 
 [node name="attack_cooldown" type="Timer" parent="." unique_id=1408741538]
+wait_time = 0.5
+one_shot = true
+
+[node name="heavy_attack_cooldown" type="Timer" parent="." unique_id=41991980]
+wait_time = 1.5
+one_shot = true
+
+[node name="stun_cooldown" type="Timer" parent="." unique_id=833807749]
+wait_time = 2.0
 one_shot = true
 
 [connection signal="area_entered" from="attack_area" to="." method="_on_attack_area_area_entered"]
 [connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]
+[connection signal="area_entered" from="heavy_attack_area" to="." method="_on_attack_area_area_entered"]
+[connection signal="area_entered" from="heavy_attack_area" to="." method="_on_heavy_attack_area_area_entered"]
+[connection signal="body_entered" from="heavy_attack_area" to="." method="_on_attack_area_body_entered"]
 [connection signal="area_entered" from="hitbox_area" to="." method="_on_hitbox_area_area_entered"]
 [connection signal="body_entered" from="hitbox_area" to="." method="_on_hitbox_area_body_entered"]
 [connection signal="timeout" from="dash_cooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="stamina_regen" to="." method="_on_stamina_regen_timeout"]
 [connection signal="timeout" from="regen" to="." method="_on_regen_timeout"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="heavy_attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="heavy_attack_cooldown" to="." method="_on_heavy_attack_cooldown_timeout"]
+[connection signal="timeout" from="stun_cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="stun_cooldown" to="." method="_on_stun_cooldown_timeout"]
+[connection signal="timeout" from="stun_cooldown" to="." method="_on_heavy_attack_cooldown_timeout"]

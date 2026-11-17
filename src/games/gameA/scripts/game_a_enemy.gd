@@ -13,7 +13,7 @@ var can_chase: bool = true
 
 func _ready() -> void:
 	health_bar.value = health
-
+	
 func _physics_process(delta: float) -> void:
 	if player == null:
 		return
