@@ -35,9 +35,9 @@ var arrow_spread: float = 45.0
 
 func _ready() -> void:
 	super()
-	#add_attack(attack_triple_shot, 50, 400)
-	#add_attack(attack_shockwave, 30, 50)
-	#add_attack(attack_homing_orb, 50, 400)
+	add_attack(attack_triple_shot, 50, 400)
+	add_attack(attack_shockwave, 30, 50)
+	add_attack(attack_homing_orb, 50, 400)
 
 ##TODO
 func move_between_attacks(delta : float) -> void:
@@ -128,13 +128,12 @@ func attack_homing_orb()-> void:
 	var orb : GameAProjectile = orb_scene.instantiate()
 	orb.direction = global_position.direction_to(player.global_position)
 	orb.speed = orb_speed
-	orb_damage = orb_damage
+	orb.damage = orb_damage
 	orb.target = player
 	get_parent().add_child(orb)
 	orb.global_position = global_position
 	
 	await wait(0.3)
-
 
 #--------------------------------------------------------------------
 func prepare_attack():

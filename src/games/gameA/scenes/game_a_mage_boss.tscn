@@ -8,18 +8,22 @@
 
 [node name="GameASkeletonBoss" unique_id=1796773824 instance=ExtResource("1_cf4ra")]
 script = ExtResource("2_8chql")
-prefereed_min_distance = 30.0
-preferred_max_distance = 80.0
+preferred_min_distance = 100.0
+preferred_max_distance = 150.0
+distance_margin = 40.0
 retreat_speed = 40.0
 strafe_speed = 30.0
-strafe_switch_min = 0.0
-strafe_switch_max = 0.0
+strafe_switch_min = 1.3
+strafe_switch_max = 3.0
 arrow_scene = ExtResource("3_boon8")
-arrow_damage = 10
+arrow_damage = 20
 shockwave_scene = ExtResource("4_cw3kn")
-shockwave_damage = 15
+shockwave_damage = 20
 orb_scene = ExtResource("5_kb2hc")
 orb_speed = 120.0
 orb_damage = 20
+windup_time = 0.2
+recovery_time = 0.5
 attack_cooldown = 0.5
 health = 100
+knockback_heavy_multiplier = 3.0

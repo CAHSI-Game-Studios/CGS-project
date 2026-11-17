@@ -6,15 +6,8 @@
 [node name="GameASceneTest" unique_id=2141663944 instance=ExtResource("1_vymsj")]
 
 [node name="Player" parent="." index="0" unique_id=102526350]
-position = Vector2(3628, 1027)
+position = Vector2(232, 1392)
 
-[node name="Skeleton" parent="Enemies" parent_id_path=PackedInt32Array(983519384) index="3" unique_id=1796773824 node_paths=PackedStringArray("player") instance=ExtResource("2_hbpco")]
+[node name="Skeleton" parent="Enemies" parent_id_path=PackedInt32Array(983519384) index="3" unique_id=1779614909 node_paths=PackedStringArray("player") instance=ExtResource("2_hbpco")]
 position = Vector2(3702, 912)
-preferred_min_distance = 50.0
-preferred_max_distance = 100.0
-distance_margin = 40.0
-retreat_speed = 30.0
-strafe_switch_min = 1.5
-strafe_switch_max = 3.5
 player = NodePath("../../Player")
-SPEED = 100.0

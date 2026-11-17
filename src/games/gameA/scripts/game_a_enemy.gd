@@ -11,6 +11,14 @@ var health_bar: ProgressBar
 
 var can_chase: bool = true
 
+## ------- KNOCKBACK ----------------
+@export var knockback_light_speed: float = 200.0
+@export var knockback_heavy_speed: float = 400.0
+@export var knockback_friction: float = 800.0
+
+var knockback_velocity: Vector2 = Vector2.ZERO
+
+
 func _ready() -> void:
 	health_bar = get_health_bar()
 	if health_bar:
@@ -23,6 +31,10 @@ func get_health_bar() -> ProgressBar:
 	return get_node_or_null("UI/HealthBar")
 
 func _physics_process(delta: float) -> void:
+	if is_knocked_back():
+		update_knockback(delta)
+		return
+		
 	if player == null:
 		return
 	update_behavior(delta)
@@ -31,18 +43,33 @@ func _physics_process(delta: float) -> void:
 func update_behavior(_delta: float) -> void:
 	# chase player
 	chase_target(player)
-	
-func take_damage(amount):
-	if amount >= health:
-		health = 0
-		# the enemy is dead
+
+## ------- DAMAGE ----------------
+func take_damage(amount: int, direction: Vector2 = Vector2.ZERO, heavy: bool = false) -> void:
+	health = max(health - amount, 0)
+	if health_bar:
+		health_bar.value = health
+	if health == 0:
 		die()
-	else:
-		health -= amount
-	health_bar.value = health
+		return
+
+	apply_knockback(direction, heavy)
 
 func die():
 	queue_free()
+
+## ------- KNOCKBACK ----------------
+func apply_knockback(direction: Vector2, heavy: bool = false) -> void:
+	var speed := knockback_heavy_speed if heavy else knockback_light_speed
+	knockback_velocity = direction.normalized() * speed
+
+func update_knockback(delta: float) -> void:
+	velocity = knockback_velocity
+	move_and_slide()
+	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_friction * delta)
+
+func is_knocked_back() -> bool:
+	return knockback_velocity != Vector2.ZERO
 
 ## ------- CHASE BEHAVIOR ----------------
 func chase_target(target : Node2D) -> void:
@@ -70,7 +97,7 @@ func has_line_of_sight(target: Node2D) -> bool:
 	return space.intersect_ray(query).is_empty()
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
-	if not can_chase:
+	if not can_chase or is_knocked_back():
 		return
 	velocity = safe_velocity
 	move_and_slide()

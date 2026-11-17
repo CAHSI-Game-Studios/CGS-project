@@ -108,13 +108,13 @@ func start_attack(attack : BossAttack) -> void:
 	recovery_timer = recovery_time
 
 
-func take_damage(amount : int) -> void:
+func take_damage(amount: int, direction: Vector2 = Vector2.ZERO, heavy: bool = false) -> void:
 	if is_dead():
 		return
 	# the parent class (GameAEnemy) handle the take_damage func.
-	super(amount)
+	super(amount, direction, heavy)
 
-# TODO 
+# TODO
 func check_phase():
 	pass
 
