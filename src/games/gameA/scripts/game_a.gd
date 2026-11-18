@@ -32,10 +32,11 @@ func _connect_pause_controls() -> void:
 	if _pause_menu:
 		$DialogueLayer/PauseButton.pressed.connect(GameA_pause)
 		_pause_menu.exit_requested.connect(_on_pause_exit)
+		_pause_menu.set_process(_running)
 
 
 func GameA_pause() -> void:
-	if _pause_menu and not get_tree().paused:
+	if _running and not _finished and not _restarting and _pause_menu and not get_tree().paused:
 		_pause_menu.pause_game()
 
 
@@ -138,11 +139,17 @@ func _restart_gameplay() -> void:
 func _resume_gameplay() -> void:
 	_running = true
 	process_mode = Node.PROCESS_MODE_INHERIT
+	if _pause_menu:
+		_pause_menu.set_process(true)
+		$DialogueLayer/PauseButton.disabled = false
 
 
 func _stop_gameplay() -> void:
 	_running = false
 	process_mode = Node.PROCESS_MODE_DISABLED
+	if _pause_menu:
+		_pause_menu.set_process(false)
+		$DialogueLayer/PauseButton.disabled = true
 	var player: CharacterBody2D = get_node_or_null("Player")
 	if player:
 		player.velocity = Vector2.ZERO
