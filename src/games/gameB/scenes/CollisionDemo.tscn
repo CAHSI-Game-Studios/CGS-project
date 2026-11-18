@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c6ub2s4yw2xww"]
 
 [ext_resource type="Script" uid="uid://dbjjs2tfo352o" path="res://games/gameB/scripts/CollisionDemo.gd" id="1_d3516"]
-[ext_resource type="Texture2D" uid="uid://wgjqarjaldp0" path="res://games/gameB/assets/background_Concept.png" id="2_h4u7c"]
+[ext_resource type="Texture2D" uid="uid://cknb4nx3qwy83" path="res://games/gameB/assets/background_Concept.png" id="2_h4u7c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_target"]
 radius = 26.0
@@ -33,7 +33,7 @@ position = Vector2(63, 271)
 [node name="Target" type="Area2D" parent="Lanes/Lane1" unique_id=652540454]
 position = Vector2(528, 271)
 collision_layer = 2
-collision_mask = 0
+collision_mask = 119
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanes/Lane1/Target" unique_id=919872425]
 shape = SubResource("CircleShape2D_target")
@@ -52,7 +52,7 @@ position = Vector2(743, 270)
 [node name="Target" type="Area2D" parent="Lanes/Lane2" unique_id=1051387418]
 position = Vector2(1237, 277)
 collision_layer = 2
-collision_mask = 0
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lanes/Lane2/Target" unique_id=1946573614]
 position = Vector2(-4, -6)
@@ -71,3 +71,17 @@ offset_top = -44.5
 offset_right = 9.5
 offset_bottom = 37.5
 color = Color(1, 0, 0, 1)
+
+[node name="GameTimer" type="Timer" parent="." unique_id=1171225617]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="NoteTimer" type="Timer" parent="." unique_id=865793070]
+
+[node name="WaitTimer" type="Timer" parent="." unique_id=1874046574]
+
+[connection signal="area_entered" from="Lanes/Lane1/Target" to="." method="_on_target_area_entered"]
+[connection signal="area_entered" from="Lanes/Lane2/Target" to="." method="_on_target2_area_entered"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="timeout" from="NoteTimer" to="." method="_on_note_timer_timeout"]

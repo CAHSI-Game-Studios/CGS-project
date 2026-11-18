@@ -3,6 +3,7 @@ extends ArcadeGame
 #notes are moving icons, that indicate the key to be pressed
 #they increase your score when you press their respective key at the right time
 @onready var note = preload("res://games/gameB/scenes/Note.tscn")
+@onready var gameplay_scene = preload("res://games/gameB/scenes/CollisionDemo.tscn")
 @onready var minigame_timer = get_node("NoteHandler").get_node("MinigameDuration")
 @onready var note_spawner = get_node("NoteHandler").get_node("NoteSpawner")
 @onready var note_timer = note_spawner.get_node("SpawnTimer")
@@ -12,22 +13,27 @@ var score = 20
 #Score required to pass the minigame
 #Will be determined by checking the score obtained by the enemy AI
 var pass_score =10
-
 #Tells the game to check wether win or lose was achieved
 signal gameplay_B_end
 
 #Determines the frequency at which "notes" spawn
 #Planned to be replaced in the future with preset note layouts
-var note_frequency = 1
+var note_frequency = 400
 
 #Determines the speed at which "notes" travel
-var note_speed = 300
+var note_speed = 200
 
-
+var current_scene
 ## Called when the game is added to the scene tree. Note that _ready is called BEFORE enter.
 func _ready() -> void:
+	
 	#temporary boot-up will be replaced with code that does not start the player immediately in the game portion
-	lose_game()
+	current_scene = gameplay_scene.instantiate()
+	current_scene.note_speed = note_speed
+	current_scene.frequency = note_frequency
+	current_scene.connect("gameB_win",win_game)
+	current_scene.connect("gameB_loss",lose_game)
+	add_child(current_scene)
 ## Called every physics frame. _delta is the seconds between each frame. 
 func _physics_process(_delta: float) -> void:
 	pass
@@ -64,6 +70,7 @@ func lose_game():
 	note_timer.wait_time = note_frequency
 	note_timer.start()
 	score = 20
+	print("LOSE")
 	
 
 
@@ -89,6 +96,7 @@ func _on_note_despawner_area_entered(area: Area2D) -> void:
 		gameplay_B_end.emit()
 
 func win_game():
+	print("WIN")
 	#note_speed +=10
 	#Add logic to return to difficulty select scene
 	#Currently only sends the request_exit signal
