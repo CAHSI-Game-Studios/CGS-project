@@ -12,6 +12,7 @@ position = Vector2(3636, 926)
 [node name="Mage" parent="Enemies" parent_id_path=PackedInt32Array(983519384) index="3" unique_id=1779614909 node_paths=PackedStringArray("player") instance=ExtResource("2_hbpco")]
 position = Vector2(3781, 798)
 player = NodePath("../../Player")
+health = 1000
 
 [node name="Ally" parent="Enemies" parent_id_path=PackedInt32Array(983519384) index="4" unique_id=1128105033 node_paths=PackedStringArray("player") instance=ExtResource("3_f64rh")]
 position = Vector2(3594, 1133)

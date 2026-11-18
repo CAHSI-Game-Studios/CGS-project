@@ -81,6 +81,6 @@ func is_valid_target(candidate) -> bool:
 func chase_target(chase : Node2D) -> void:
 	if can_chase:
 		move_towards_point(chase.global_position, SPEED)
-
+		
 func distance_to_target() -> float:
 	return global_position.distance_to(target.global_position)
