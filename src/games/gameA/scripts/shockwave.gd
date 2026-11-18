@@ -46,7 +46,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if has_hit:
 		return
 	var target := area.get_parent()
-	if target == null or target is not CharacterBody2D:
+	if target is not GameAPlayer or target is not GameAAlly:
 		return
 
 	# it will only damage the player if they are at the edges.
