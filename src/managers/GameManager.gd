@@ -99,7 +99,8 @@ func start_game_from_scene(
 
 	# ArcadeGame.enter() must not execute until the game has completed 
 	# its normal Node initialization lifecycle.
-	await currentGame.ready
+	if not currentGame.is_node_ready():
+		await currentGame.ready
 
 	# Forward startup data to the game.
 	currentGame.enter(enterData)
