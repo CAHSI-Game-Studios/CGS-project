@@ -24,7 +24,7 @@ var dash_direction: Vector2
 func update_behavior(delta: float) -> void:
 	match state:
 		State.CHASE:
-			if distance_to_player() <= attack_distance and has_line_of_sight(player):
+			if distance_to_target() <= attack_distance and has_line_of_sight(target):
 				start_windup()
 			else:
 				## see GameAEnemy class
@@ -36,6 +36,7 @@ func update_behavior(delta: float) -> void:
 			if state_timer <= 0.0:
 				start_dash()
 		State.DASH:
+			knockback_velocity = Vector2.ZERO
 			state_timer -= delta
 			velocity = dash_direction * dash_speed
 			move_and_slide()
@@ -64,7 +65,7 @@ func start_dash() -> void:
 	state_timer = dash_max_time
 	# debug
 	modulate = Color.WHITE
-	dash_target = player.global_position
+	dash_target = target.global_position
 	dash_direction = global_position.direction_to(dash_target)
 
 

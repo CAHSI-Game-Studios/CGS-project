@@ -10,7 +10,6 @@ extends Area2D
 var damage: int = -1
 
 var radius: float = 0.0
-var has_hit: bool = false
 
 @onready var collision: CollisionShape2D = $CollisionShape2D
 var shape: CircleShape2D
@@ -43,10 +42,8 @@ func _draw() -> void:
 	draw_arc(Vector2.ZERO, radius, 0.0, TAU, 64, color, ring_thickness)
 
 func _on_area_entered(area: Area2D) -> void:
-	if has_hit:
-		return
 	var target := area.get_parent()
-	if target is not GameAPlayer or target is not GameAAlly:
+	if target is not GameAPlayer and target is not GameAAlly:
 		return
 
 	# it will only damage the player if they are at the edges.
@@ -54,6 +51,5 @@ func _on_area_entered(area: Area2D) -> void:
 	if distance < radius - ring_thickness:
 		return
 
-	has_hit = true
 	target.take_damage(damage)
 	
