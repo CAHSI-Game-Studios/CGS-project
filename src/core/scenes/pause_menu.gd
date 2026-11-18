@@ -14,6 +14,9 @@ func is_open() -> bool:
 
 func toggle_pause() -> void:
 	if not is_open():
+		# Another screen may already own the paused state.
+		if get_tree().paused:
+			return
 		pause_game()
 	else:
 		resume_game()
