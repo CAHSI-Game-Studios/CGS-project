@@ -25,7 +25,6 @@ texture = ExtResource("1_6x27y")
 [node name="Player" parent="." unique_id=1423827142 instance=ExtResource("2_caop8")]
 position = Vector2(97, 521)
 scale = Vector2(21, 21)
-collision_layer = 2
 only_horizontal = true
 
 [node name="Borders" type="StaticBody2D" parent="." unique_id=1748695024]
@@ -42,7 +41,6 @@ shape = SubResource("WorldBoundaryShape2D_g4v7s")
 
 [node name="ArcadeMachine" type="Area2D" parent="." unique_id=509283995]
 position = Vector2(1117, 479)
-collision_mask = 2
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ArcadeMachine" unique_id=286998866]
@@ -64,5 +62,6 @@ offset_bottom = 721.0
 grow_horizontal = 1
 grow_vertical = 1
 
+[connection signal="transition_sequence" from="." to="." method="_on_transition_sequence"]
 [connection signal="body_entered" from="ArcadeMachine" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

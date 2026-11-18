@@ -16,10 +16,15 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	transition_sequence.emit()
-	$Player.can_move = false
-
+	if body == $Player:
+		transition_sequence.emit()
+	
 
 func _on_timer_timeout() -> void:
 	$Player.can_move = true
 	$DialogueSystem.close_system()
+	
+
+func _on_transition_sequence() -> void:
+	$Player.can_move = false
+	get_tree().change_scene_to_file("res://core/scenes/HubScene.tscn")
