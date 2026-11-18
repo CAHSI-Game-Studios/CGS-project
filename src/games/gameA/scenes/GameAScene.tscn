@@ -12,6 +12,7 @@
 [ext_resource type="Resource" path="res://games/gameA/assets/gameA_dialogues/after_fight_01_monsters_defeated.tres" id="7_after_fight"]
 [ext_resource type="Resource" path="res://games/gameA/assets/gameA_dialogues/boss_fight_01_wight_knight_greeting.tres" id="8_boss_fight"]
 [ext_resource type="Resource" path="res://games/gameA/assets/gameA_dialogues/ending_01_companion_reunion.tres" id="9_ending"]
+[ext_resource type="PackedScene" uid="uid://b0ghowbdn5mrx" path="res://core/scenes/pause_menu.tscn" id="10_pause"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esnmb"]
 size = Vector2(67, 1708)
@@ -395,3 +396,17 @@ layer = 2
 
 [node name="DialogueSystem" parent="DialogueLayer" unique_id=1926927871 instance=ExtResource("4_dialogue_system")]
 visible = false
+
+[node name="PauseButton" type="Button" parent="DialogueLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -112.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 52.0
+grow_horizontal = 0
+text = "Pause"
+
+[node name="PauseMenu" parent="." instance=ExtResource("10_pause")]
+layer = 3

@@ -1,5 +1,7 @@
 extends ArcadeGame
 
+const PauseMenu := preload("res://core/scenes/pause_menu.gd")
+
 @export_group("Dialogue")
 @export var opening_dialogue: Dialogue
 @export var before_fight_dialogue: Dialogue
@@ -11,6 +13,7 @@ var _game_scene: PackedScene
 var _running: bool = false
 var _finished: bool = false
 var _restarting: bool = false
+var _pause_menu: PauseMenu
 
 
 #func _ready() -> void:
@@ -19,8 +22,29 @@ var _restarting: bool = false
 #	_stop_gameplay()
 func _ready() -> void:
 	_game_scene = load(scene_file_path) as PackedScene
+	_connect_pause_controls()
 	_stop_gameplay()
 	_start_if_standalone.call_deferred()
+
+
+func _connect_pause_controls() -> void:
+	_pause_menu = get_node_or_null("PauseMenu") as PauseMenu
+	if _pause_menu:
+		$DialogueLayer/PauseButton.pressed.connect(GameA_pause)
+		_pause_menu.exit_requested.connect(_on_pause_exit)
+
+
+func GameA_pause() -> void:
+	if _pause_menu and not get_tree().paused:
+		_pause_menu.pause_game()
+
+
+func _on_pause_exit() -> void:
+	if get_tree().current_scene == self:
+		exit()
+		get_tree().change_scene_to_file("res://main.tscn")
+	else:
+		request_exit()
 
 
 func _start_if_standalone() -> void:
@@ -61,6 +85,8 @@ func _show_dialogue(dialogue: Dialogue) -> void:
 func exit() -> void:
 	_finished = true
 	_stop_gameplay()
+	if _pause_menu and _pause_menu.is_open():
+		_pause_menu.resume_game()
 
 
 func win() -> void:
@@ -104,6 +130,7 @@ func _restart_gameplay() -> void:
 		fresh_game.remove_child(child)
 		add_child(child)
 	fresh_game.free()
+	_connect_pause_controls()
 	_restarting = false
 	_resume_gameplay()
 

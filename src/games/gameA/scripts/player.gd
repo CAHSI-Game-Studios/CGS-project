@@ -89,7 +89,7 @@ func _physics_process(_delta: float) -> void:
 		stamina -= 20
 		$UI/stamina_bar.value = stamina
 
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.2, false).timeout
 
 		SPEED = 100
 		$hitbox_area/hitbox_collision.disabled = false
@@ -283,14 +283,14 @@ func attack(a):
 	if a=="k":
 		$attack_area/temp_visual.show()
 		$attack_area/attack_collision.disabled = false
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.2, false).timeout
 		$attack_area/temp_visual.hide()
 		$attack_area/attack_collision.disabled = true
 	
 	elif a=="l":
 		$heavy_attack_area/temp_visual.show()
 		$heavy_attack_area/attack_collision.disabled = false
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.2, false).timeout
 		$heavy_attack_area/temp_visual.hide()
 		$heavy_attack_area/attack_collision.disabled = true
 
