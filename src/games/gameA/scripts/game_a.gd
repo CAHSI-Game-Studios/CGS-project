@@ -76,10 +76,14 @@ func win() -> void:
 
 
 func lose() -> void:
-	restart()
+	if not _running or _finished or _restarting:
+		return
+	_show_result_preview(false)
 
 
 func _show_result_preview(won: bool) -> void:
+	if _result:
+		return
 	get_tree().paused = true
 	_result = RESULT_SCENE.instantiate() as GameAResult
 	_result.retry_requested.connect(_retry_result_preview)
