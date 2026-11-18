@@ -109,11 +109,11 @@ func _retry_result_preview() -> void:
 func _return_to_hub() -> void:
 	if not _result or _restarting:
 		return
-	if get_tree().current_scene == self:
-		exit()
-		get_tree().change_scene_to_file("res://main.tscn")
+	#if get_tree().current_scene == self:
+		#exit()
+		#get_tree().change_scene_to_file("res://main.tscn")
 	else:
-		request_exit()
+		exit_requested.emit()
 
 
 func restart() -> void:

@@ -47,7 +47,6 @@ signal game_exited(exitData : Variant)
 ## This reference is assigned when a game begins its startup lifecycle and
 ## cleared once that game has left the scene tree.
 var currentGame : ArcadeGame
-var _is_exiting := false
 
 
 ## Starts an [ArcadeGame] from an already existing instance. [br]
@@ -100,8 +99,7 @@ func start_game_from_scene(
 
 	# ArcadeGame.enter() must not execute until the game has completed 
 	# its normal Node initialization lifecycle.
-	if not currentGame.is_node_ready():
-		await currentGame.ready
+	await currentGame.ready
 
 	# Forward startup data to the game.
 	currentGame.enter(enterData)
@@ -216,9 +214,8 @@ func start_game_from_path(
 ## [br]
 ## Returns [code]false[/code] if no game is currently running.
 func exit_game(exitData : Variant = null) -> bool:
-	if not is_game_running() or _is_exiting:
+	if not is_game_running():
 		return false
-	_is_exiting = true
 	# Preserve a local reference throughout the asynchronous exit lifecycle.
 	var game := currentGame
 	# Allow the game to perform its own shutdown procedure before deletion.
@@ -230,7 +227,6 @@ func exit_game(exitData : Variant = null) -> bool:
 	await game.tree_exited
 	# GameManager no longer owns an active ArcadeGame.
 	currentGame = null
-	_is_exiting = false
 	# Notify external systems that the game has completely exited.
 	game_exited.emit(exitData)
 	return true

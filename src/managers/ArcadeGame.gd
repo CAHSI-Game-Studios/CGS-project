@@ -15,8 +15,8 @@ extends Node
 ## It has no knowledge of the Hub or game coordinator.
 
 
-## Emitted when the game wants to close, with any result data.
-signal exit_requested(exit_data: Variant)
+## Emitted when the game wants to close.
+signal exit_requested
 
 # -= VIRTUAL METHODS =- 
 # Each game MUST define each of these four methods.
