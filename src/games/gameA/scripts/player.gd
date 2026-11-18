@@ -346,13 +346,15 @@ func _on_attack_area_area_entered(area: Area2D) -> void:
 	if area.get_parent() == null: return
 	var enemy := area.get_parent()
 	if enemy is GameAEnemy:
-		enemy.take_damage(base_damage)
+		var direction = global_position.direction_to(enemy.global_position)
+		enemy.take_damage(base_damage, direction)
 		
 func _on_heavy_attack_area_area_entered(area: Area2D) -> void:
 	if area.get_parent() == null: return
 	var enemy := area.get_parent()
 	if enemy is GameAEnemy:
-		enemy.take_damage(heavy_damage)
+		var direction = global_position.direction_to(enemy.global_position)
+		enemy.take_damage(heavy_damage, direction, true)
 		
 func shoot():
 	var projectile: GameAProjectile = player_projectile_scene.instantiate()

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cjf5pvelv1lrf"]
+
+[ext_resource type="Script" uid="uid://qsp2xjmg4od2" path="res://games/gameA/scripts/shockwave.gd" id="1_ynhdj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6tu7v"]
+
+[node name="Shockwave" type="Area2D" unique_id=2009350183]
+collision_layer = 2
+script = ExtResource("1_ynhdj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=990542828]
+shape = SubResource("CircleShape2D_6tu7v")
