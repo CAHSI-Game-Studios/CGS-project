@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://damhng5iuqjdt"]
+
+[ext_resource type="Texture2D" uid="uid://cqn5iidompvls" path="res://core/assets/Pizzeria_Scene.png" id="1_6x27y"]
+[ext_resource type="Script" uid="uid://doiymf3bx5rho" path="res://core/scripts/introduction_scene.gd" id="1_78com"]
+[ext_resource type="Resource" uid="uid://dh5bn4inohngm" path="res://core/assets/introduction_cutscene_dialogue_01.tres" id="2_3wr1h"]
+[ext_resource type="PackedScene" uid="uid://bqwwxohqe6up2" path="res://core/scenes/PlayerScene.tscn" id="2_caop8"]
+[ext_resource type="PackedScene" uid="uid://8u7o87nryac0" path="res://core/dialogue_system/DialogueSystem.tscn" id="4_15qy0"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_g4v7s"]
+normal = Vector2(0.003021042, -0.99999547)
+distance = -324.5353
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(326.5, 486)
+
+[node name="IntroductionScene" type="Node2D" unique_id=104806951]
+script = ExtResource("1_78com")
+starting_dialogue = ExtResource("2_3wr1h")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=49960140]
+position = Vector2(639.5, 360.00003)
+scale = Vector2(3.9968748, 4.0000005)
+texture = ExtResource("1_6x27y")
+
+[node name="Player" parent="." unique_id=1423827142 instance=ExtResource("2_caop8")]
+position = Vector2(85, 586)
+scale = Vector2(8, 8)
+collision_layer = 2
+only_horizontal = true
+
+[node name="Borders" type="StaticBody2D" parent="." unique_id=1748695024]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders" unique_id=506547896]
+position = Vector2(326, 351)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_g4v7s")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders" unique_id=1561817713]
+position = Vector2(723, 352)
+rotation = 4.712389
+shape = SubResource("WorldBoundaryShape2D_g4v7s")
+
+[node name="ArcadeMachine" type="Area2D" parent="." unique_id=509283995]
+position = Vector2(1117, 479)
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArcadeMachine" unique_id=286998866]
+shape = SubResource("RectangleShape2D_yf5fn")
+
+[node name="Timer" type="Timer" parent="." unique_id=1722564423]
+wait_time = 8.0
+one_shot = true
+autostart = true
+
+[node name="DialogueSystem" parent="." unique_id=1918673968 instance=ExtResource("4_15qy0")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 9.0
+offset_right = 1281.0
+offset_bottom = 721.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="body_entered" from="ArcadeMachine" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
