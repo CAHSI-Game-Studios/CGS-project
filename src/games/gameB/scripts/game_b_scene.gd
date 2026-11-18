@@ -8,18 +8,18 @@ extends ArcadeGame
 @onready var note_timer = note_spawner.get_node("SpawnTimer")
 @onready var gameplay_scene = preload("res://games/gameB/scenes/CollisionDemo.tscn")
 @onready var difficulty_select_scene = preload("res://games/gameB/scenes/Difficulty_Select.tscn")
+@onready var player = $GameBplayer
 #Keep track of the score to determine wether the game was won or lost
 var score = 20
 #Score required to pass the minigame
 #Will be determined by checking the score obtained by the enemy AI
 var pass_score =10
-
 #Tells the game to check wether win or lose was achieved
 signal gameplay_B_end
 
 #Determines the frequency at which "notes" spawn
 #Planned to be replaced in the future with preset note layouts
-var note_frequency = 1
+var note_frequency = 400
 
 #Determines the speed at which "notes" travel
 var note_speed = 300
@@ -30,10 +30,14 @@ var current_scene
 
 ## Called when the game is added to the scene tree. Note that _ready is called BEFORE enter.
 func _ready() -> void:
-	current_scene = gameplay_scene.instantiate()
-	add_child(current_scene)
+	
 	#temporary boot-up will be replaced with code that does not start the player immediately in the game portion
-	lose_game()
+	current_scene = gameplay_scene.instantiate()
+	current_scene.note_speed = note_speed
+	current_scene.frequency = note_frequency
+	current_scene.connect("gameB_win",win_game)
+	current_scene.connect("gameB_loss",lose_game)
+	add_child(current_scene)
 ## Called every physics frame. _delta is the seconds between each frame. 
 func _physics_process(_delta: float) -> void:
 	pass
@@ -70,6 +74,7 @@ func lose_game():
 	note_timer.wait_time = note_frequency
 	note_timer.start()
 	score = 20
+	print("LOSE")
 	
 
 
@@ -116,3 +121,8 @@ func to_difficulty_select():
 
 	current_scene = difficulty_select_scene.instantiate()
 	add_child(current_scene)
+
+#tests if the player pressed the key
+
+func _on_game_bplayer_lane_pressed(note_index: int) -> void:
+	print("Interaction signal received correctly Lane: ", note_index)

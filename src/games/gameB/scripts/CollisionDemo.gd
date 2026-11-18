@@ -1,6 +1,10 @@
 extends Node2D
 
 signal note_collided(lane_index: int)
+signal gameplay_B_end
+signal gameB_win
+signal gameB_loss
+@onready var note = preload("res://games/gameB/scenes/Note.tscn")
 
 @export var bpm: float = 90.0
 @export var action: StringName = &"ui_accept"
@@ -17,13 +21,16 @@ var spawn_accumulator := 0.0
 var beat_count := 0
 var lanes: Array[Dictionary] = []
 var lane_directions: Array[Vector2] = []
-var note_speed: float = 0.0
+var note_speed: float = 150.0
 var notes: Array[Array] = []
 var overlapping_notes: Array[Area2D] = []
 var score := 0
+var enemy_score := 0
+var frequency = 300
 
 func _ready() -> void:
-	interval = 60.0 / bpm
+	$NoteTimer.wait_time = 1/(frequency / bpm)
+	$NoteTimer.start()
 	var longest: float = 0.0
 	for lane_node in $Lanes.get_children():
 		var spawn: Vector2 = lane_node.get_node("Spawn").global_position
@@ -31,30 +38,16 @@ func _ready() -> void:
 		lanes.append({"spawn": spawn, "target": target})
 		lane_directions.append((target - spawn).normalized())
 		longest = maxf(longest, (target - spawn).length())
-	note_speed = longest / (BEATS_TO_TARGET * interval)
 	var hit_line: Area2D = $HitLine
 	hit_line.area_entered.connect(_on_hit_area_entered)
 	hit_line.area_exited.connect(_on_hit_area_exited)
-	spawn_accumulator = interval
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed(action):
 		_consume_note()
-	spawn_accumulator -= delta
-	while spawn_accumulator <= 0.0:
-		spawn_accumulator += interval
-		_spawn_note(beat_count % lanes.size())
-		beat_count += 1
-	for i in range(notes.size() - 1, -1, -1):
-		var note: Area2D = notes[i][0]
-		var lane_index: int = notes[i][1]
-		note.position += lane_directions[lane_index] * note_speed * delta
-		var remaining: float = lanes[lane_index]["target"].distance_to(note.position)
-		if remaining < note_speed * delta:
-			notes.remove_at(i)
-			overlapping_notes.erase(note)
-			note.queue_free()
-
+	
+		
+				
 func _consume_note() -> void:
 	for area in overlapping_notes:
 		for i in range(notes.size()):
@@ -64,30 +57,69 @@ func _consume_note() -> void:
 					break
 				notes.remove_at(i)
 				overlapping_notes.erase(area)
-				area.queue_free()
+				area.kill()
+				_on_note_despawn()
 				score += 1
 				note_collided.emit(lane_index)
 				return
 
 func _spawn_note(lane_index: int) -> void:
-	var note := Area2D.new()
-	note.collision_layer = NOTE_LAYER
-	note.collision_mask = TARGET_LAYER | HIT_LAYER
-	note.position = lanes[lane_index]["spawn"]
-	var shape := CollisionShape2D.new()
-	var circle := CircleShape2D.new()
-	circle.radius = NOTE_RADIUS
-	shape.shape = circle
-	note.add_child(shape)
-	var sprite := Sprite2D.new()
-	sprite.texture = NOTE_TEXTURE
-	sprite.scale = Vector2(0.055, 0.055)
-	note.add_child(sprite)
-	add_child(note)
-	notes.append([note, lane_index])
+	var notei = note.instantiate()
+	notei.velocity = note_speed
+	notei.get_node("NoteArea").collision_layer = NOTE_LAYER
+	notei.get_node("NoteArea").collision_mask = TARGET_LAYER | HIT_LAYER
+	notei.position = lanes[lane_index]["spawn"]
+	add_child(notei)
+	notei.add_to_group("Notes")
+	notes.append([notei.get_node("NoteArea"), lane_index])
 
 func _on_hit_area_entered(area: Area2D) -> void:
 	overlapping_notes.append(area)
 
 func _on_hit_area_exited(area: Area2D) -> void:
 	overlapping_notes.erase(area)
+
+
+func _on_game_timer_timeout() -> void:
+	$NoteTimer.stop()
+	print("MINIGAME OVER")
+	await gameplay_B_end
+
+	if score > enemy_score:
+		print("YOU WIN")
+		gameB_win.emit()
+
+
+	else:
+		print("YOU LOSE")
+		gameB_loss.emit()
+
+
+
+func _on_note_timer_timeout() -> void:
+	if $GameTimer.time_left > 0.0:
+		if randi_range(1,2) == 1:
+			_spawn_note(0)
+			_spawn_note(1)
+			
+func _on_note_despawn() -> void:
+	if $GameTimer.time_left > 0.0:
+		return
+	$WaitTimer.wait_time = 1.0
+	$WaitTimer.start()
+	await $WaitTimer.timeout
+	if get_tree().get_nodes_in_group("Notes").is_empty():
+		gameplay_B_end.emit()
+		print("END")
+
+
+func _on_target_area_entered(area: Area2D) -> void:
+	area.kill() # Replace with function body.
+	_on_note_despawn()
+
+
+
+func _on_target2_area_entered(area: Area2D) -> void:
+	area.kill()
+	_on_note_despawn()
+	
