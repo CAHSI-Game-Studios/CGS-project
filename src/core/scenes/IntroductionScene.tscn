@@ -18,8 +18,8 @@ script = ExtResource("1_78com")
 starting_dialogue = ExtResource("2_3wr1h")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=49960140]
-position = Vector2(641, 367)
-scale = Vector2(3.9968748, 4.0000005)
+position = Vector2(640, 360)
+scale = Vector2(4, 4)
 texture = ExtResource("1_6x27y")
 
 [node name="Player" parent="." unique_id=1423827142 instance=ExtResource("2_caop8")]
