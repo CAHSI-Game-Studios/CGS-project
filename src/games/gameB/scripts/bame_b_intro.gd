@@ -1,5 +1,5 @@
 extends Node2D
-
+signal cutscene_finished
 #Doppio dialogue expressions:
 # 0 = Sad, 1 = Mad, 2 = Happy, 3 = Surprised
 var cutscene_start = false
@@ -25,4 +25,4 @@ func _process(delta: float) -> void:
 		await tween.finished
 		$DialogueSystem.open_system()
 		await get_tree().create_timer(1).timeout
-		get_tree().change_scene_to_file("res://games/gameB/scenes/GameBScene.tscn")
+		cutscene_finished.emit()

@@ -2,6 +2,7 @@ extends ArcadeGame
 
 #notes are moving icons, that indicate the key to be pressed
 #they increase your score when you press their respective key at the right time
+const CUTSCENE_SCENE = preload("res://games/gameB/scenes/BameBIntro.tscn")
 @onready var note = preload("res://games/gameB/scenes/Note.tscn")
 @onready var gameplay_scene = preload("res://games/gameB/scenes/CollisionDemo.tscn")
 @onready var minigame_timer = get_node("NoteHandler").get_node("MinigameDuration")
@@ -26,8 +27,8 @@ var note_speed = 200
 var current_scene
 ## Called when the game is added to the scene tree. Note that _ready is called BEFORE enter.
 func _ready() -> void:
-	
-	#temporary boot-up will be replaced with code that does not start the player immediately in the game portion
+	enter()
+func start_gameplay() -> void:
 	current_scene = gameplay_scene.instantiate()
 	current_scene.note_speed = note_speed
 	current_scene.frequency = note_frequency
@@ -38,8 +39,10 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	pass
 ## Called by the external system to start the game.
-func enter( _enterData : Variant = null) -> void:
-	pass
+func enter(_enterData: Variant = null) -> void:
+	current_scene = CUTSCENE_SCENE.instantiate()
+	current_scene.cutscene_finished.connect(_on_cutscene_finished)
+	add_child(current_scene)
 ## Called by the external system before unloading. Each game is responsible for defining their exit function.
 func exit() -> void:
 	request_exit()
@@ -105,3 +108,8 @@ func win_game():
 
 func _on_game_bplayer_lane_pressed(note_index: int) -> void:
 	print("Interaction signal received correctly Lane: ", note_index)
+	
+func _on_cutscene_finished() -> void:
+	current_scene.queue_free()
+	current_scene = null
+	start_gameplay()
