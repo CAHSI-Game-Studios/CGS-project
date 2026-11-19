@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://3kjmcrpq64lj"]
+
+[ext_resource type="Script" uid="uid://cstwssa3tqfq5" path="res://games/gameB/scripts/end_scene.gd" id="1_vux5k"]
+[ext_resource type="Texture2D" uid="uid://wgjqarjaldp0" path="res://games/gameB/assets/background_Concept.png" id="2_i2047"]
+
+[node name="EndScene" type="Node2D" unique_id=1679960457]
+script = ExtResource("1_vux5k")
+
+[node name="BackgroundConcept" type="Sprite2D" parent="." unique_id=386571930]
+position = Vector2(640, 362)
+scale = Vector2(2, 1.9888889)
+texture = ExtResource("2_i2047")
+
+[node name="ExitButton" type="Button" parent="." unique_id=36602722]
+offset_left = 400.0
+offset_top = 488.0
+offset_right = 856.0
+offset_bottom = 632.0
+theme_override_font_sizes/font_size = 60
+text = "Exit"
+
+[node name="GameplayButton" type="Button" parent="." unique_id=915284336]
+offset_left = 400.0
+offset_top = 304.0
+offset_right = 856.0
+offset_bottom = 448.0
+theme_override_font_sizes/font_size = 60
+text = "Next Stage"
+
+[node name="Label" type="Label" parent="." unique_id=1481893606]
+offset_left = 288.0
+offset_top = 56.0
+offset_right = 944.0
+offset_bottom = 224.0
+theme_override_font_sizes/font_size = 76
+text = "You win"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="GameplayButton" to="." method="_on_gameplay_button_pressed"]
