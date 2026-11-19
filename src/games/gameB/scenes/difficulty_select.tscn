@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cu50v86rnruto"]
+
+[node name="Difficulty-select" type="Node2D" unique_id=945031832]
+
+[node name="Button" type="Button" parent="." unique_id=1721767717]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Button2" type="Button" parent="." unique_id=179530504]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Button3" type="Button" parent="." unique_id=1958327092]
+offset_right = 8.0
+offset_bottom = 8.0
