@@ -20,6 +20,16 @@ body:
     validations:
       required: true
 
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Provide relevant context, tone, characters, setting, narrative constraints, and any existing material that should be followed.
+      placeholder: |
+        The dialogue should introduce the hub world without directly explaining every mechanic.
+        The NPC should sound energetic but slightly suspicious of the player.
+    validations:
+      required: true
 
   - type: textarea
     id: acceptance-criteria
@@ -34,44 +44,3 @@ body:
         - [ ] Final text is added to the appropriate project file.
     validations:
       required: true
-
-  - type: input
-    id: suggested-lead-reviewer
-    attributes:
-      label: Suggested lead reviewer
-      placeholder: GitHub username
-    validations:
-      required: false
-
-  - type: markdown
-    attributes:
-      value: Lead suggests a producer for review after having reviewed the issue preliminarily.
-
-  - type: input
-    id: suggested-producer-reviewer
-    attributes:
-      label: Suggested producer reviewer
-      placeholder: GitHub username
-    validations:
-      required: false
-
-  - type: input
-    id: suggested-assignee
-    attributes:
-      label: Suggested assignee
-      placeholder: GitHub username
-    validations:
-      required: false
-
-  - type: dropdown
-    id: suggested-size
-    attributes:
-      label: Suggested size
-      options:
-        - XS
-        - S
-        - M
-        - L
-        - XL
-    validations:
-      required: false
