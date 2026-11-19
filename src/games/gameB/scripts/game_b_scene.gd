@@ -79,7 +79,6 @@ func win_game():
 		change_to_end_scene(1)
 		note_speed += 20
 		remaining_rounds -=1
-		to_difficulty_select()
 	
 	
 	
