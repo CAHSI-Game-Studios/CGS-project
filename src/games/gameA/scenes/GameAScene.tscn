@@ -2,15 +2,27 @@
 
 [ext_resource type="Script" uid="uid://cwjlce1tfb2bq" path="res://games/gameA/scripts/game_a.gd" id="1_f1ouk"]
 [ext_resource type="PackedScene" uid="uid://crqmfpbfm38mk" path="res://games/gameA/scenes/player.tscn" id="2_5hl2e"]
-[ext_resource type="Texture2D" uid="uid://1pu0hmo236om" path="res://games/gameA/assets/MinigameA_TileMap1.jpg" id="3_w3ayw"]
 [ext_resource type="PackedScene" uid="uid://8u7o87nryac0" path="res://core/dialogue_system/DialogueSystem.tscn" id="4_dialogue_system"]
 [ext_resource type="Resource" path="res://games/gameA/assets/gameA_dialogues/opening_01_arrival.tres" id="5_opening"]
 [ext_resource type="Resource" path="res://games/gameA/assets/gameA_dialogues/before_fight_01_spot_creatures.tres" id="6_before_fight"]
 [ext_resource type="Resource" path="res://games/gameA/assets/gameA_dialogues/after_fight_01_monsters_defeated.tres" id="7_after_fight"]
 [ext_resource type="Resource" path="res://games/gameA/assets/gameA_dialogues/boss_fight_01_wight_knight_greeting.tres" id="8_boss_fight"]
+[ext_resource type="Texture2D" uid="uid://cxgykx1ddigcq" path="res://games/gameA/assets/Map.png" id="8_iaqva"]
 [ext_resource type="Resource" path="res://games/gameA/assets/gameA_dialogues/ending_01_companion_reunion.tres" id="9_ending"]
+[ext_resource type="Texture2D" uid="uid://pm0iiisw1lg4" path="res://games/gameA/assets/Tree.png" id="9_v2nrw"]
+[ext_resource type="Texture2D" uid="uid://dvqmv4vtlchm" path="res://games/gameA/assets/Rope_Bridge.png" id="10_3i6bq"]
+[ext_resource type="Texture2D" uid="uid://dkorjvu13svg1" path="res://games/gameA/assets/Cactus.png" id="10_iaqva"]
+[ext_resource type="Texture2D" uid="uid://btc0k88q1f085" path="res://games/gameA/assets/Desert rocks.png" id="10_v2nrw"]
+[ext_resource type="Texture2D" uid="uid://c0cvcyd2y2nbl" path="res://games/gameA/assets/Danger sign.png" id="10_wrc7l"]
+[ext_resource type="Texture2D" uid="uid://btraf1lulqcdr" path="res://games/gameA/assets/Logs.png" id="11_2x1ex"]
+[ext_resource type="Texture2D" uid="uid://rrd3xty00rrc" path="res://games/gameA/assets/Desert palm.png" id="11_v2nrw"]
+[ext_resource type="Texture2D" uid="uid://drcr0jt6ij3us" path="res://games/gameA/assets/Pilars.png" id="12_wrc7l"]
+[ext_resource type="Texture2D" uid="uid://8uxmlqorsets" path="res://games/gameA/assets/Healing_Sign.png" id="13_k5mkn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esnmb"]
+size = Vector2(67, 1708)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_igoyx"]
 size = Vector2(67, 1708)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hl2e"]
@@ -26,13 +38,64 @@ size = Vector2(92.16449, 492.07715)
 size = Vector2(134.7368, 712.2669)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3i6bq"]
-size = Vector2(198.28397, 417.7273)
+size = Vector2(183.95741, 247.7876)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gllwt"]
+size = Vector2(46.362495, 420.37)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1t1xf"]
 size = Vector2(108.84364, 226.03577)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gorxw"]
 size = Vector2(149.21332, 588.0188)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3i6bq"]
+radius = 9.0
+height = 62.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1l2e"]
+radius = 5.9917603
+height = 71.90137
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k5mkn"]
+radius = 4.993225
+height = 70.11328
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6aa5x"]
+radius = 4.993225
+height = 30.063416
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1t1xf"]
+radius = 5.991699
+height = 39.945313
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_og3w5"]
+radius = 9.0
+height = 47.933838
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gaub7"]
+radius = 5.9918213
+height = 20.077148
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vp12e"]
+radius = 6.0442505
+height = 44.044434
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7rv2b"]
+radius = 9.0
+height = 48.038574
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ga5lv"]
+radius = 9.0
+height = 40.04956
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_82bvi"]
+radius = 9.0
+height = 21.969727
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gorxw"]
+radius = 9.0
+height = 62.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_og3w5"]
 size = Vector2(129.28683, 542.00134)
@@ -65,7 +128,10 @@ size = Vector2(52.555588, 948.27277)
 size = Vector2(126.1041, 153.64548)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ips4e"]
-size = Vector2(160.02802, 660.3555)
+size = Vector2(214.53484, 652.9242)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxcb8"]
+size = Vector2(242.33395, 652.9242)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5nqy"]
 size = Vector2(67, 1246)
@@ -121,7 +187,28 @@ size = Vector2(21.000015, 585)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2nrw"]
 size = Vector2(67, 703)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8oqws"]
+radius = 32.0
+height = 120.00006
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iaqva"]
+radius = 32.0
+height = 98.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v2nrw"]
+radius = 22.00003
+height = 70.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wrc7l"]
+radius = 26.0
+height = 80.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2x1ex"]
+radius = 33.0
+height = 100.0
+
 [node name="GameAScene" type="Node2D" unique_id=2141663944]
+y_sort_enabled = true
 script = ExtResource("1_f1ouk")
 opening_dialogue = ExtResource("5_opening")
 before_fight_dialogue = ExtResource("6_before_fight")
@@ -142,12 +229,18 @@ limit_bottom = 1714
 [node name="Enviroment" type="Node2D" parent="." unique_id=861608053]
 
 [node name="MapCollision" type="StaticBody2D" parent="Enviroment" unique_id=195528699 groups=["gameANavigation"]]
+z_index = 2
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=2088565516]
 position = Vector2(35.5, 854)
 rotation = 0.006981317
 shape = SubResource("RectangleShape2D_esnmb")
+
+[node name="CollisionShape2D44" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=977101018]
+position = Vector2(35.5, 854)
+rotation = 0.006981317
+shape = SubResource("RectangleShape2D_igoyx")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1329162114]
 position = Vector2(360.53387, 938.0042)
@@ -175,9 +268,19 @@ rotation = -0.017453292
 shape = SubResource("RectangleShape2D_wrc7l")
 
 [node name="CollisionShape2D19" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1746475377]
-position = Vector2(1522.4818, 1027.4379)
+position = Vector2(1531.127, 1112.2698)
 rotation = -0.017453292
 shape = SubResource("RectangleShape2D_3i6bq")
+
+[node name="CollisionShape2D86" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=386136910]
+position = Vector2(1530.0001, 1150.9999)
+rotation = -0.017453292
+shape = SubResource("RectangleShape2D_3i6bq")
+
+[node name="CollisionShape2D43" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=765798794]
+position = Vector2(1600.8458, 1024.7485)
+rotation = -0.017453292
+shape = SubResource("RectangleShape2D_gllwt")
 
 [node name="CollisionShape2D24" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=130360529]
 position = Vector2(2012.0001, 1305)
@@ -188,6 +291,216 @@ shape = SubResource("RectangleShape2D_1t1xf")
 position = Vector2(1686, 593)
 rotation = -0.017453292
 shape = SubResource("RectangleShape2D_gorxw")
+
+[node name="CollisionShape2D45" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=531512008]
+position = Vector2(1512, 682)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_3i6bq")
+
+[node name="CollisionShape2D58" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=76806374]
+position = Vector2(1556, 475.99997)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_a1l2e")
+
+[node name="CollisionShape2D55" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=922201013]
+position = Vector2(613.99994, 485.99997)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_k5mkn")
+
+[node name="CollisionShape2D57" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=701970736]
+position = Vector2(543, 655.99994)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_6aa5x")
+
+[node name="CollisionShape2D56" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=374424587]
+position = Vector2(541, 280)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_k5mkn")
+
+[node name="CollisionShape2D47" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=98108916]
+position = Vector2(2190, 1234.9999)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_3i6bq")
+
+[node name="CollisionShape2D67" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1456685994]
+position = Vector2(2104, 1345)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_1t1xf")
+
+[node name="CollisionShape2D88" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1510717939]
+position = Vector2(1665.9999, 938)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_1t1xf")
+
+[node name="CollisionShape2D48" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=2146534897]
+position = Vector2(2128, 1531.9999)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_3i6bq")
+
+[node name="CollisionShape2D64" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1541381313]
+position = Vector2(1800.9999, 1466.9999)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_og3w5")
+
+[node name="CollisionShape2D65" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=828910670]
+position = Vector2(1651, 1383.9999)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_og3w5")
+
+[node name="CollisionShape2D85" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1204792561]
+position = Vector2(1739.9999, 1374.9999)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_gaub7")
+
+[node name="CollisionShape2D66" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=74831841]
+position = Vector2(1617, 1499)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_og3w5")
+
+[node name="CollisionShape2D49" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1224912260]
+position = Vector2(1875.9998, 1607.9999)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_3i6bq")
+
+[node name="CollisionShape2D50" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=493693286]
+position = Vector2(2049.9998, 830.9999)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_3i6bq")
+
+[node name="CollisionShape2D51" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1700866095]
+position = Vector2(2053, 652.99994)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_3i6bq")
+
+[node name="CollisionShape2D52" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1785224580]
+position = Vector2(2204.9998, 464.99994)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_3i6bq")
+
+[node name="CollisionShape2D63" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=395952964]
+position = Vector2(2396.9998, 672.99994)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_vp12e")
+
+[node name="CollisionShape2D53" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=704385373]
+position = Vector2(2395, 161)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_3i6bq")
+
+[node name="CollisionShape2D59" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=394137125]
+position = Vector2(2296.9998, 143)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_7rv2b")
+
+[node name="CollisionShape2D60" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1834442028]
+position = Vector2(2120.9998, 148)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_7rv2b")
+
+[node name="CollisionShape2D61" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=227561126]
+position = Vector2(2036, 373)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_7rv2b")
+
+[node name="CollisionShape2D62" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1243990193]
+position = Vector2(1897.9999, 201.00002)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_ga5lv")
+
+[node name="CollisionShape2D54" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=643571599]
+position = Vector2(2307.9998, 933)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_3i6bq")
+
+[node name="CollisionShape2D68" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1144179185]
+position = Vector2(3072.9995, 955.99994)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_82bvi")
+
+[node name="CollisionShape2D69" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=507933062]
+position = Vector2(2962, 958.99994)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_82bvi")
+
+[node name="CollisionShape2D70" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1103628354]
+position = Vector2(3071.9998, 783)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_82bvi")
+
+[node name="CollisionShape2D72" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=817957084]
+position = Vector2(3343.9998, 854)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_82bvi")
+
+[node name="CollisionShape2D77" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1400847628]
+position = Vector2(3346.9998, 975.99994)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_82bvi")
+
+[node name="CollisionShape2D79" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1978613633]
+position = Vector2(3722.9998, 1011.99994)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_82bvi")
+
+[node name="CollisionShape2D80" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1625060608]
+position = Vector2(3916.9998, 911.99994)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_82bvi")
+
+[node name="CollisionShape2D81" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1020697795]
+position = Vector2(4072.9998, 911.9999)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_82bvi")
+
+[node name="CollisionShape2D82" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=178147919]
+position = Vector2(4069, 725)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_82bvi")
+
+[node name="CollisionShape2D83" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=605750675]
+position = Vector2(3919, 733.99994)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_82bvi")
+
+[node name="CollisionShape2D78" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1174403314]
+position = Vector2(2964.9998, 1549)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_82bvi")
+
+[node name="CollisionShape2D73" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1844896073]
+position = Vector2(3341.9998, 715)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_82bvi")
+
+[node name="CollisionShape2D74" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1383801743]
+position = Vector2(3340, 553)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_82bvi")
+
+[node name="CollisionShape2D84" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=627501371]
+position = Vector2(3548.9998, 464.99994)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_82bvi")
+
+[node name="CollisionShape2D75" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=159819866]
+position = Vector2(3339.9998, 402.00006)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_82bvi")
+
+[node name="CollisionShape2D76" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1779848181]
+position = Vector2(3337.9998, 279.99994)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_82bvi")
+
+[node name="CollisionShape2D71" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1289775949]
+position = Vector2(2957.9998, 782.99994)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_82bvi")
+
+[node name="CollisionShape2D46" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=511516323]
+position = Vector2(1689, 277)
+rotation = 1.5184364
+shape = SubResource("CapsuleShape2D_gorxw")
 
 [node name="CollisionShape2D25" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=818617819]
 position = Vector2(2206.0002, 812)
@@ -235,14 +548,14 @@ rotation = -0.017453292
 shape = SubResource("RectangleShape2D_rxn4i")
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=468428952]
-position = Vector2(1177.0313, 332.28998)
+position = Vector2(1205, 334.00003)
 rotation = -0.017453292
 shape = SubResource("RectangleShape2D_ips4e")
 
 [node name="CollisionShape2D16" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=1905124554]
-position = Vector2(1279, 289.00003)
+position = Vector2(1343, 499.00003)
 rotation = -0.017453292
-shape = SubResource("RectangleShape2D_ips4e")
+shape = SubResource("RectangleShape2D_mxcb8")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=580364847]
 position = Vector2(650, 21.99999)
@@ -270,12 +583,17 @@ rotation = 1.5707964
 shape = SubResource("RectangleShape2D_k5mkn")
 
 [node name="CollisionShape2D20" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=26176965]
-position = Vector2(1393, 1110)
+position = Vector2(1362, 1076)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_6aa5x")
 
 [node name="CollisionShape2D23" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=537765386]
 position = Vector2(1860, 1139)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_82bvi")
+
+[node name="CollisionShape2D87" type="CollisionShape2D" parent="Enviroment/MapCollision" unique_id=795127329]
+position = Vector2(1862, 1178)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_82bvi")
 
@@ -349,18 +667,244 @@ position = Vector2(1630.5, 71)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_v2nrw")
 
+[node name="Death Zones" type="Area2D" parent="Enviroment" unique_id=1672946069]
+
+[node name="CollisionShape2D45" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=1683999939]
+position = Vector2(540, 711)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D46" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=2105525274]
+position = Vector2(490, 727)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D47" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=317560926]
+position = Vector2(527, 703)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D48" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=750641510]
+position = Vector2(506, 715)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D49" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=821293049]
+position = Vector2(509, 724)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D50" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=1336434679]
+position = Vector2(533, 718)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D51" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=1730106920]
+position = Vector2(974, 1232)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D55" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=853215872]
+position = Vector2(909, 1300)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D52" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=88087744]
+position = Vector2(1036, 1235)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D53" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=1286494918]
+position = Vector2(1064, 1263)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D54" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=62588438]
+position = Vector2(940, 1265)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D56" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=852345683]
+position = Vector2(909, 1314)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D57" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=1674470106]
+position = Vector2(931, 1329)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D58" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=1242849028]
+position = Vector2(962, 1342)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D59" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=835738076]
+position = Vector2(1009, 1300)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D60" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=444400383]
+position = Vector2(1016, 1334)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D61" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=959005103]
+position = Vector2(1066, 1291)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D62" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=1022836805]
+position = Vector2(1031, 1324)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D63" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=1498900686]
+position = Vector2(1537, 193)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_iaqva")
+
+[node name="CollisionShape2D64" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=720541447]
+position = Vector2(1879, 510)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_v2nrw")
+
+[node name="CollisionShape2D65" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=1318553147]
+position = Vector2(1818, 954)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_wrc7l")
+
+[node name="CollisionShape2D66" type="CollisionShape2D" parent="Enviroment/Death Zones" unique_id=1504930877]
+position = Vector2(2476, 841)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_2x1ex")
+
+[node name="LifeZones" type="Area2D" parent="Enviroment" unique_id=1431859908]
+
+[node name="CollisionShape2D63" type="CollisionShape2D" parent="Enviroment/LifeZones" unique_id=863764707]
+position = Vector2(1666, 1448)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D64" type="CollisionShape2D" parent="Enviroment/LifeZones" unique_id=644221807]
+position = Vector2(1720, 1451)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D65" type="CollisionShape2D" parent="Enviroment/LifeZones" unique_id=552149038]
+position = Vector2(1734, 1436)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D66" type="CollisionShape2D" parent="Enviroment/LifeZones" unique_id=2033570339]
+position = Vector2(1694, 1426)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D67" type="CollisionShape2D" parent="Enviroment/LifeZones" unique_id=932266233]
+position = Vector2(2203, 175)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D68" type="CollisionShape2D" parent="Enviroment/LifeZones" unique_id=1702671871]
+position = Vector2(2239, 185)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D69" type="CollisionShape2D" parent="Enviroment/LifeZones" unique_id=1028507043]
+position = Vector2(2177, 200)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
+[node name="CollisionShape2D70" type="CollisionShape2D" parent="Enviroment/LifeZones" unique_id=1881130415]
+position = Vector2(2231, 200)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8oqws")
+
 [node name="Background" type="Node2D" parent="." unique_id=1690935088]
 z_index = -1
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=886607999]
-texture = ExtResource("3_w3ayw")
+[node name="Map" type="Sprite2D" parent="Background" unique_id=886607999]
+z_index = -1
+texture = ExtResource("8_iaqva")
 centered = false
 metadata/_edit_lock_ = true
 
-[node name="DialogueLayer" type="CanvasLayer" parent="."]
+[node name="Trees" type="Sprite2D" parent="Background" unique_id=2108703511]
+z_index = 1
+z_as_relative = false
+texture = ExtResource("9_v2nrw")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Ropes" type="Sprite2D" parent="Background" unique_id=39940091]
+z_index = 1
+z_as_relative = false
+texture = ExtResource("10_3i6bq")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Logs" type="Sprite2D" parent="Background" unique_id=719183501]
+z_index = 1
+z_as_relative = false
+texture = ExtResource("11_2x1ex")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Death-Sign" type="Sprite2D" parent="Background" unique_id=583377770]
+z_index = 1
+z_as_relative = false
+texture = ExtResource("10_wrc7l")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Death-Sign2" type="Sprite2D" parent="Background" unique_id=234261911]
+z_index = 1
+z_as_relative = false
+position = Vector2(1000, -500)
+texture = ExtResource("10_wrc7l")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Health-Sign" type="Sprite2D" parent="Background" unique_id=2088236632]
+z_index = 1
+z_as_relative = false
+texture = ExtResource("13_k5mkn")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Rocks" type="Sprite2D" parent="Background" unique_id=1254445054]
+z_index = 1
+z_as_relative = false
+texture = ExtResource("10_v2nrw")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Cactus" type="Sprite2D" parent="Background" unique_id=2125255897]
+z_index = 1
+z_as_relative = false
+texture = ExtResource("10_iaqva")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Palms" type="Sprite2D" parent="Background" unique_id=1966430382]
+z_index = 1
+z_as_relative = false
+texture = ExtResource("11_v2nrw")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Pillars" type="Sprite2D" parent="Background" unique_id=1529470622]
+z_index = 1
+z_as_relative = false
+texture = ExtResource("12_wrc7l")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="DialogueLayer" type="CanvasLayer" parent="." unique_id=1011804615]
 process_mode = 1
 layer = 2
 
-[node name="DialogueSystem" parent="DialogueLayer" instance=ExtResource("4_dialogue_system")]
+[node name="DialogueSystem" parent="DialogueLayer" unique_id=122932462 instance=ExtResource("4_dialogue_system")]
 visible = false
