@@ -8,6 +8,7 @@ extends ArcadeGame
 @onready var note_spawner = get_node("NoteHandler").get_node("NoteSpawner")
 @onready var note_timer = note_spawner.get_node("SpawnTimer")
 @onready var player = $GameBplayer
+@onready var end_scene = preload("res://games/gameB/scenes/EndScene.tscn")
 #Keep track of the score to determine wether the game was won or lost
 var score = 20
 #Score required to pass the minigame
@@ -15,7 +16,7 @@ var score = 20
 var pass_score =10
 #Tells the game to check wether win or lose was achieved
 signal gameplay_B_end
-
+var remaining_rounds = 2
 #Determines the frequency at which "notes" spawn
 #Planned to be replaced in the future with preset note layouts
 var note_frequency = 400
@@ -42,6 +43,8 @@ func enter( _enterData : Variant = null) -> void:
 	pass
 ## Called by the external system before unloading. Each game is responsible for defining their exit function.
 func exit() -> void:
+	if remaining_rounds<=0:
+		Global.currency += 2
 	request_exit()
 	
 	
@@ -66,11 +69,7 @@ func _on_minigame_duration_timeout() -> void:
 		
 #sets obejects to their game start state
 func lose_game():
-	minigame_timer.start()
-	note_timer.wait_time = note_frequency
-	note_timer.start()
-	score = 20
-	print("LOSE")
+	change_to_end_scene(3)
 	
 
 
@@ -100,8 +99,33 @@ func win_game():
 	#note_speed +=10
 	#Add logic to return to difficulty select scene
 	#Currently only sends the request_exit signal
-	exit()
+	if remaining_rounds > 0:
+		change_to_end_scene(1)
+	else:
+		change_to_end_scene(2)
 #tests if the player pressed the key
 
 func _on_game_bplayer_lane_pressed(note_index: int) -> void:
 	print("Interaction signal received correctly Lane: ", note_index)
+	
+func change_to_end_scene(state):
+	current_scene.queue_free()
+	current_scene = end_scene.instantiate()
+	current_scene.end_state = state
+	current_scene.connect("exit_game_b", player_choose_exit)
+	current_scene.connect("continue_game_b", change_to_difficulty_select)
+	add_child(current_scene)
+
+func change_to_difficulty_select():
+	#Functionality exists in seperate branch
+	#Dummy functionality for testing purposes
+	current_scene.queue_free()
+	current_scene = gameplay_scene.instantiate()
+	current_scene.note_speed = note_speed
+	current_scene.frequency = note_frequency
+	current_scene.connect("gameB_win",win_game)
+	current_scene.connect("gameB_loss",lose_game)
+	add_child(current_scene)
+	
+func player_choose_exit():
+	exit()

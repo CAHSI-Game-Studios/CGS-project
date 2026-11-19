@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://3kjmcrpq64lj"]
+
+[ext_resource type="Script" uid="uid://cstwssa3tqfq5" path="res://games/gameB/scripts/end_scene.gd" id="1_vux5k"]
+
+[node name="EndScene" type="Node2D" unique_id=1679960457]
+script = ExtResource("1_vux5k")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1735681421]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.4045111, 0.40451115, 0.4045111, 1)
+
+[node name="ExitButton" type="Button" parent="." unique_id=36602722]
+offset_left = 400.0
+offset_top = 488.0
+offset_right = 856.0
+offset_bottom = 632.0
+theme_override_font_sizes/font_size = 60
+text = "Exit"
+
+[node name="GameplayButton" type="Button" parent="." unique_id=915284336]
+offset_left = 400.0
+offset_top = 304.0
+offset_right = 856.0
+offset_bottom = 448.0
+theme_override_font_sizes/font_size = 60
+text = "Next Stage"
+
+[node name="Label" type="Label" parent="." unique_id=1481893606]
+offset_left = 288.0
+offset_top = 56.0
+offset_right = 944.0
+offset_bottom = 224.0
+theme_override_font_sizes/font_size = 76
+text = "You win"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="GameplayButton" to="." method="_on_gameplay_button_pressed"]
