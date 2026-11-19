@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4he6sibmqswe"
-path="res://.godot/imported/GameA_TileMap.jpg-23b405c4c7005368f879768a93415d0a.ctex"
+uid="uid://bsou3pdi6jedb"
+path="res://.godot/imported/Left_Walk_Desert_Skeleton.png-2dd7e2fe5bdb107a465976c50b1e086d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/assets/GameA_TileMap.jpg"
-dest_files=["res://.godot/imported/GameA_TileMap.jpg-23b405c4c7005368f879768a93415d0a.ctex"]
+source_file="res://core/assets/Left_Walk_Desert_Skeleton.png"
+dest_files=["res://.godot/imported/Left_Walk_Desert_Skeleton.png-2dd7e2fe5bdb107a465976c50b1e086d.ctex"]
 
 [params]
 
