@@ -8,5 +8,6 @@ script = ExtResource("1_d5yxq")
 id = &"1"
 speaker = "Doppio"
 text = "Doppio: I need you to help me with the circus' music! Our main console that had the songs for our performances short circuited and now we have no music :( "
+text_duration = 3.0
 next_dialogue = ExtResource("1_46oop")
 metadata/_custom_type_script = "uid://pxo52x3jat8o"
