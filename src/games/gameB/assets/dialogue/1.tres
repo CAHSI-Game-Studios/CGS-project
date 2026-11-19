@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://b67syfko8oe26"]
+
+[ext_resource type="Resource" uid="uid://c5ysvl6kfprvs" path="res://games/gameB/assets/dialogue/2.tres" id="1_46oop"]
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_d5yxq"]
+
+[resource]
+script = ExtResource("1_d5yxq")
+id = &"1"
+speaker = "Doppio"
+text = "Doppio: I need you to help me with the circus' music! Our main console that had the songs for our performances short circuited and now we have no music :( "
+next_dialogue = ExtResource("1_46oop")
+metadata/_custom_type_script = "uid://pxo52x3jat8o"

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://tfwm2ukpxvjo"]
+
+[ext_resource type="Script" uid="uid://7jgtdcbeeq6e" path="res://games/gameB/scripts/bame_b_intro.gd" id="1_3xiiu"]
+[ext_resource type="PackedScene" uid="uid://8u7o87nryac0" path="res://core/dialogue_system/DialogueSystem.tscn" id="2_3mlnf"]
+[ext_resource type="Resource" uid="uid://b67syfko8oe26" path="res://games/gameB/assets/dialogue/1.tres" id="2_mcvup"]
+[ext_resource type="Texture2D" uid="uid://wgjqarjaldp0" path="res://games/gameB/assets/background_Concept.png" id="3_mcvup"]
+
+[node name="BameBIntro" type="Node2D" unique_id=780652711]
+script = ExtResource("1_3xiiu")
+line = ExtResource("2_mcvup")
+
+[node name="BackgroundConcept" type="Sprite2D" parent="." unique_id=673435243]
+position = Vector2(640, 250.00002)
+scale = Vector2(2, 1.4111111)
+texture = ExtResource("3_mcvup")
+
+[node name="DialogueSystem" parent="." unique_id=1918673968 instance=ExtResource("2_3mlnf")]
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Doppio" type="AnimatedSprite2D" parent="." unique_id=689778614]
+visible = false
+
+[node name="BernieSmith" type="AnimatedSprite2D" parent="." unique_id=1299136383]
+visible = false
