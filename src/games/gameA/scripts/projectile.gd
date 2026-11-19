@@ -3,7 +3,7 @@ extends Area2D
 
 var direction : Vector2 = Vector2.ZERO
 var speed : float = 250.0
-var damage : float = 1.9
+var damage : float = 2.0
 
 @export var life_time = 3.0
 
@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 func _on_area_entered(area : Area2D):
 	if area.get_parent() == null: return
 	var player := area.get_parent()
-	if player is CharacterBody2D:
+	if player is GameAPlayer:
 		player.take_damage(damage)
 	queue_free()
 

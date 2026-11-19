@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dei2aenducc6t"]
+
+[ext_resource type="PackedScene" uid="uid://cjikp6rypqpvi" path="res://games/gameA/scenes/GameAScene.tscn" id="1_vymsj"]
+[ext_resource type="PackedScene" uid="uid://vvwtswnncswr" path="res://games/gameA/scenes/game_a_mage_boss.tscn" id="2_hbpco"]
+
+[node name="GameASceneTest" unique_id=2141663944 instance=ExtResource("1_vymsj")]
+
+[node name="Player" parent="." index="0" unique_id=102526350]
+position = Vector2(3631, 940)
+
+[node name="Mage" parent="Enemies" parent_id_path=PackedInt32Array(983519384) index="3" unique_id=1779614909 node_paths=PackedStringArray("player") instance=ExtResource("2_hbpco")]
+position = Vector2(3781, 798)
+player = NodePath("../../Player")

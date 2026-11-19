@@ -9,7 +9,7 @@ class_name GameAPlayer
 # MOVEMENT
 # -------------------------
 
-var SPEED = 100
+var SPEED = 80
 var facing_direction = Vector2.DOWN
 
 
@@ -90,7 +90,7 @@ func _physics_process(_delta: float) -> void:
 		stamina -= 20
 		$UI/stamina_bar.value = stamina
 
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.2, false).timeout
 
 		SPEED = 100
 		$hitbox_area/hitbox_collision.disabled = false
@@ -284,14 +284,14 @@ func attack(a):
 	if a=="k":
 		$attack_area/temp_visual.show()
 		$attack_area/attack_collision.disabled = false
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.2, false).timeout
 		$attack_area/temp_visual.hide()
 		$attack_area/attack_collision.disabled = true
 	
 	elif a=="l":
 		$heavy_attack_area/temp_visual.show()
 		$heavy_attack_area/attack_collision.disabled = false
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.2, false).timeout
 		$heavy_attack_area/temp_visual.hide()
 		$heavy_attack_area/attack_collision.disabled = true
 
@@ -347,13 +347,15 @@ func _on_attack_area_area_entered(area: Area2D) -> void:
 	if area.get_parent() == null: return
 	var enemy := area.get_parent()
 	if enemy is GameAEnemy:
-		enemy.take_damage(base_damage)
+		var direction = global_position.direction_to(enemy.global_position)
+		enemy.take_damage(base_damage, direction)
 		
 func _on_heavy_attack_area_area_entered(area: Area2D) -> void:
 	if area.get_parent() == null: return
 	var enemy := area.get_parent()
 	if enemy is GameAEnemy:
-		enemy.take_damage(heavy_damage)
+		var direction = global_position.direction_to(enemy.global_position)
+		enemy.take_damage(heavy_damage, direction, true)
 		
 func shoot():
 	var projectile: GameAProjectile = player_projectile_scene.instantiate()

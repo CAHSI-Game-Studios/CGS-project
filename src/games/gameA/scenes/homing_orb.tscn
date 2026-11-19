@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://csgep2nq2u1c4"]
+
+[ext_resource type="PackedScene" uid="uid://cre0vybbvy3n3" path="res://games/gameA/scenes/projectile.tscn" id="1_oyq8r"]
+[ext_resource type="Script" uid="uid://bdqepv071v3km" path="res://games/gameA/scripts/homing_orb.gd" id="2_muy2j"]
+
+[node name="HomingOrb" unique_id=2020004551 instance=ExtResource("1_oyq8r")]
+script = ExtResource("2_muy2j")
+turn_speed = 2.0
+homing_time = 3.0

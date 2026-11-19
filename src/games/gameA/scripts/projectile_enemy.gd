@@ -22,7 +22,6 @@ func update_behavior(delta: float) -> void:
 				start_windup()
 			else:
 				super(delta)
-		
 		State.WINDUP:
 			stop_moving()
 			state_timer -= delta
