@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c8kuojmhcsipm" path="res://games/gameB/scripts/game_b_scene.gd" id="1_gcj08"]
 [ext_resource type="PackedScene" uid="uid://fccett110nfo" path="res://games/gameB/scenes/game_bplayer.tscn" id="3_svbff"]
+[ext_resource type="PackedScene" uid="uid://bg0robho1wk0i" path="res://games/gameB/scenes/enemy.tscn" id="3_uhp4j"]
 
 [node name="GameBScene" type="Node2D" unique_id=250904828]
 script = ExtResource("1_gcj08")
@@ -11,4 +12,7 @@ script = ExtResource("1_gcj08")
 [node name="GameBplayer" parent="." unique_id=1405707498 instance=ExtResource("3_svbff")]
 position = Vector2(206, 960)
 
+[node name="Enemy" parent="." unique_id=1418312323 instance=ExtResource("3_uhp4j")]
+
 [connection signal="lane_pressed" from="GameBplayer" to="." method="_on_game_bplayer_lane_pressed"]
+[connection signal="score_changed" from="Enemy" to="." method="_on_enemy_score_changed"]
