@@ -12,7 +12,7 @@ func _ready() -> void:
 			$Label.text = "STAGE CLEAR!!!"
 			$GameplayButton.text = "Next Stage"
 		2:
-			$Label.text = "YOU WIN!!!"
+			$Label.text = "YOU WIN!!!\nYou now have 2 coins!"
 			$GameplayButton.visible = false
 		3:
 			$Label.text = "YOU LOSE :("

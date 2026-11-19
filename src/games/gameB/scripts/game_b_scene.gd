@@ -44,7 +44,7 @@ func enter( _enterData : Variant = null) -> void:
 ## Called by the external system before unloading. Each game is responsible for defining their exit function.
 func exit() -> void:
 	if remaining_rounds<=0:
-		Global.currency += 2
+		Global.currency += 1
 	request_exit()
 	
 	

@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://3kjmcrpq64lj"]
 
 [ext_resource type="Script" uid="uid://cstwssa3tqfq5" path="res://games/gameB/scripts/end_scene.gd" id="1_vux5k"]
+[ext_resource type="Texture2D" uid="uid://wgjqarjaldp0" path="res://games/gameB/assets/background_Concept.png" id="2_i2047"]
 
 [node name="EndScene" type="Node2D" unique_id=1679960457]
 script = ExtResource("1_vux5k")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1735681421]
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(0.4045111, 0.40451115, 0.4045111, 1)
+[node name="BackgroundConcept" type="Sprite2D" parent="." unique_id=386571930]
+position = Vector2(640, 362)
+scale = Vector2(2, 1.9888889)
+texture = ExtResource("2_i2047")
 
 [node name="ExitButton" type="Button" parent="." unique_id=36602722]
 offset_left = 400.0
