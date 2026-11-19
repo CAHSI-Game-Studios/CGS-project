@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://c6ub2s4yw2xww"]
 
 [ext_resource type="Script" uid="uid://dbjjs2tfo352o" path="res://games/gameB/scripts/CollisionDemo.gd" id="1_d3516"]
-[ext_resource type="Texture2D" uid="uid://cknb4nx3qwy83" path="res://games/gameB/assets/background_Concept.png" id="2_h4u7c"]
+[ext_resource type="Texture2D" uid="uid://wgjqarjaldp0" path="res://games/gameB/assets/background_Concept.png" id="2_h4u7c"]
+[ext_resource type="PackedScene" uid="uid://b0ghowbdn5mrx" path="res://core/scenes/pause_menu.tscn" id="3_h4u7c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_target"]
 radius = 26.0
@@ -80,6 +81,8 @@ autostart = true
 [node name="NoteTimer" type="Timer" parent="." unique_id=865793070]
 
 [node name="WaitTimer" type="Timer" parent="." unique_id=1874046574]
+
+[node name="PauseMenu" parent="." unique_id=2007257531 instance=ExtResource("3_h4u7c")]
 
 [connection signal="area_entered" from="Lanes/Lane1/Target" to="." method="_on_target_area_entered"]
 [connection signal="area_entered" from="Lanes/Lane2/Target" to="." method="_on_target2_area_entered"]
