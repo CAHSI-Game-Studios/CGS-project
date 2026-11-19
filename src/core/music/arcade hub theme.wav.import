@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bt2o7cxm2xqwf"
+path="res://.godot/imported/arcade hub theme.wav-abc877512e950a76b6be186ab6d24aa8.sample"
+
+[deps]
+
+source_file="res://core/music/arcade hub theme.wav"
+dest_files=["res://.godot/imported/arcade hub theme.wav-abc877512e950a76b6be186ab6d24aa8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
