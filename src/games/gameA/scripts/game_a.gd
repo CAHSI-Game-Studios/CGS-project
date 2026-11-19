@@ -147,8 +147,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func _on_death_zones_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+	if body is GameAPlayer:
+		body.take_damage(body.health)
 
 
 func _on_life_zones_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+	if body is GameAPlayer:
+		var player := body as GameAPlayer
+		player.heal(player.max_health)

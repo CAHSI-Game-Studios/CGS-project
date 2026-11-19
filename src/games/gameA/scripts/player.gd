@@ -50,6 +50,7 @@ func _ready():
 	$attack_area/temp_visual.hide()
 	$heavy_attack_area/attack_collision.disabled = true
 	$heavy_attack_area/temp_visual.hide()
+	health-=90
 
 	$UI/health_bar.max_value = max_health
 	$UI/health_bar.value = health

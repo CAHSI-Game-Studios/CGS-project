@@ -217,7 +217,7 @@ boss_fight_dialogue = ExtResource("8_boss_fight")
 ending_dialogue = ExtResource("9_ending")
 
 [node name="Player" parent="." unique_id=102526350 instance=ExtResource("2_5hl2e")]
-position = Vector2(200, 1500)
+position = Vector2(203, 1585)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1358353285]
 zoom = Vector2(3, 3)
@@ -908,3 +908,6 @@ layer = 2
 
 [node name="DialogueSystem" parent="DialogueLayer" unique_id=122932462 instance=ExtResource("4_dialogue_system")]
 visible = false
+
+[connection signal="body_entered" from="Enviroment/Death Zones" to="." method="_on_death_zones_body_entered"]
+[connection signal="body_entered" from="Enviroment/LifeZones" to="." method="_on_life_zones_body_entered"]
