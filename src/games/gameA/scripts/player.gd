@@ -50,7 +50,6 @@ func _ready():
 	$attack_area/temp_visual.hide()
 	$heavy_attack_area/attack_collision.disabled = true
 	$heavy_attack_area/temp_visual.hide()
-	health-=90
 
 	$UI/health_bar.max_value = max_health
 	$UI/health_bar.value = health
@@ -64,7 +63,6 @@ func _ready():
 # -------------------------
 
 func _physics_process(_delta: float) -> void:
-	
 	if is_stunned:
 		velocity = Vector2.ZERO
 		return
