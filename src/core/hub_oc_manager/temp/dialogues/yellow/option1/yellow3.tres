@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://cr8xvfqnmfjac"]
+
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_kpouu"]
+
+[resource]
+script = ExtResource("1_kpouu")
+id = &"yellowUhAnswer"
+dialogue_type = 2
+speaker = "Yellow"
+text = "Nevermind."
+metadata/_custom_type_script = "uid://pxo52x3jat8o"

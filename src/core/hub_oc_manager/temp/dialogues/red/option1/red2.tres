@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://c2t8ai4iri6im"]
+
+[ext_resource type="Resource" uid="uid://dqdwsu570aomg" path="res://core/hub_oc_manager/temp/dialogues/red/option1/red3.tres" id="1_vquib"]
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="2_b03od"]
+
+[resource]
+script = ExtResource("2_b03od")
+id = &"redSilence0"
+speaker = "Red"
+text = "..."
+next_dialogue = ExtResource("1_vquib")
+metadata/_custom_type_script = "uid://pxo52x3jat8o"

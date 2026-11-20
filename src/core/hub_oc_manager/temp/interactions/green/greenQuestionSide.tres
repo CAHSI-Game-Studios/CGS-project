@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CharacterInteraction" format=3 uid="uid://t3bmks47xtm7"]
+
+[ext_resource type="Script" uid="uid://cs10tpo1x3n0d" path="res://core/hub_oc_manager/characterInteraction.gd" id="1_5kk0b"]
+[ext_resource type="SpriteFrames" uid="uid://baeus8htymbor" path="res://core/hub_oc_manager/temp/sprite_frames/coloredCharacterSpriteFrames.tres" id="1_54eiq"]
+[ext_resource type="Resource" uid="uid://pk212w61tnjn" path="res://core/hub_oc_manager/temp/dialogues/green/option1/green2.tres" id="2_ritja"]
+
+[resource]
+script = ExtResource("1_5kk0b")
+id = &"greenQuestionSide"
+animations = ExtResource("1_54eiq")
+animation_to_play = "greenIdleSide"
+dialogue = ExtResource("2_ritja")
+one_shot = true
+priority = 2
+metadata/_custom_type_script = "uid://cs10tpo1x3n0d"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://dcmyglseeqxpi"]
+
+[ext_resource type="Resource" uid="uid://bfanhi5kps43t" path="res://core/hub_oc_manager/temp/dialogues/yellow/option0/yellow1.tres" id="1_mpjqh"]
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="2_w7pqd"]
+
+[resource]
+script = ExtResource("2_w7pqd")
+id = &"yellowIntroduction0"
+speaker = "Yellow"
+text = "Hello. I am Yellow, the yellow character. "
+text_duration = 2.0
+next_dialogue = ExtResource("1_mpjqh")
+metadata/_custom_type_script = "uid://pxo52x3jat8o"

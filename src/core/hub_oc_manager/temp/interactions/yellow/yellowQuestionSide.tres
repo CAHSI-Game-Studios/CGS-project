@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CharacterInteraction" format=3 uid="uid://ncly2ubhcylq"]
+
+[ext_resource type="Script" uid="uid://cs10tpo1x3n0d" path="res://core/hub_oc_manager/characterInteraction.gd" id="1_lpcvp"]
+[ext_resource type="SpriteFrames" uid="uid://baeus8htymbor" path="res://core/hub_oc_manager/temp/sprite_frames/coloredCharacterSpriteFrames.tres" id="1_mq4xx"]
+[ext_resource type="Resource" uid="uid://c8regsxf4bayp" path="res://core/hub_oc_manager/temp/dialogues/yellow/option1/yellow2.tres" id="2_aeirb"]
+
+[resource]
+script = ExtResource("1_lpcvp")
+id = &"yellowQuestionSide"
+animations = ExtResource("1_mq4xx")
+animation_to_play = "yellowIdleSide"
+dialogue = ExtResource("2_aeirb")
+flip_h = true
+priority = 2
+metadata/_custom_type_script = "uid://cs10tpo1x3n0d"

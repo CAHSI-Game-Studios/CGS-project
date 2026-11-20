@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://c8regsxf4bayp"]
+
+[ext_resource type="Resource" uid="uid://cr8xvfqnmfjac" path="res://core/hub_oc_manager/temp/dialogues/yellow/option1/yellow3.tres" id="1_jijd8"]
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="2_4rprx"]
+[ext_resource type="Resource" uid="uid://bajocxujiudxp" path="res://core/hub_oc_manager/temp/dialogues/yellow/option1/yellow4.tres" id="3_pmdu3"]
+
+[resource]
+script = ExtResource("2_4rprx")
+id = &"yellowQuestion0"
+dialogue_type = 1
+speaker = "Yellow"
+text = "Do you think we exists only in this square? Do we only persist as long as whatever entity desires so?"
+text_duration = 5.0
+next_dialogue = ExtResource("1_jijd8")
+responses = Dictionary[String, ExtResource("2_4rprx")]({
+"Uh....": ExtResource("1_jijd8"),
+"Yes.": ExtResource("3_pmdu3")
+})
+metadata/_custom_type_script = "uid://pxo52x3jat8o"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://dmiaoxnhwbfbp"]
+
+[ext_resource type="Resource" uid="uid://csg20e4elt8lr" path="res://core/hub_oc_manager/temp/dialogues/blue/option0/blue1.tres" id="1_j1xce"]
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_jpksn"]
+
+[resource]
+script = ExtResource("1_jpksn")
+id = &"blueIntroduction"
+speaker = "Blue"
+text = "Hey! I'm blue!"
+text_duration = 2.0
+next_dialogue = ExtResource("1_j1xce")
+metadata/_custom_type_script = "uid://pxo52x3jat8o"

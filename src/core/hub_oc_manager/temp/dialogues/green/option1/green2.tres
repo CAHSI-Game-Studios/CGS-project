@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://pk212w61tnjn"]
+
+[ext_resource type="Resource" uid="uid://ctmgx46gcdui5" path="res://core/hub_oc_manager/temp/dialogues/green/option1/green3.tres" id="1_evd2q"]
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="2_kxcsu"]
+[ext_resource type="Resource" uid="uid://jv21cpl64wif" path="res://core/hub_oc_manager/temp/dialogues/green/option1/green4.tres" id="3_2gfjn"]
+
+[resource]
+script = ExtResource("2_kxcsu")
+id = &"greenQuestion"
+dialogue_type = 1
+speaker = "Green"
+text = "I wish to get Red something for her birthday. What do you recommend?"
+next_dialogue = ExtResource("1_evd2q")
+responses = Dictionary[String, ExtResource("2_kxcsu")]({
+"Cake": ExtResource("1_evd2q"),
+"Flowers": ExtResource("3_2gfjn")
+})
+metadata/_custom_type_script = "uid://pxo52x3jat8o"
