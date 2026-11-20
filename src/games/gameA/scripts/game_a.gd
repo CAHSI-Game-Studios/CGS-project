@@ -2,6 +2,7 @@ extends ArcadeGame
 
 const RESULT_SCENE := preload("res://games/gameA/scenes/game_a_result.tscn")
 const PREVIEW_COIN_TOTAL := 2
+const PauseMenu := preload("res://core/scenes/pause_menu.gd")
 
 @export_group("Dialogue")
 @export var opening_dialogue: Dialogue
@@ -15,13 +16,36 @@ var _running: bool = false
 var _finished: bool = false
 var _restarting: bool = false
 var _result: GameAResult
+var _pause_menu: PauseMenu
 
 
 func _ready() -> void:
 	# Preloading this scene from its own script would create a dependency cycle.
 	_game_scene = load(scene_file_path) as PackedScene
+	_connect_pause_controls()
 	_stop_gameplay()
 	_start_if_standalone.call_deferred()
+
+
+func _connect_pause_controls() -> void:
+	_pause_menu = get_node_or_null("PauseMenu") as PauseMenu
+	if _pause_menu:
+		$DialogueLayer/PauseButton.pressed.connect(GameA_pause)
+		_pause_menu.exit_requested.connect(_on_pause_exit)
+		_pause_menu.set_process(_running)
+
+
+func GameA_pause() -> void:
+	if _running and not _finished and not _restarting and _pause_menu and not get_tree().paused:
+		_pause_menu.pause_game()
+
+
+func _on_pause_exit() -> void:
+	if get_tree().current_scene == self:
+		exit()
+		get_tree().change_scene_to_file("res://main.tscn")
+	else:
+		request_exit()
 
 
 func _start_if_standalone() -> void:
@@ -63,6 +87,8 @@ func exit() -> void:
 	_finished = true
 	_stop_gameplay()
 	_close_result_preview()
+	if _pause_menu and _pause_menu.is_open():
+		_pause_menu.resume_game()
 
 
 func win() -> void:
@@ -141,6 +167,7 @@ func _restart_gameplay() -> void:
 		fresh_game.remove_child(child)
 		add_child(child)
 	fresh_game.free()
+	_connect_pause_controls()
 	_restarting = false
 	_resume_gameplay()
 
@@ -148,11 +175,17 @@ func _restart_gameplay() -> void:
 func _resume_gameplay() -> void:
 	_running = true
 	process_mode = Node.PROCESS_MODE_INHERIT
+	if _pause_menu:
+		_pause_menu.set_process(true)
+		$DialogueLayer/PauseButton.disabled = false
 
 
 func _stop_gameplay() -> void:
 	_running = false
 	process_mode = Node.PROCESS_MODE_DISABLED
+	if _pause_menu:
+		_pause_menu.set_process(false)
+		$DialogueLayer/PauseButton.disabled = true
 	var player: CharacterBody2D = get_node_or_null("Player")
 	if player:
 		player.velocity = Vector2.ZERO
@@ -184,3 +217,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if dialogue:
 		get_viewport().set_input_as_handled()
 		play_dialogue(dialogue)
+
+
+func _on_death_zones_body_entered(body: Node2D) -> void:
+	if body is GameAPlayer:
+		body.take_damage(body.health)
+
+
+func _on_life_zones_body_entered(body: Node2D) -> void:
+	if body is GameAPlayer:
+		var player := body as GameAPlayer
+		player.heal(player.max_health)

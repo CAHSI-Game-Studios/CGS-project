@@ -63,7 +63,6 @@ func _ready():
 # -------------------------
 
 func _physics_process(_delta: float) -> void:
-	
 	if is_stunned:
 		velocity = Vector2.ZERO
 		return
