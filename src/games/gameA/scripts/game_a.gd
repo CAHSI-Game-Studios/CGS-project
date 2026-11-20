@@ -178,3 +178,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if dialogue:
 		get_viewport().set_input_as_handled()
 		play_dialogue(dialogue)
+
+
+func _on_death_zones_body_entered(body: Node2D) -> void:
+	if body is GameAPlayer:
+		body.take_damage(body.health)
+
+
+func _on_life_zones_body_entered(body: Node2D) -> void:
+	if body is GameAPlayer:
+		var player := body as GameAPlayer
+		player.heal(player.max_health)
