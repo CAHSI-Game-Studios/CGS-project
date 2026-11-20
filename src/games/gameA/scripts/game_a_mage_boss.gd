@@ -26,7 +26,7 @@ var arrow_spread: float = 45.0
 
 #-----------------Shockwave Attack------------------------------------
 @export var shockwave_scene : PackedScene
-@export var shockwave_damage: int = 15
+@export var shockwave_damage: int = 20
 
 #----------------Horming Orb Attack----------------------------------------------
 @export var orb_scene : PackedScene
@@ -41,7 +41,7 @@ func _ready() -> void:
 
 ##TODO
 func move_between_attacks(delta : float) -> void:
-	var distance = distance_to_player()
+	var distance = distance_to_target()
 	match move_mode:
 		MoveMode.CHASE:
 			if distance <= preferred_max_distance - distance_margin:

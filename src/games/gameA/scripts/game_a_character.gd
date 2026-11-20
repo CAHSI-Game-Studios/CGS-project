@@ -58,9 +58,9 @@ func die():
 	queue_free()
 
 ## ------- KNOCKBACK ----------------
-func apply_knockback(direction: Vector2, heavy: bool = false) -> void:
+func apply_knockback(direction: Vector2, heavy: bool = false, multipier : float = 1.0) -> void:
 	var speed := knockback_heavy_speed if heavy else knockback_light_speed
-	knockback_velocity = direction.normalized() * speed
+	knockback_velocity = direction.normalized() * speed * multipier
 
 func update_knockback(delta: float) -> void:
 	velocity = knockback_velocity

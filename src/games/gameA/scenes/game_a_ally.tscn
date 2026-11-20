@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://f3gretpawnsv"]
+
+[ext_resource type="Script" uid="uid://clq2hu61hrkav" path="res://games/gameA/scripts/ally.gd" id="1_8cjbb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6tu7v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6tu7v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lckfg"]
+bg_color = Color(0.75158876, 0.025840001, 0.050708726, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bb0j3"]
+size = Vector2(38, 40)
+
+[node name="Ally" type="CharacterBody2D" unique_id=1128105033]
+collision_mask = 4
+script = ExtResource("1_8cjbb")
+health = 300
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1977458536]
+shape = SubResource("CircleShape2D_6tu7v")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1067434227]
+path_desired_distance = 5.0
+target_desired_distance = 5.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0.13780668, 0.2674267, 0.46738052, 1)
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=874951371]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1882353399]
+shape = SubResource("RectangleShape2D_6tu7v")
+
+[node name="UI" type="Control" parent="." unique_id=1006557167]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="ProgressBar" parent="UI" unique_id=618769674]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -34.0
+offset_right = -7.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_lckfg")
+step = 5.0
+show_percentage = false
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=1153014219]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1623149569]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_bb0j3")

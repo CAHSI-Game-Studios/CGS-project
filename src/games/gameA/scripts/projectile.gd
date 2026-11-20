@@ -22,9 +22,13 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_entered(area : Area2D):
 	if area.get_parent() == null: return
-	var player := area.get_parent()
-	if player is GameAPlayer:
-		player.take_damage(damage)
+	var target := area.get_parent()
+	if target is GameAAlly :
+		target.take_damage(damage)
+		if not target.is_dead():
+			target.apply_knockback(direction, false, 0.5)
+	elif target is GameAPlayer:
+		target.take_damage(damage)
 	queue_free()
 
 func _on_body_entered(body : Node2D):

@@ -65,7 +65,7 @@ func move_between_attacks(_delta : float)->void:
 	chase_target(player)
 
 func choose_attack() -> BossAttack:
-	var distance = distance_to_player()
+	var distance = distance_to_target()
 	
 	var valid_attacks : Array[BossAttack] = []
 	# add attakcs with valid range

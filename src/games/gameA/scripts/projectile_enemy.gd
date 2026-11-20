@@ -18,7 +18,7 @@ var state_timer : float = 0.0
 func update_behavior(delta: float) -> void:
 	match state:
 		State.CHASE:
-			if distance_to_player() <= attack_distance and has_line_of_sight(player):
+			if distance_to_target() <= attack_distance and has_line_of_sight(target):
 				start_windup()
 			else:
 				super(delta)
