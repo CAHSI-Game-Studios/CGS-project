@@ -10,6 +10,16 @@ const CUTSCENE_SCENE = preload("res://games/gameB/scenes/BameBIntro.tscn")
 @onready var difficulty_select_scene = preload("res://games/gameB/scenes/Difficulty_Select.tscn")
 @onready var player = $GameBplayer
 @onready var end_scene = preload("res://games/gameB/scenes/EndScene.tscn")
+
+#Song played for the whole of game B. Swap it for any AudioStream.
+#The player inherits the tree pause, so it stops while the pause menu is open.
+@export var music: AudioStream = preload("res://core/music/arcade hub theme.wav"):
+	set(value):
+		music = value
+		if is_node_ready():
+			play_music()
+@export_range(-80.0, 6.0, 0.1) var music_volume_db: float = -6.0
+@onready var music_player: AudioStreamPlayer = $MusicPlayer
 #Keep track of the score to determine wether the game was won or lost
 
 #Tells the game to check wether win or lose was achieved
@@ -28,7 +38,19 @@ var current_scene
 
 ## Called when the game is added to the scene tree. Note that _ready is called BEFORE enter.
 func _ready() -> void:
+	music_player.finished.connect(music_player.play)
 	enter()
+
+func play_music() -> void:
+	if music_player.playing and music_player.stream == music:
+		return
+	music_player.stream = music
+	music_player.volume_db = music_volume_db
+	if music:
+		music_player.play()
+	else:
+		music_player.stop()
+
 func start_gameplay() -> void:
 	current_scene = gameplay_scene.instantiate()
 	current_scene.note_speed = note_speed
@@ -41,11 +63,13 @@ func _physics_process(_delta: float) -> void:
 	pass
 ## Called by the external system to start the game.
 func enter(_enterData: Variant = null) -> void:
+	play_music()
 	current_scene = CUTSCENE_SCENE.instantiate()
 	current_scene.cutscene_finished.connect(_on_cutscene_finished)
 	add_child(current_scene)
 ## Called by the external system before unloading. Each game is responsible for defining their exit function.
 func exit() -> void:
+	music_player.stop()
 	if remaining_rounds<=0:
 		Global.currency += 1
 	request_exit()

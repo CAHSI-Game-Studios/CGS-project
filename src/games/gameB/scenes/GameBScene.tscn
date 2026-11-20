@@ -2,13 +2,18 @@
 
 [ext_resource type="Script" uid="uid://c8kuojmhcsipm" path="res://games/gameB/scripts/game_b_scene.gd" id="1_gcj08"]
 [ext_resource type="PackedScene" uid="uid://fccett110nfo" path="res://games/gameB/scenes/game_bplayer.tscn" id="3_svbff"]
+[ext_resource type="PackedScene" uid="uid://b0ghowbdn5mrx" path="res://core/scenes/pause_menu.tscn" id="3_uhp4j"]
 
 [node name="GameBScene" type="Node2D" unique_id=250904828]
 script = ExtResource("1_gcj08")
 
 [node name="WaitTime" type="Timer" parent="." unique_id=1233303639]
 
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1873402215]
+
 [node name="GameBplayer" parent="." unique_id=1405707498 instance=ExtResource("3_svbff")]
 position = Vector2(206, 960)
+
+[node name="PauseMenu" parent="." unique_id=2007257531 instance=ExtResource("3_uhp4j")]
 
 [connection signal="lane_pressed" from="GameBplayer" to="." method="_on_game_bplayer_lane_pressed"]
