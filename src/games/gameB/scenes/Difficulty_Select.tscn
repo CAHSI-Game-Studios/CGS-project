@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://cu50v86rnruto"]
 
+[ext_resource type="Script" uid="uid://d1ildpit7pdt3" path="res://games/gameB/scenes/difficulty_select.gd" id="1_6o0lx"]
+
 [node name="DifficultySelect" type="Node2D" unique_id=114060325]
+script = ExtResource("1_6o0lx")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1413096720]
 offset_right = 1280.0
@@ -24,3 +27,7 @@ offset_left = 904.0
 offset_top = 256.0
 offset_right = 1040.0
 offset_bottom = 528.0
+
+[connection signal="pressed" from="Easy" to="." method="_on_easy_pressed"]
+[connection signal="pressed" from="Medium" to="." method="_on_medium_pressed"]
+[connection signal="pressed" from="Hard" to="." method="_on_hard_pressed"]

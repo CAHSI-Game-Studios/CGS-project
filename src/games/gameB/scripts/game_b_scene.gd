@@ -26,7 +26,7 @@ var current_scene
 
 ## Called when the game is added to the scene tree. Note that _ready is called BEFORE enter.
 func _ready() -> void:
-	
+	to_difficulty_select()
 	#temporary boot-up will be replaced with code that does not start the player immediately in the game portion
 	current_scene = gameplay_scene.instantiate()
 	current_scene.note_speed = note_speed
@@ -83,12 +83,29 @@ func win_game():
 	
 	
 func to_difficulty_select():
-	print("changing scene")
-	current_scene.queue_free()
+	print("Changing to difficulty select")
+
+	if is_instance_valid(current_scene):
+		current_scene.queue_free()
 
 	current_scene = difficulty_select_scene.instantiate()
+	
+	current_scene.difficulty_selected.connect(_on_difficulty_selected)
 	add_child(current_scene)
 
+func _on_difficulty_selected(difficulty: int) -> void:
+
+	var selected_bpm: float
+
+	match difficulty:
+		0:
+			selected_bpm = 90.0
+		1:
+			selected_bpm = 120.0
+		2:
+			selected_bpm = 180.0
+
+	start_gameplay(selected_bpm)
 #tests if the player pressed the key
 
 func _on_game_bplayer_lane_pressed(note_index: int) -> void:
@@ -104,3 +121,17 @@ func change_to_end_scene(state):
 	
 func player_choose_exit():
 	exit()
+func start_gameplay(selected_bpm: float) -> void:
+
+	current_scene.queue_free()
+
+	current_scene = gameplay_scene.instantiate()
+
+	current_scene.bpm = selected_bpm
+	current_scene.note_speed = note_speed
+	current_scene.frequency = note_frequency
+
+	current_scene.gameB_win.connect(win_game)
+	current_scene.gameB_loss.connect(lose_game)
+
+	add_child(current_scene)
