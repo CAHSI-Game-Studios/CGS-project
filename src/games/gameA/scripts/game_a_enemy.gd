@@ -94,4 +94,8 @@ func chase_target(chase : Node2D) -> void:
 		move_towards_point(chase.global_position, SPEED)
 		
 func distance_to_target() -> float:
+	if not is_valid_target(target):
+		return INF
+
 	return global_position.distance_to(target.global_position)
+	#return global_position.distance_to(target.global_position)

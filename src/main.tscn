@@ -8,10 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://8u7o87nryac0" path="res://core/dialogue_system/DialogueSystem.tscn" id="6_7mycd"]
 [ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="7_5vw27"]
 [ext_resource type="Resource" uid="uid://dgcryps0x2tcp" path="res://core/dialogue_system/example_dialogues/0.tres" id="8_kek77"]
+[ext_resource type="PackedScene" uid="uid://csus1ct8yjo7b" path="res://core/scenes/HubScene.tscn" id="9_hub"]
+[ext_resource type="PackedScene" uid="uid://cjikp6rypqpvi" path="res://games/gameA/scenes/GameAScene.tscn" id="10_game_a"]
 
 [node name="Main" type="Node" unique_id=1309261153 node_paths=PackedStringArray("terminal")]
 script = ExtResource("1_ig7tw")
 terminal = NodePath("terminal")
+game_a = ExtResource("10_game_a")
+
+[node name="HubScene" parent="." instance=ExtResource("9_hub")]
 
 [node name="GameManager" type="Node" parent="." unique_id=1170578248]
 script = ExtResource("2_0xm2m")
@@ -21,10 +26,12 @@ metadata/_custom_type_script = "uid://cdqvafbrt8ave"
 visible = false
 
 [node name="terminal" parent="." unique_id=954730807 node_paths=PackedStringArray("game_manager", "dialogue_system") instance=ExtResource("3_h2yge")]
+visible = false
 game_manager = NodePath("../GameManager")
 games = Dictionary[String, PackedScene]({
 "example0": ExtResource("4_1bvp3"),
-"example1": ExtResource("5_lquwl")
+"example1": ExtResource("5_lquwl"),
+"gameA": ExtResource("10_game_a")
 })
 dialogue_system = NodePath("../DialogueSystem")
 test_dialogues = Dictionary[String, ExtResource("7_5vw27")]({
