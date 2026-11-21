@@ -331,7 +331,7 @@ func take_damage(dmg : int):
 
 	if dmg >= health:
 		health = 0
-		#lose logic
+		get_parent().lose()
 	else:
 		health -= dmg
 

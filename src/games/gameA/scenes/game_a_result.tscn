@@ -1,0 +1,81 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://games/gameA/scripts/game_a_result.gd" id="1_result"]
+[ext_resource type="Texture2D" path="res://games/gameA/assets/result_background.png" id="2_background"]
+
+[node name="GameAResult" type="CanvasLayer"]
+process_mode = 3
+layer = 10
+script = ExtResource("1_result")
+
+[node name="Screen" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Background" type="TextureRect" parent="Screen"]
+self_modulate = Color(0.72, 0.72, 0.72, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_background")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Center" type="CenterContainer" parent="Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Content" type="VBoxContainer" parent="Screen/Center"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Screen/Center/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+text = "You Won"
+horizontal_alignment = 1
+
+[node name="CoinTotal" type="Label" parent="Screen/Center/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "2 coins"
+horizontal_alignment = 1
+
+[node name="Actions" type="HBoxContainer" parent="Screen/Center/Content"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Retry" type="Button" parent="Screen/Center/Content/Actions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Exit")
+focus_neighbor_right = NodePath("../Exit")
+text = "Retry"
+
+[node name="Exit" type="Button" parent="Screen/Center/Content/Actions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Retry")
+focus_neighbor_right = NodePath("../Retry")
+text = "Exit to Hub"

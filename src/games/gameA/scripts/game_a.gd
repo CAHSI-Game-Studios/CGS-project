@@ -1,5 +1,7 @@
 extends ArcadeGame
 
+const RESULT_SCENE := preload("res://games/gameA/scenes/game_a_result.tscn")
+const PREVIEW_COIN_TOTAL := 2
 const PauseMenu := preload("res://core/scenes/pause_menu.gd")
 
 @export_group("Dialogue")
@@ -13,14 +15,12 @@ var _game_scene: PackedScene
 var _running: bool = false
 var _finished: bool = false
 var _restarting: bool = false
+var _result: GameAResult
 var _pause_menu: PauseMenu
 
 
-#func _ready() -> void:
-	# Load at runtime: preloading this scene from its own script is cyclic.
-#	_game_scene = load(scene_file_path) as PackedScene
-#	_stop_gameplay()
 func _ready() -> void:
+	# Preloading this scene from its own script would create a dependency cycle.
 	_game_scene = load(scene_file_path) as PackedScene
 	_connect_pause_controls()
 	_stop_gameplay()
@@ -86,6 +86,7 @@ func _show_dialogue(dialogue: Dialogue) -> void:
 func exit() -> void:
 	_finished = true
 	_stop_gameplay()
+	_close_result_preview()
 	if _pause_menu and _pause_menu.is_open():
 		_pause_menu.resume_game()
 
@@ -93,7 +94,6 @@ func exit() -> void:
 func win() -> void:
 	if not _running or _finished or _restarting:
 		return
-	# Guard first: an exit listener may synchronously call exit().
 	_finished = true
 	_stop_gameplay()
 	if ending_dialogue:
@@ -102,7 +102,44 @@ func win() -> void:
 
 
 func lose() -> void:
+	if not _running or _finished or _restarting:
+		return
+	_show_result_preview(false)
+
+
+func _show_result_preview(won: bool) -> void:
+	if _result:
+		return
+	get_tree().paused = true
+	_result = RESULT_SCENE.instantiate() as GameAResult
+	_result.retry_requested.connect(_retry_result_preview)
+	_result.exit_requested.connect(_return_to_hub)
+	add_child(_result)
+	_result.show_result(won, PREVIEW_COIN_TOTAL)
+
+
+func _close_result_preview() -> void:
+	if not _result:
+		return
+	_result.hide()
+	_result.queue_free()
+	_result = null
+	get_tree().paused = false
+
+
+func _retry_result_preview() -> void:
+	_close_result_preview()
 	restart()
+
+
+func _return_to_hub() -> void:
+	if not _result or _restarting:
+		return
+	#if get_tree().current_scene == self:
+		#exit()
+		#get_tree().change_scene_to_file("res://main.tscn")
+	else:
+		exit_requested.emit()
 
 
 func restart() -> void:
@@ -110,7 +147,6 @@ func restart() -> void:
 		return
 	_restarting = true
 	_stop_gameplay()
-	# Loss may originate in a physics callback; replace nodes after it finishes.
 	_restart_gameplay.call_deferred()
 
 
@@ -175,6 +211,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			dialogue = after_fight_dialogue
 		KEY_5:
 			dialogue = boss_fight_dialogue
+		KEY_7, KEY_8:
+			get_viewport().set_input_as_handled()
+			_show_result_preview(event.keycode == KEY_7)
 	if dialogue:
 		get_viewport().set_input_as_handled()
 		play_dialogue(dialogue)
