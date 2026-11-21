@@ -29,6 +29,7 @@ var is_attack_cooldown = false
 var is_heavy_attack_cooldown = false
 var is_blocking = false
 var is_stunned = false
+var was_blocking = false
 
 
 # -------------------------
@@ -57,12 +58,17 @@ func _ready():
 	$UI/stamina_bar.max_value = max_stamina
 	$UI/stamina_bar.value = stamina
 
+	$bubble.hide()
+	$bubble.animation_finished.connect(_on_bubble_animation_finished)
+
 
 # -------------------------
 # MAIN PLAYER LOOP
 # -------------------------
 
 func _physics_process(_delta: float) -> void:
+	
+	update_bubble()
 	
 	if is_stunned:
 		velocity = Vector2.ZERO
@@ -218,6 +224,29 @@ func update_idle(direction):
 
 	elif direction == Vector2(-1, 1):
 		$animations.play("idle_down_left")
+
+
+# -------------------------
+# BUBBLE ANIMATIONS
+# -------------------------
+
+func update_bubble():
+	# only react when blocking starts or stops
+	if is_blocking == was_blocking:
+		return
+	was_blocking = is_blocking
+
+	if is_blocking:
+		$bubble.show()
+		$bubble.play("start_bubble")
+	else:
+		$bubble.play("remove_bubble")
+
+func _on_bubble_animation_finished():
+	if $bubble.animation == "start_bubble":
+		$bubble.play("bubble")
+	elif $bubble.animation == "remove_bubble":
+		$bubble.hide()
 
 
 # -------------------------

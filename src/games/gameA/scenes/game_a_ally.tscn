@@ -1,6 +1,28 @@
 [gd_scene format=3 uid="uid://f3gretpawnsv"]
 
 [ext_resource type="Script" uid="uid://clq2hu61hrkav" path="res://games/gameA/scripts/ally.gd" id="1_8cjbb"]
+[ext_resource type="Texture2D" uid="uid://37d76wir6who" path="res://games/gameA/assets/Knight_of_the_dead_weight/Idle_animation/Back_Knight_idle_animation_sword1.png" id="2_f5xsg"]
+[ext_resource type="Texture2D" uid="uid://b05femv4pny5l" path="res://games/gameA/assets/Knight_of_the_dead_weight/Idle_animation/Back_Knight_idle_animation_sword2.png" id="3_ecdpf"]
+[ext_resource type="Texture2D" uid="uid://dxady62kduox3" path="res://games/gameA/assets/Knight_of_the_dead_weight/Idle_animation/Back_Knight_idle_animation_sword3.png" id="4_srbb8"]
+[ext_resource type="Texture2D" uid="uid://dritjtp7buh2i" path="res://games/gameA/assets/Knight_of_the_dead_weight/Idle_animation/Knight_idle_animation_sword1.png" id="5_pttx4"]
+[ext_resource type="Texture2D" uid="uid://bqw44r6t8eay4" path="res://games/gameA/assets/Knight_of_the_dead_weight/Idle_animation/Knight_idle_animation_sword2.png" id="6_2lsui"]
+[ext_resource type="Texture2D" uid="uid://cxlwk4xifd4xw" path="res://games/gameA/assets/Knight_of_the_dead_weight/Idle_animation/Knight_idle_animation_sword3.png" id="7_i30u8"]
+[ext_resource type="Texture2D" uid="uid://d0vaa3g2g6orh" path="res://games/gameA/assets/Knight_of_the_dead_weight/Walk_animation/Knight_back_walking_animation_sword1.png" id="8_bxknj"]
+[ext_resource type="Texture2D" uid="uid://bn5tldcsqgq8h" path="res://games/gameA/assets/Knight_of_the_dead_weight/Walk_animation/Knight_back_walking_animation_sword2.png" id="9_gl74q"]
+[ext_resource type="Texture2D" uid="uid://cv1ra83intdas" path="res://games/gameA/assets/Knight_of_the_dead_weight/Walk_animation/Knight_back_walking_animation_sword3.png" id="10_6q38j"]
+[ext_resource type="Texture2D" uid="uid://2hlon3iuiwfo" path="res://games/gameA/assets/Knight_of_the_dead_weight/Walk_animation/Knight_back_walking_animation_sword4.png" id="11_rv2kh"]
+[ext_resource type="Texture2D" uid="uid://ck0t65svmu5uu" path="res://games/gameA/assets/Knight_of_the_dead_weight/Walk_animation/Knight_back_walking_animation_sword5.png" id="12_f8ydy"]
+[ext_resource type="Texture2D" uid="uid://yich0lweg3r1" path="res://games/gameA/assets/Knight_of_the_dead_weight/Walk_animation/Knight_back_walking_animation_sword6.png" id="13_0dlq0"]
+[ext_resource type="Texture2D" uid="uid://dmpirwitl7lqn" path="res://games/gameA/assets/Knight_of_the_dead_weight/Walk_animation/Knight_back_walking_animation_sword7.png" id="14_qaxdn"]
+[ext_resource type="Texture2D" uid="uid://gyombhcb3xhj" path="res://games/gameA/assets/Knight_of_the_dead_weight/Walk_animation/Knight_back_walking_animation_sword8.png" id="15_oippy"]
+[ext_resource type="Texture2D" uid="uid://phq0txit0j6k" path="res://games/gameA/assets/Knight_of_the_dead_weight/Walk_animation/Knight_walking_animation_sword1.png" id="16_dyofn"]
+[ext_resource type="Texture2D" uid="uid://lhjbln7aeh8n" path="res://games/gameA/assets/Knight_of_the_dead_weight/Walk_animation/Knight_walking_animation_sword2.png" id="17_qadxn"]
+[ext_resource type="Texture2D" uid="uid://1nhdbv0l78m7" path="res://games/gameA/assets/Knight_of_the_dead_weight/Walk_animation/Knight_walking_animation_sword3.png" id="18_jnmw6"]
+[ext_resource type="Texture2D" uid="uid://c2nrcqna87ep6" path="res://games/gameA/assets/Knight_of_the_dead_weight/Walk_animation/Knight_walking_animation_sword4.png" id="19_5000i"]
+[ext_resource type="Texture2D" uid="uid://d2xbgh8p2al6i" path="res://games/gameA/assets/Knight_of_the_dead_weight/Walk_animation/Knight_walking_animation_sword5.png" id="20_js16v"]
+[ext_resource type="Texture2D" uid="uid://bx4yeyddfbnui" path="res://games/gameA/assets/Knight_of_the_dead_weight/Walk_animation/Knight_walking_animation_sword6.png" id="21_0jk3m"]
+[ext_resource type="Texture2D" uid="uid://c5m4wuffmo611" path="res://games/gameA/assets/Knight_of_the_dead_weight/Walk_animation/Knight_walking_animation_sword7.png" id="22_x6bb8"]
+[ext_resource type="Texture2D" uid="uid://dso81mokwu6v4" path="res://games/gameA/assets/Knight_of_the_dead_weight/Walk_animation/Knight_walking_animation_sword8.png" id="23_483fu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6tu7v"]
 
@@ -11,6 +33,183 @@ bg_color = Color(0.75158876, 0.025840001, 0.050708726, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bb0j3"]
 size = Vector2(38, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7shpc"]
+atlas = ExtResource("2_f5xsg")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4je8f"]
+atlas = ExtResource("3_ecdpf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltwbt"]
+atlas = ExtResource("4_srbb8")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2t1b"]
+atlas = ExtResource("5_pttx4")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxjvu"]
+atlas = ExtResource("6_2lsui")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fu7i"]
+atlas = ExtResource("7_i30u8")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4p02f"]
+atlas = ExtResource("8_bxknj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05j2k"]
+atlas = ExtResource("9_gl74q")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ec28p"]
+atlas = ExtResource("10_6q38j")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_og1wh"]
+atlas = ExtResource("11_rv2kh")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijs5h"]
+atlas = ExtResource("12_f8ydy")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pnro"]
+atlas = ExtResource("13_0dlq0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsfge"]
+atlas = ExtResource("14_qaxdn")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvd6s"]
+atlas = ExtResource("15_oippy")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kpxi"]
+atlas = ExtResource("16_dyofn")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8ork"]
+atlas = ExtResource("17_qadxn")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36ieo"]
+atlas = ExtResource("18_jnmw6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ak7c"]
+atlas = ExtResource("19_5000i")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2fsi"]
+atlas = ExtResource("20_js16v")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vdor"]
+atlas = ExtResource("21_0jk3m")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dl653"]
+atlas = ExtResource("22_x6bb8")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2gyd"]
+atlas = ExtResource("23_483fu")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6tu7v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7shpc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4je8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltwbt")
+}],
+"loop": 1,
+"name": &"idle_back",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2t1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxjvu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fu7i")
+}],
+"loop": 1,
+"name": &"idle_front",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4p02f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05j2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ec28p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_og1wh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijs5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pnro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsfge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvd6s")
+}],
+"loop": 1,
+"name": &"walk_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kpxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8ork")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36ieo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ak7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2fsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vdor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dl653")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2gyd")
+}],
+"loop": 1,
+"name": &"walk_front",
+"speed": 8.0
+}]
 
 [node name="Ally" type="CharacterBody2D" unique_id=1128105033]
 collision_mask = 4
@@ -36,8 +235,9 @@ shape = SubResource("RectangleShape2D_6tu7v")
 [node name="UI" type="Control" parent="." unique_id=1006557167]
 layout_mode = 3
 anchors_preset = 0
+offset_top = -21.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 19.0
 
 [node name="HealthBar" type="ProgressBar" parent="UI" unique_id=618769674]
 layout_mode = 1
@@ -63,3 +263,10 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1623149569]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_bb0j3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=126611209]
+position = Vector2(-1, -4.0000005)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_6tu7v")
+animation = &"idle_front"
+frame_progress = 0.12693407

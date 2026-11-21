@@ -34,6 +34,31 @@ var retarget_timer: float = 0.0
 var attack_cooldown_timer: float = 0.0
 
 var is_downed = false
+#-------- SPRITES -----------
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+func update_animation() -> void:
+	if sprite == null:
+		return
+
+	if velocity.length() < 5.0:
+		play_animation("idle")
+		return
+
+	if velocity.y < 0 and abs(velocity.y) > abs(velocity.x):
+		play_animation("walk_back")
+	else:
+		play_animation("walk_front")
+
+	if abs(velocity.x) > 5.0:
+		sprite.flip_h = velocity.x > 0
+	
+func play_animation(animation : String) -> void:
+	if sprite == null or sprite.sprite_frames == null:
+		return
+	if sprite.sprite_frames.has_animation(animation):
+		sprite.play(animation)
+		
 
 func _ready() -> void:
 	super()
@@ -99,6 +124,7 @@ func update_behavior(delta: float)-> void:
 		State.ATTACK:
 			# controlled by start_attack() through its awaits
 			pass
+	update_animation()
 
 # ------- FOLLOW ----------------
 func follow_player() -> void:

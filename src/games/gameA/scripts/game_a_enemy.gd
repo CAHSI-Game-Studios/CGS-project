@@ -5,6 +5,7 @@ extends GameACharacter
 @export var player: CharacterBody2D
 @export var dmg : int = 20
 
+
 # ------- TARGETING ----------------
 @export var retarget_interval: float = 0.5
 # multiplies the distance to allies: >1 prefers the player, <1 prefers allies
@@ -19,9 +20,19 @@ func _ready() -> void:
 	add_to_group("enemies")
 	target = player
 
+## ------- SPRITE ----------------
+
+#the childs will handle this
+func update_animation() -> void:
+	pass
+
+func play_animation(animation : String) -> void:
+	pass
+		
 func _physics_process(delta: float) -> void:
 	update_target(delta)
 	super(delta)
+	update_animation()
 
 func can_act() -> bool:
 	return is_valid_target(target)

@@ -2,12 +2,17 @@
 
 [ext_resource type="Script" uid="uid://dup8soq8t0fg1" path="res://games/gameA/scripts/game_a_enemy.gd" id="1_njvlo"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6tu7v"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4ame"]
+radius = 8.0
+height = 42.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6tu7v"]
+size = Vector2(20, 44)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njvlo"]
 bg_color = Color(0.75158876, 0.025840001, 0.050708726, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_njvlo"]
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1796773824]
 collision_layer = 2
@@ -15,7 +20,8 @@ collision_mask = 4
 script = ExtResource("1_njvlo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1901063338]
-shape = SubResource("CircleShape2D_6tu7v")
+position = Vector2(0, -12)
+shape = SubResource("CapsuleShape2D_s4ame")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=181679473]
 path_desired_distance = 5.0
@@ -29,13 +35,14 @@ debug_path_custom_color = Color(1, 0, 0, 1)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1634634792]
+position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_6tu7v")
 
 [node name="UI" type="Control" parent="." unique_id=917282938]
 layout_mode = 3
 anchors_preset = 0
-offset_top = -12.0
-offset_bottom = -12.0
+offset_top = -41.0
+offset_bottom = -41.0
 
 [node name="HealthBar" type="ProgressBar" parent="UI" unique_id=1076545017]
 layout_mode = 1
@@ -53,5 +60,10 @@ grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_njvlo")
 step = 5.0
 show_percentage = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=12564778]
+position = Vector2(0, -13.000001)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_njvlo")
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

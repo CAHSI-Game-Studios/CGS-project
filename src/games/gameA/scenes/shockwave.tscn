@@ -1,8 +1,66 @@
 [gd_scene format=3 uid="uid://cjf5pvelv1lrf"]
 
 [ext_resource type="Script" uid="uid://qsp2xjmg4od2" path="res://games/gameA/scripts/shockwave.gd" id="1_ynhdj"]
+[ext_resource type="Texture2D" uid="uid://244ak2uifmvv" path="res://core/assets/Enemy_Magic_Explosion.png" id="2_alvnv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6tu7v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qixs"]
+atlas = ExtResource("2_alvnv")
+region = Rect2(0, 0, 73, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkefr"]
+atlas = ExtResource("2_alvnv")
+region = Rect2(73, 0, 73, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixqx0"]
+atlas = ExtResource("2_alvnv")
+region = Rect2(146, 0, 73, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7jh5"]
+atlas = ExtResource("2_alvnv")
+region = Rect2(219, 0, 73, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6mxy"]
+atlas = ExtResource("2_alvnv")
+region = Rect2(292, 0, 73, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4u1uu"]
+atlas = ExtResource("2_alvnv")
+region = Rect2(365, 0, 73, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyiwf"]
+atlas = ExtResource("2_alvnv")
+region = Rect2(438, 0, 73, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6tu7v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qixs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkefr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixqx0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7jh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6mxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4u1uu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyiwf")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="Shockwave" type="Area2D" unique_id=2009350183]
 collision_layer = 2
@@ -10,3 +68,7 @@ script = ExtResource("1_ynhdj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=990542828]
 shape = SubResource("CircleShape2D_6tu7v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=77736613]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_6tu7v")

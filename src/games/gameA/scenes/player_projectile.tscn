@@ -1,8 +1,45 @@
 [gd_scene format=3 uid="uid://ice8ybrngstv"]
 
 [ext_resource type="Script" uid="uid://832ngpe5yujc" path="res://games/gameA/scripts/player_projectile.gd" id="1_6gpdq"]
+[ext_resource type="Texture2D" uid="uid://cpw8fxymbj8qo" path="res://core/assets/MC_Magic_Proyectile.png" id="2_us073"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_us073"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0rw7"]
+atlas = ExtResource("2_us073")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4v1m"]
+atlas = ExtResource("2_us073")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kniun"]
+atlas = ExtResource("2_us073")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmh8k"]
+atlas = ExtResource("2_us073")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6tu7v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0rw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4v1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kniun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmh8k")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="PlayerProjectile" type="Area2D" unique_id=1571769180]
 collision_layer = 2
@@ -12,3 +49,9 @@ script = ExtResource("1_6gpdq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2013667293]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_us073")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=184114486]
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_6tu7v")
+autoplay = "default"
+frame_progress = 0.4021387

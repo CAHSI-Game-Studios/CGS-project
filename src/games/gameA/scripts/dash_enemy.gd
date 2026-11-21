@@ -20,6 +20,52 @@ var state_timer: float = 0.0
 var dash_target: Vector2
 var dash_direction: Vector2
 
+## ------- SPRITE ----------------
+
+enum Biome {FOREST, DESERT, CASTLE}
+
+const SPRITES_FOLDER := "res://games/gameA/assets/"
+
+## ------- SPRITE ----------------
+@export var biome: Biome = Biome.FOREST
+@export var sprite_name: String = "enemy"
+@onready var sprite: AnimatedSprite2D = get_node_or_null("AnimatedSprite2D")
+
+func _ready() -> void:
+	super()
+	apply_biome_sprite()
+
+func apply_biome_sprite() -> void:
+	if sprite == null:
+		return
+	var biome_name: String = Biome.keys()[biome].to_lower()
+	var path := SPRITES_FOLDER + sprite_name + "_" + biome_name + ".tres"
+	if ResourceLoader.exists(path):
+		sprite.sprite_frames = load(path)
+
+func update_animation() -> void:
+	if sprite == null:
+		return
+
+	if velocity.length() < 5.0:
+		play_animation("idle")
+		return
+
+	if abs(velocity.x) > abs(velocity.y):
+		play_animation("walk_left")
+		sprite.flip_h = velocity.x > 0
+	elif velocity.y > 0:
+		play_animation("walk_front")
+		sprite.flip_h = false
+	else:
+		play_animation("walk_back")
+		sprite.flip_h = false
+
+func play_animation(animation : String) -> void:
+	if sprite == null or sprite.sprite_frames == null:
+		return
+	if sprite.sprite_frames.has_animation(animation):
+		sprite.play(animation)
 
 func update_behavior(delta: float) -> void:
 	match state:
