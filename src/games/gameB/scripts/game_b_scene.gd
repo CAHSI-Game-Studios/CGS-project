@@ -27,13 +27,6 @@ var current_scene
 ## Called when the game is added to the scene tree. Note that _ready is called BEFORE enter.
 func _ready() -> void:
 	to_difficulty_select()
-	#temporary boot-up will be replaced with code that does not start the player immediately in the game portion
-	current_scene = gameplay_scene.instantiate()
-	current_scene.note_speed = note_speed
-	current_scene.frequency = note_frequency
-	current_scene.connect("gameB_win",win_game)
-	current_scene.connect("gameB_loss",lose_game)
-	add_child(current_scene)
 ## Called every physics frame. _delta is the seconds between each frame. 
 func _physics_process(_delta: float) -> void:
 	pass
