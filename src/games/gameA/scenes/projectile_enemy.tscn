@@ -2,10 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://bypmotrg51bse" path="res://games/gameA/scenes/GameAEnemy.tscn" id="1_pbcw7"]
 [ext_resource type="Script" uid="uid://bdkg75lm1hc7f" path="res://games/gameA/scripts/projectile_enemy.gd" id="2_m0t6q"]
+[ext_resource type="PackedScene" uid="uid://cre0vybbvy3n3" path="res://games/gameA/scenes/projectile.tscn" id="3_xqec0"]
 
 [node name="projectileEnemy" unique_id=1796773824 instance=ExtResource("1_pbcw7")]
 script = ExtResource("2_m0t6q")
-projectile_scene = null
+projectile_scene = ExtResource("3_xqec0")
 attack_distance = 40.0
 windup_time = 0.8
 projectile_speed = 250.0

@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cwjlce1tfb2bq" path="res://games/gameA/scripts/game_a.gd" id="1_wi5bm"]
 [ext_resource type="PackedScene" uid="uid://crqmfpbfm38mk" path="res://games/gameA/scenes/player.tscn" id="2_d11v3"]
 [ext_resource type="PackedScene" uid="uid://dq5h8x22b2lap" path="res://games/gameA/scenes/dash_enemy.tscn" id="2_wlono"]
-[ext_resource type="PackedScene" uid="uid://cre0vybbvy3n3" path="res://games/gameA/scenes/projectile.tscn" id="3_nqjrd"]
 [ext_resource type="PackedScene" uid="uid://beyeagdeaihuo" path="res://games/gameA/scenes/projectile_enemy.tscn" id="3_wi5bm"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_loah6"]
@@ -35,7 +34,6 @@ position = Vector2(-43.5, -31.5)
 shape = SubResource("RectangleShape2D_e8ugx")
 
 [node name="projectileEnemy" parent="." unique_id=444337982 node_paths=PackedStringArray("player") instance=ExtResource("3_wi5bm")]
-projectile_scene = ExtResource("3_nqjrd")
 attack_distance = 80.0
 player = NodePath("../Player")
 

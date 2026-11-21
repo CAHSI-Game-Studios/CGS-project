@@ -9,22 +9,12 @@
 [node name="Player" parent="." index="0" unique_id=102526350]
 position = Vector2(3621, 1032)
 
-[node name="NavigationRegion2D" parent="Enemies" parent_id_path=PackedInt32Array(983519384) index="0" unique_id=94602094]
-visible = false
-
-[node name="DashEnemy" parent="Enemies" parent_id_path=PackedInt32Array(983519384) index="1" unique_id=1796773824]
-position = Vector2(133, 1456)
-
-[node name="projectileEnemy" parent="Enemies" parent_id_path=PackedInt32Array(983519384) index="2" unique_id=1672406883]
-position = Vector2(257, 1467)
-biome = 2
-
-[node name="Mage" parent="Enemies" parent_id_path=PackedInt32Array(983519384) index="3" unique_id=1779614909 node_paths=PackedStringArray("player") instance=ExtResource("2_hbpco")]
-position = Vector2(3781, 798)
-player = NodePath("../../Player")
-health = 1000
-
-[node name="Ally" parent="Enemies" parent_id_path=PackedInt32Array(983519384) index="4" unique_id=1128105033 node_paths=PackedStringArray("player") instance=ExtResource("3_f64rh")]
+[node name="Enemies#Ally" parent="Characters" parent_id_path=PackedInt32Array(1286155091) index="3" unique_id=1128105033 node_paths=PackedStringArray("player") instance=ExtResource("3_f64rh")]
 position = Vector2(3594, 1133)
 player = NodePath("../../Player")
 SPEED = 30.0
+
+[node name="Enemies#Mage" parent="Characters" parent_id_path=PackedInt32Array(1286155091) index="4" unique_id=1779614909 node_paths=PackedStringArray("player") instance=ExtResource("2_hbpco")]
+position = Vector2(3781, 798)
+player = NodePath("../../Player")
+health = 1000
