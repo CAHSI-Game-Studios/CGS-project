@@ -8,6 +8,7 @@ extends ArcadeGame
 @onready var difficulty_select_scene = preload("res://games/gameB/scenes/Difficulty_Select.tscn")
 @onready var player = $GameBplayer
 @onready var enemy: RhythmEnemy = $Enemy
+@onready var end_scene = preload("res://games/gameB/scenes/EndScene.tscn")
 #Keep track of the score to determine wether the game was won or lost
 
 #Tells the game to check wether win or lose was achieved
@@ -45,6 +46,8 @@ func enter( _enterData : Variant = null) -> void:
 	pass
 ## Called by the external system before unloading. Each game is responsible for defining their exit function.
 func exit() -> void:
+	if remaining_rounds<=0:
+		Global.currency += 1
 	request_exit()
 	
 	
@@ -58,7 +61,7 @@ func request_exit(_exitData : Variant = null) -> void:
 		
 #sets obejects to their game start state
 func lose_game():
-
+	change_to_end_scene(3)
 	print("LOSE")
 	
 
@@ -75,10 +78,9 @@ func win_game():
 	#Add logic to return to difficulty select scene
 	#Currently only sends the request_exit signal
 	if remaining_rounds <=0:
-		current_scene.queue_free()
-		exit()
+		change_to_end_scene(2)
 	else:
-		
+		change_to_end_scene(1)
 		note_speed += 20
 		remaining_rounds -=1
 		enemy.reset()
@@ -103,3 +105,14 @@ func _on_enemy_score_changed(new_score: int) -> void:
 	print("Enemy score: ", new_score)
 	if current_scene and "enemy_score" in current_scene:
 		current_scene.enemy_score = new_score
+	
+func change_to_end_scene(state):
+	current_scene.queue_free()
+	current_scene = end_scene.instantiate()
+	current_scene.end_state = state
+	current_scene.connect("exit_game_b", player_choose_exit)
+	current_scene.connect("continue_game_b", to_difficulty_select)
+	add_child(current_scene)
+	
+func player_choose_exit():
+	exit()

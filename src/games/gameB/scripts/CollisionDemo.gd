@@ -86,7 +86,8 @@ func _on_game_timer_timeout() -> void:
 	$NoteTimer.stop()
 	print("MINIGAME OVER")
 	await gameplay_B_end
-
+	print(score)
+	print(enemy_score)
 	if score > enemy_score:
 		print("YOU WIN")
 		gameB_win.emit()
