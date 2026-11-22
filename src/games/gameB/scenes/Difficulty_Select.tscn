@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cu50v86rnruto"]
 
 [node name="DifficultySelect" type="Node2D" unique_id=114060325]
+z_index = 2
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1413096720]
 offset_right = 1280.0
