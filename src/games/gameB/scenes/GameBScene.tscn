@@ -10,9 +10,13 @@ script = ExtResource("1_gcj08")
 [node name="WaitTime" type="Timer" parent="." unique_id=1233303639]
 
 [node name="GameBplayer" parent="." unique_id=1405707498 instance=ExtResource("3_svbff")]
-position = Vector2(206, 960)
+z_index = 1
+position = Vector2(-236, 1069)
 
 [node name="player_b_enemy" parent="." unique_id=1418312323 instance=ExtResource("3_uhp4j")]
+z_index = 1
+position = Vector2(953.00006, 587)
+scale = Vector2(0.17, 0.17)
 
 [connection signal="lane_pressed" from="GameBplayer" to="." method="_on_game_bplayer_lane_pressed"]
 [connection signal="score_changed" from="player_b_enemy" to="." method="_on_enemy_score_changed"]

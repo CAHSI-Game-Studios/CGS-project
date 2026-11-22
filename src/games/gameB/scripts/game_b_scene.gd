@@ -7,7 +7,7 @@ extends ArcadeGame
 @onready var gameplay_scene = preload("res://games/gameB/scenes/CollisionDemo.tscn")
 @onready var difficulty_select_scene = preload("res://games/gameB/scenes/Difficulty_Select.tscn")
 @onready var player = $GameBplayer
-@onready var enemy: RhythmEnemy = $Enemy
+@onready var enemy: RhythmEnemy = $player_b_enemy
 @onready var end_scene = preload("res://games/gameB/scenes/EndScene.tscn")
 #Keep track of the score to determine wether the game was won or lost
 
