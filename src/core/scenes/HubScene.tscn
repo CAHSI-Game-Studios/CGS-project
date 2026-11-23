@@ -605,10 +605,10 @@ sources/0 = SubResource("TileSetAtlasSource_51rwb")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=179336710]
 z_index = -3
-offset_left = -258.0
-offset_top = -298.0
-offset_right = 2020.0
-offset_bottom = 1116.0
+offset_left = -384.0
+offset_top = -413.0
+offset_right = 2146.0
+offset_bottom = 1198.0
 color = Color(0, 0, 0, 1)
 
 [node name="RockyBottomLayer" type="TileMapLayer" parent="." unique_id=721579767]
