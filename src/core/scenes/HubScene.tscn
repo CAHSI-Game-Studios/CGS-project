@@ -627,6 +627,7 @@ tile_set = SubResource("TileSet_ws2qq")
 y_sort_enabled = true
 
 [node name="Player" parent="YSort" unique_id=1423827142 instance=ExtResource("9_8cmga")]
+position = Vector2(1844.9999, 509.99997)
 scale = Vector2(0.7, 0.7)
 
 [node name="Camera2D" type="Camera2D" parent="YSort/Player" unique_id=1443528201]
