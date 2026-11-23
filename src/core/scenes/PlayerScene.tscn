@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://4x7aonghixdh" path="res://core/assets/BernieSmith_Walking_Up-Sheet.png" id="6_4ofxk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
-size = Vector2(27.550003, 64.700005)
+size = Vector2(15.200003, 33.500008)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_02d52"]
 atlas = ExtResource("2_wmtv2")
@@ -295,7 +295,7 @@ scale = Vector2(20, 20)
 script = ExtResource("1_mhyra")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1428331944]
-position = Vector2(0.775, 0.10000381)
+position = Vector2(0.049999986, 10.8499975)
 scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_bhunq")
 
