@@ -92,6 +92,8 @@ func to_difficulty_select():
 #tests if the player pressed the key
 
 func _on_game_bplayer_lane_pressed(note_index: int) -> void:
+	if current_scene and current_scene.has_method("consume_lane_note"):
+		current_scene.consume_lane_note(note_index)
 	print("Interaction signal received correctly Lane: ", note_index)
 	
 func change_to_end_scene(state):

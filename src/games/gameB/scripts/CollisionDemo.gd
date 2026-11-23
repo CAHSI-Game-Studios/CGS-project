@@ -15,6 +15,7 @@ const NOTE_LAYER := 1
 const TARGET_LAYER := 2
 const HIT_LAYER := 4
 const BEATS_TO_TARGET := 2
+const LANE_KEYS: Array[String] = ["S", "D", "J", "K"]
 
 var interval: float = 60.0 / 180.0
 var spawn_accumulator := 0.0
@@ -68,6 +69,8 @@ func _spawn_note(lane_index: int) -> void:
 	notei.velocity = note_speed
 	notei.get_node("NoteArea").collision_layer = NOTE_LAYER
 	notei.get_node("NoteArea").collision_mask = TARGET_LAYER | HIT_LAYER
+	if notei.has_method("set_key_label") and lane_index < LANE_KEYS.size():
+		notei.set_key_label(LANE_KEYS[lane_index])
 	notei.position = lanes[lane_index]["spawn"]
 	add_child(notei)
 	notei.add_to_group("Notes")
@@ -102,7 +105,7 @@ func _on_note_timer_timeout() -> void:
 		if randi_range(1,2) == 1:
 			_spawn_note(0)
 			_spawn_note(1)
-			
+	
 func _on_note_despawn() -> void:
 	if $GameTimer.time_left > 0.0:
 		return

@@ -17,5 +17,8 @@ func _process(delta: float) -> void:
 	position.x += velocity*delta
 
 
-
+func set_key_label(letter: String) -> void:
+	type = letter.to_lower()
+	if has_node("Label"):
+		$Label.text = letter.to_upper()
 	
