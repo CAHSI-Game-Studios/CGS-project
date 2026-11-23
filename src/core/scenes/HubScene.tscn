@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dav4w6otwfmqj" path="res://core/assets/Doppio World alt tiles.png" id="5_ivi1b"]
 [ext_resource type="Texture2D" uid="uid://c5t465hwndbkb" path="res://core/assets/Rocky hub bottom tiles.png" id="7_hgplc"]
 [ext_resource type="Texture2D" uid="uid://cqvpqcfanf46j" path="res://core/assets/Environment Doppio.png" id="8_ivi1b"]
-[ext_resource type="PackedScene" uid="uid://bqwwxohqe6up2" path="res://core/scenes/PlayerScene.tscn" id="9_8cmga"]
+[ext_resource type="PackedScene" uid="uid://bqwwxohqe6up2" path="res://core/scenes/HubPlayerScene.tscn" id="9_8cmga"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ivi1b"]
 texture = ExtResource("7_hgplc")
@@ -626,7 +626,7 @@ tile_set = SubResource("TileSet_ws2qq")
 [node name="YSort" type="Node2D" parent="." unique_id=1686191989]
 y_sort_enabled = true
 
-[node name="Player" parent="YSort" unique_id=1423827142 instance=ExtResource("9_8cmga")]
+[node name="Player" parent="YSort" unique_id=2093164991 instance=ExtResource("9_8cmga")]
 position = Vector2(1844.9999, 509.99997)
 scale = Vector2(0.7, 0.7)
 
