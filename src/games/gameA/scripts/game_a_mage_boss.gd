@@ -33,8 +33,6 @@ var arrow_spread: float = 45.0
 @export var orb_speed : float = 120.0
 @export var orb_damage : int = 20
 
-@onready var sprite: AnimatedSprite2D = get_node_or_null("AnimatedSprite2D")
-
 
 func update_animation() -> void:
 	if sprite == null:
@@ -52,12 +50,6 @@ func update_animation() -> void:
 		play_animation("walk_front")
 	elif velocity.y < 0:
 		play_animation("walk_back")
-
-func play_animation(animation : String) -> void:
-	if sprite == null:
-		return
-	if sprite.sprite_frames.has_animation(animation):
-		sprite.play(animation)
 
 func _ready() -> void:
 	super()

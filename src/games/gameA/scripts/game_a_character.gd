@@ -14,7 +14,17 @@ var can_chase: bool = true
 @export var knockback_friction: float = 800.0
 
 var knockback_velocity: Vector2 = Vector2.ZERO
+#--------- SPRITE ----------------------
+@onready var sprite: AnimatedSprite2D = get_node_or_null("AnimatedSprite2D")
 
+func play_animation(animation : String) -> void:
+	if sprite == null:
+		return
+	if sprite.sprite_frames.has_animation(animation):
+		sprite.play(animation)
+	
+func update_animation() -> void:
+	pass
 
 func _ready() -> void:
 	health_bar = get_health_bar()

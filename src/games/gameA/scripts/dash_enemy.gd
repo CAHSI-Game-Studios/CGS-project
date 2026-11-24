@@ -29,7 +29,6 @@ const SPRITES_FOLDER := "res://games/gameA/assets/"
 ## ------- SPRITE ----------------
 @export var biome: Biome = Biome.FOREST
 @export var sprite_name: String = "enemy"
-@onready var sprite: AnimatedSprite2D = get_node_or_null("AnimatedSprite2D")
 
 func _ready() -> void:
 	super()
@@ -60,12 +59,6 @@ func update_animation() -> void:
 	else:
 		play_animation("walk_back")
 		sprite.flip_h = false
-
-func play_animation(animation : String) -> void:
-	if sprite == null or sprite.sprite_frames == null:
-		return
-	if sprite.sprite_frames.has_animation(animation):
-		sprite.play(animation)
 
 func update_behavior(delta: float) -> void:
 	match state:

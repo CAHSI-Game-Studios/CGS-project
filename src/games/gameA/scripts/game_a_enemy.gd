@@ -25,9 +25,6 @@ func _ready() -> void:
 #the childs will handle this
 func update_animation() -> void:
 	pass
-
-func play_animation(animation : String) -> void:
-	pass
 		
 func _physics_process(delta: float) -> void:
 	update_target(delta)
