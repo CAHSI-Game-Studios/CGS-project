@@ -52,7 +52,7 @@ func play_music() -> void:
 	else:
 		music_player.stop()
 
-func start_gameplay() -> void:
+func begin_gameplay() -> void:
 	current_scene = gameplay_scene.instantiate()
 	current_scene.note_speed = note_speed
 	current_scene.frequency = note_frequency
@@ -143,7 +143,7 @@ func _on_game_bplayer_lane_pressed(note_index: int) -> void:
 func _on_cutscene_finished() -> void:
 	current_scene.queue_free()
 	current_scene = null
-	start_gameplay()
+	begin_gameplay()
 func change_to_end_scene(state):
 	current_scene.queue_free()
 	current_scene = end_scene.instantiate()
@@ -154,6 +154,7 @@ func change_to_end_scene(state):
 	
 func player_choose_exit():
 	exit()
+	
 func start_gameplay(selected_bpm: float) -> void:
 
 	current_scene.queue_free()
