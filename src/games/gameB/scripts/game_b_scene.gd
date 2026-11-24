@@ -2,12 +2,24 @@ extends ArcadeGame
 
 #notes are moving icons, that indicate the key to be pressed
 #they increase your score when you press their respective key at the right time
+const CUTSCENE_SCENE = preload("res://games/gameB/scenes/BameBIntro.tscn")
+@onready var note = preload("res://games/gameB/scenes/Note.tscn")
 
 
 @onready var gameplay_scene = preload("res://games/gameB/scenes/CollisionDemo.tscn")
 @onready var difficulty_select_scene = preload("res://games/gameB/scenes/Difficulty_Select.tscn")
 @onready var player = $GameBplayer
 @onready var end_scene = preload("res://games/gameB/scenes/EndScene.tscn")
+
+#Song played for the whole of game B. Swap it for any AudioStream.
+#The player inherits the tree pause, so it stops while the pause menu is open.
+@export var music: AudioStream = preload("res://core/music/arcade hub theme.wav"):
+	set(value):
+		music = value
+		if is_node_ready():
+			play_music()
+@export_range(-80.0, 6.0, 0.1) var music_volume_db: float = -6.0
+@onready var music_player: AudioStreamPlayer = $MusicPlayer
 #Keep track of the score to determine wether the game was won or lost
 
 #Tells the game to check wether win or lose was achieved
@@ -27,14 +39,38 @@ var current_scene
 ## Called when the game is added to the scene tree. Note that _ready is called BEFORE enter.
 func _ready() -> void:
 	to_difficulty_select()
+	music_player.finished.connect(music_player.play)
+	enter()
+
+func play_music() -> void:
+	if music_player.playing and music_player.stream == music:
+		return
+	music_player.stream = music
+	music_player.volume_db = music_volume_db
+	if music:
+		music_player.play()
+	else:
+		music_player.stop()
+
+func start_gameplay() -> void:
+	current_scene = gameplay_scene.instantiate()
+	current_scene.note_speed = note_speed
+	current_scene.frequency = note_frequency
+	current_scene.connect("gameB_win",win_game)
+	current_scene.connect("gameB_loss",lose_game)
+	add_child(current_scene)
 ## Called every physics frame. _delta is the seconds between each frame. 
 func _physics_process(_delta: float) -> void:
 	pass
 ## Called by the external system to start the game.
-func enter( _enterData : Variant = null) -> void:
-	pass
+func enter(_enterData: Variant = null) -> void:
+	play_music()
+	current_scene = CUTSCENE_SCENE.instantiate()
+	current_scene.cutscene_finished.connect(_on_cutscene_finished)
+	add_child(current_scene)
 ## Called by the external system before unloading. Each game is responsible for defining their exit function.
 func exit() -> void:
+	music_player.stop()
 	if remaining_rounds<=0:
 		Global.currency += 1
 	request_exit()
@@ -104,6 +140,10 @@ func _on_difficulty_selected(difficulty: int) -> void:
 func _on_game_bplayer_lane_pressed(note_index: int) -> void:
 	print("Interaction signal received correctly Lane: ", note_index)
 	
+func _on_cutscene_finished() -> void:
+	current_scene.queue_free()
+	current_scene = null
+	start_gameplay()
 func change_to_end_scene(state):
 	current_scene.queue_free()
 	current_scene = end_scene.instantiate()

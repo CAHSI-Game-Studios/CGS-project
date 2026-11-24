@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://b6d8fv4kfnoud"]
+
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_qy7p3"]
+[ext_resource type="Resource" uid="uid://8q87hssednhf" path="res://games/gameB/assets/dialogue/7.tres" id="1_yqn1o"]
+
+[resource]
+script = ExtResource("1_qy7p3")
+id = &"6"
+speaker = "BernieSmith"
+text = "Yea-... Wait, how did you know I played in Highschool."
+next_dialogue = ExtResource("1_yqn1o")
+metadata/_custom_type_script = "uid://pxo52x3jat8o"

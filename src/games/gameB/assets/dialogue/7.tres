@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://8q87hssednhf"]
+
+[ext_resource type="Resource" uid="uid://blfgbsy3phm7o" path="res://games/gameB/assets/dialogue/8.tres" id="1_hbw2d"]
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_ika0l"]
+
+[resource]
+script = ExtResource("1_ika0l")
+id = &"7"
+speaker = "Doppio"
+text = "¯\\_(ツ)_/¯ "
+next_dialogue = ExtResource("1_hbw2d")
+metadata/_custom_type_script = "uid://pxo52x3jat8o"

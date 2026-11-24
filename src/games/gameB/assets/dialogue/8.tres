@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://blfgbsy3phm7o"]
+
+[ext_resource type="Resource" uid="uid://b6f3k4258fpk1" path="res://games/gameB/assets/dialogue/9.tres" id="1_7p5aa"]
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_58now"]
+
+[resource]
+script = ExtResource("1_58now")
+id = &"8"
+speaker = "Doppio"
+text = "A magician never reveals his secrets."
+next_dialogue = ExtResource("1_7p5aa")
+metadata/_custom_type_script = "uid://pxo52x3jat8o"
