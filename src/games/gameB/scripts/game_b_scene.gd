@@ -38,7 +38,6 @@ var current_scene
 
 ## Called when the game is added to the scene tree. Note that _ready is called BEFORE enter.
 func _ready() -> void:
-	to_difficulty_select()
 	music_player.finished.connect(music_player.play)
 	enter()
 
@@ -143,7 +142,8 @@ func _on_game_bplayer_lane_pressed(note_index: int) -> void:
 func _on_cutscene_finished() -> void:
 	current_scene.queue_free()
 	current_scene = null
-	begin_gameplay()
+	to_difficulty_select()
+
 func change_to_end_scene(state):
 	current_scene.queue_free()
 	current_scene = end_scene.instantiate()
