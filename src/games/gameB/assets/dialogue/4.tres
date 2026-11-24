@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://b1lo4xwxpmcn"]
+
+[ext_resource type="Resource" uid="uid://bb6xgupwq7n0e" path="res://games/gameB/assets/dialogue/5.tres" id="1_glofp"]
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_htlja"]
+
+[resource]
+script = ExtResource("1_htlja")
+id = &"4"
+speaker = "BernieSmith"
+text = "How? I haven't played anything live since...  "
+next_dialogue = ExtResource("1_glofp")
+metadata/_custom_type_script = "uid://pxo52x3jat8o"

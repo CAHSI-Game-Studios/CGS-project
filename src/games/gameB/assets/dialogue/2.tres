@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://c5ysvl6kfprvs"]
+
+[ext_resource type="Resource" uid="uid://ckt6tw2xuo5y" path="res://games/gameB/assets/dialogue/3.tres" id="1_1gf8q"]
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_y0oem"]
+
+[resource]
+script = ExtResource("1_y0oem")
+id = &"2"
+speaker = "BernieSmith"
+text = "And what do you want me to do exactly?"
+next_dialogue = ExtResource("1_1gf8q")
+metadata/_custom_type_script = "uid://pxo52x3jat8o"
