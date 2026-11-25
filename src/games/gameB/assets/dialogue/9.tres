@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://b6f3k4258fpk1"]
+
+[ext_resource type="Resource" uid="uid://xu2tvkonkb04" path="res://games/gameB/assets/dialogue/10.tres" id="1_7gmeh"]
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_ci55o"]
+
+[resource]
+script = ExtResource("1_ci55o")
+id = &"9"
+speaker = "BernieSmith"
+text = " YOU'RE A CLOWN! "
+next_dialogue = ExtResource("1_7gmeh")
+metadata/_custom_type_script = "uid://pxo52x3jat8o"

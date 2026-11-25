@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://ckt6tw2xuo5y"]
+
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_0xp8r"]
+[ext_resource type="Resource" uid="uid://b1lo4xwxpmcn" path="res://games/gameB/assets/dialogue/4.tres" id="1_6hn4x"]
+
+[resource]
+script = ExtResource("1_0xp8r")
+id = &"3"
+speaker = "Doppio"
+text = "Well, play live of course! "
+next_dialogue = ExtResource("1_6hn4x")
+metadata/_custom_type_script = "uid://pxo52x3jat8o"
