@@ -111,7 +111,7 @@ func win_game():
 		note_speed += 20
 		remaining_rounds -=1
 		enemy.reset()
-		to_difficulty_select()
+
 	
 	
 	
@@ -176,7 +176,12 @@ func start_gameplay(selected_bpm: float) -> void:
 	current_scene.note_speed = note_speed
 	current_scene.frequency = note_frequency
 
-	current_scene.gameB_win.connect(win_game)
-	current_scene.gameB_loss.connect(lose_game)
+
+	current_scene.connect("gameB_win",win_game)
+	current_scene.connect("gameB_loss",lose_game)
 
 	add_child(current_scene)
+
+
+	current_scene.enemy_zone_entered.connect(enemy._on_hit_zone_area_entered)
+	enemy.reset()
