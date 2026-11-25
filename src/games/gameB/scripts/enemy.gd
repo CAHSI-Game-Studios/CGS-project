@@ -44,6 +44,8 @@ func _on_hit_zone_area_entered(area: Area2D) -> void:
 		score_changed.emit(enemy_score)
 		if area.has_method("on_enemy_hit"):
 			area.on_enemy_hit()
+	else:
+		print("MISSED score= ",enemy_score)
 
 func get_enemy_score() -> int:
 	return enemy_score

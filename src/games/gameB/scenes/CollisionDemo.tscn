@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c6ub2s4yw2xww"]
 
 [ext_resource type="Script" uid="uid://dbjjs2tfo352o" path="res://games/gameB/scripts/CollisionDemo.gd" id="1_d3516"]
-[ext_resource type="Texture2D" uid="uid://wgjqarjaldp0" path="res://games/gameB/assets/background_Concept.png" id="2_h4u7c"]
+[ext_resource type="Texture2D" uid="uid://7crg2041pf8u" path="res://games/gameB/assets/background_Concept.png" id="2_h4u7c"]
 [ext_resource type="PackedScene" uid="uid://b0ghowbdn5mrx" path="res://core/scenes/pause_menu.tscn" id="3_h4u7c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_target"]
@@ -89,7 +89,6 @@ autostart = true
 
 [node name="EnemyHitZone" type="Area2D" parent="." unique_id=310073762]
 position = Vector2(302, 271)
-collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitZone" unique_id=451144382]
 position = Vector2(0.5, 0)
