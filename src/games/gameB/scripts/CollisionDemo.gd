@@ -29,7 +29,8 @@ var enemy_score := 0
 var frequency = 300
 
 func _ready() -> void:
-	$NoteTimer.wait_time = 1/(frequency / bpm)
+	interval = 60.0 / bpm
+	$NoteTimer.wait_time = interval
 	$NoteTimer.start()
 	var longest: float = 0.0
 	for lane_node in $Lanes.get_children():
