@@ -86,13 +86,14 @@ func _on_hit_area_exited(area: Area2D) -> void:
 func _on_game_timer_timeout() -> void:
 	$NoteTimer.stop()
 	print("MINIGAME OVER")
-	await gameplay_B_end
+	if not get_tree().get_nodes_in_group("Notes").is_empty():
+		await gameplay_B_end
+	
 	print(score)
 	print(enemy_score)
 	if score > enemy_score:
 		print("YOU WIN")
 		gameB_win.emit()
-
 
 	else:
 		print("YOU LOSE")
