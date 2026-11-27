@@ -9,6 +9,7 @@ const CUTSCENE_SCENE = preload("res://games/gameB/scenes/BameBIntro.tscn")
 @onready var gameplay_scene = preload("res://games/gameB/scenes/CollisionDemo.tscn")
 @onready var difficulty_select_scene = preload("res://games/gameB/scenes/Difficulty_Select.tscn")
 @onready var player = $GameBplayer
+@onready var enemy: RhythmEnemy = $player_b_enemy
 @onready var end_scene = preload("res://games/gameB/scenes/EndScene.tscn")
 
 #Song played for the whole of game B. Swap it for any AudioStream.
@@ -58,6 +59,8 @@ func begin_gameplay() -> void:
 	current_scene.connect("gameB_win",win_game)
 	current_scene.connect("gameB_loss",lose_game)
 	add_child(current_scene)
+	current_scene.enemy_zone_entered.connect(enemy._on_hit_zone_area_entered)
+	enemy.reset()
 ## Called every physics frame. _delta is the seconds between each frame. 
 func _physics_process(_delta: float) -> void:
 	pass
@@ -107,6 +110,8 @@ func win_game():
 		change_to_end_scene(1)
 		note_speed += 20
 		remaining_rounds -=1
+		enemy.reset()
+
 	
 	
 	
@@ -138,6 +143,12 @@ func _on_difficulty_selected(difficulty: int) -> void:
 
 func _on_game_bplayer_lane_pressed(note_index: int) -> void:
 	print("Interaction signal received correctly Lane: ", note_index)
+
+
+func _on_enemy_score_changed(new_score: int) -> void:
+	print("Enemy score: ", new_score)
+	if current_scene and "enemy_score" in current_scene:
+		current_scene.enemy_score = new_score
 	
 func _on_cutscene_finished() -> void:
 	current_scene.queue_free()
@@ -165,7 +176,12 @@ func start_gameplay(selected_bpm: float) -> void:
 	current_scene.note_speed = note_speed
 	current_scene.frequency = note_frequency
 
-	current_scene.gameB_win.connect(win_game)
-	current_scene.gameB_loss.connect(lose_game)
+
+	current_scene.connect("gameB_win",win_game)
+	current_scene.connect("gameB_loss",lose_game)
 
 	add_child(current_scene)
+
+
+	current_scene.enemy_zone_entered.connect(enemy._on_hit_zone_area_entered)
+	enemy.reset()

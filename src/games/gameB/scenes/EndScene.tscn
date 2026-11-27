@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://3kjmcrpq64lj"]
 
 [ext_resource type="Script" uid="uid://cstwssa3tqfq5" path="res://games/gameB/scripts/end_scene.gd" id="1_vux5k"]
-[ext_resource type="Texture2D" uid="uid://wgjqarjaldp0" path="res://games/gameB/assets/background_Concept.png" id="2_i2047"]
+[ext_resource type="Texture2D" uid="uid://dkohbonlqatnq" path="res://games/gameB/assets/background_Concept.png" id="2_i2047"]
 
 [node name="EndScene" type="Node2D" unique_id=1679960457]
+z_index = 1
 script = ExtResource("1_vux5k")
 
 [node name="BackgroundConcept" type="Sprite2D" parent="." unique_id=386571930]

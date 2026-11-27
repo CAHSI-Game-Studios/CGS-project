@@ -1,5 +1,6 @@
 extends Node2D
 
+signal enemy_zone_entered(area: Area2D)
 signal note_collided(lane_index: int)
 signal gameplay_B_end
 signal gameB_win
@@ -42,6 +43,7 @@ func _ready() -> void:
 	var hit_line: Area2D = $HitLine
 	hit_line.area_entered.connect(_on_hit_area_entered)
 	hit_line.area_exited.connect(_on_hit_area_exited)
+	
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed(action):
@@ -84,13 +86,14 @@ func _on_hit_area_exited(area: Area2D) -> void:
 func _on_game_timer_timeout() -> void:
 	$NoteTimer.stop()
 	print("MINIGAME OVER")
-	await gameplay_B_end
+	if not get_tree().get_nodes_in_group("Notes").is_empty():
+		await gameplay_B_end
+	
 	print(score)
 	print(enemy_score)
 	if score > enemy_score:
 		print("YOU WIN")
 		gameB_win.emit()
-
 
 	else:
 		print("YOU LOSE")
@@ -125,3 +128,10 @@ func _on_target2_area_entered(area: Area2D) -> void:
 	area.kill()
 	_on_note_despawn()
 	
+
+
+
+
+
+func _on_enemy_hit_zone_area_entered(area: Area2D) -> void:
+	enemy_zone_entered.emit(area)

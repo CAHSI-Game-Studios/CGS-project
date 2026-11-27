@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c6ub2s4yw2xww"]
 
 [ext_resource type="Script" uid="uid://dbjjs2tfo352o" path="res://games/gameB/scripts/CollisionDemo.gd" id="1_d3516"]
-[ext_resource type="Texture2D" uid="uid://wgjqarjaldp0" path="res://games/gameB/assets/background_Concept.png" id="2_h4u7c"]
+[ext_resource type="Texture2D" uid="uid://dkohbonlqatnq" path="res://games/gameB/assets/background_Concept.png" id="2_h4u7c"]
 [ext_resource type="PackedScene" uid="uid://b0ghowbdn5mrx" path="res://core/scenes/pause_menu.tscn" id="3_h4u7c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_target"]
@@ -10,7 +10,11 @@ radius = 26.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hit"]
 size = Vector2(35, 47)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rcfy7"]
+size = Vector2(37, 46)
+
 [node name="RhythmCollisionDemo" type="Node2D" unique_id=1118242434]
+z_index = -1
 script = ExtResource("1_d3516")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=255916158]
@@ -84,7 +88,22 @@ autostart = true
 
 [node name="PauseMenu" parent="." unique_id=2007257531 instance=ExtResource("3_h4u7c")]
 
+[node name="EnemyHitZone" type="Area2D" parent="." unique_id=310073762]
+position = Vector2(302, 271)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitZone" unique_id=451144382]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_rcfy7")
+
+[node name="ColorRect" type="ColorRect" parent="EnemyHitZone" unique_id=927627484]
+offset_left = -9.0
+offset_top = -33.0
+offset_right = 10.0
+offset_bottom = 42.0
+color = Color(1, 0.01999998, 0.01999998, 1)
+
 [connection signal="area_entered" from="Lanes/Lane1/Target" to="." method="_on_target_area_entered"]
 [connection signal="area_entered" from="Lanes/Lane2/Target" to="." method="_on_target2_area_entered"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="timeout" from="NoteTimer" to="." method="_on_note_timer_timeout"]
+[connection signal="area_entered" from="EnemyHitZone" to="." method="_on_enemy_hit_zone_area_entered"]

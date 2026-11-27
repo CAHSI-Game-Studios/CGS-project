@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bg0robho1wk0i"]
+
+[ext_resource type="Script" uid="uid://djw0snqwa6q8g" path="res://games/gameB/scripts/enemy.gd" id="1_wxkd2"]
+[ext_resource type="Texture2D" uid="uid://81ppbf36wc7r" path="res://core/assets/Nova.png" id="2_kinus"]
+
+[node name="Enemy" type="Node2D" unique_id=1418312323]
+script = ExtResource("1_wxkd2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=833615943]
+texture = ExtResource("2_kinus")
