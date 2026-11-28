@@ -86,6 +86,35 @@ autostart = true
 
 [node name="WaitTimer" type="Timer" parent="." unique_id=1874046574]
 
+[node name="ScoreDisplay" type="Control" parent="." unique_id=1402917735]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+
+[node name="ScoreLabel" type="Label" parent="ScoreDisplay" unique_id=1402917736]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 720.0
+offset_bottom = 90.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 24
+text = "Score: 0"
+
+[node name="JudgementLabel" type="Label" parent="ScoreDisplay" unique_id=1402917737]
+layout_mode = 0
+offset_left = 916.5
+offset_top = 170.0
+offset_right = 1116.5
+offset_bottom = 215.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
 [node name="PauseMenu" parent="." unique_id=2007257531 instance=ExtResource("3_h4u7c")]
 
 [node name="EnemyHitZone" type="Area2D" parent="." unique_id=310073762]
