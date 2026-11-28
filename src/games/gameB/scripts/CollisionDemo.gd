@@ -1,5 +1,6 @@
 extends Node2D
 
+signal enemy_zone_entered(area: Area2D)
 signal note_collided(lane_index: int)
 signal gameplay_B_end
 signal gameB_win
@@ -52,7 +53,8 @@ var judgement_tween: Tween
 @onready var judgement_label: Label = $ScoreDisplay/JudgementLabel
 
 func _ready() -> void:
-	$NoteTimer.wait_time = 1/(frequency / bpm)
+	interval = 60.0 / bpm
+	$NoteTimer.wait_time = interval
 	$NoteTimer.start()
 	var longest: float = 0.0
 	for lane_node in $Lanes.get_children():
@@ -143,13 +145,14 @@ func _on_hit_area_exited(area: Area2D) -> void:
 func _on_game_timer_timeout() -> void:
 	$NoteTimer.stop()
 	print("MINIGAME OVER")
-	await gameplay_B_end
+	if not get_tree().get_nodes_in_group("Notes").is_empty():
+		await gameplay_B_end
+	
 	print(score)
 	print(enemy_score)
 	if score > enemy_score:
 		print("YOU WIN")
 		gameB_win.emit()
-
 
 	else:
 		print("YOU LOSE")
@@ -190,3 +193,10 @@ func _on_target2_area_entered(area: Area2D) -> void:
 	area.kill()
 	_on_note_despawn()
 	
+
+
+
+
+
+func _on_enemy_hit_zone_area_entered(area: Area2D) -> void:
+	enemy_zone_entered.emit(area)
