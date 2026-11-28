@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://dqdwsu570aomg"]
+
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_ypeet"]
+
+[resource]
+script = ExtResource("1_ypeet")
+id = &"redSilence1"
+dialogue_type = 2
+speaker = "Red"
+text = "Sorry, I spaced out. "
+text_duration = 2.0
+metadata/_custom_type_script = "uid://pxo52x3jat8o"

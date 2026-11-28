@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CharacterInteraction" format=3 uid="uid://c4fd7evx3ec87"]
+
+[ext_resource type="Script" uid="uid://cs10tpo1x3n0d" path="res://core/hub_oc_manager/characterInteraction.gd" id="1_lk1p3"]
+[ext_resource type="SpriteFrames" uid="uid://baeus8htymbor" path="res://core/hub_oc_manager/temp/sprite_frames/coloredCharacterSpriteFrames.tres" id="1_sqsll"]
+[ext_resource type="Resource" uid="uid://cl7ccq6bx4vyb" path="res://core/hub_oc_manager/temp/dialogues/green/option0/green0.tres" id="2_o0wwq"]
+
+[resource]
+script = ExtResource("1_lk1p3")
+id = &"greenIntroUp"
+animations = ExtResource("1_sqsll")
+animation_to_play = "greenIdleUp"
+dialogue = ExtResource("2_o0wwq")
+one_shot = true
+metadata/_custom_type_script = "uid://cs10tpo1x3n0d"

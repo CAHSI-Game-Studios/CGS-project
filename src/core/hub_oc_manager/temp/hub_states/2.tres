@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="HubState" format=3 uid="uid://bp82dokapoeyd"]
+
+[ext_resource type="Script" uid="uid://cs10tpo1x3n0d" path="res://core/hub_oc_manager/characterInteraction.gd" id="1_fig3k"]
+[ext_resource type="Script" uid="uid://d1dgea5neqeai" path="res://core/hub_oc_manager/hubState.gd" id="6_bcw7m"]
+
+[resource]
+script = ExtResource("6_bcw7m")
+id = &"none"
+metadata/_custom_type_script = "uid://d1dgea5neqeai"

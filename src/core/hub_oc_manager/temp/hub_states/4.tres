@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HubState" format=3 uid="uid://mhorifw2ct6h"]
+
+[ext_resource type="Script" uid="uid://cs10tpo1x3n0d" path="res://core/hub_oc_manager/characterInteraction.gd" id="1_dncis"]
+[ext_resource type="Script" uid="uid://d1dgea5neqeai" path="res://core/hub_oc_manager/hubState.gd" id="2_krugi"]
+[ext_resource type="Resource" uid="uid://blxqv02643yow" path="res://core/hub_oc_manager/temp/interactions/blue/blueOutside.tres" id="2_yofym"]
+
+[resource]
+script = ExtResource("2_krugi")
+id = &"blueOutside"
+interactions = Dictionary[int, ExtResource("1_dncis")]({
+2: ExtResource("2_yofym")
+})
+metadata/_custom_type_script = "uid://d1dgea5neqeai"

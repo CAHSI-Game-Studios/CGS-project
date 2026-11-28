@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://cloh18dv7kh1l"]
+
+[ext_resource type="Script" uid="uid://wmottv1kh8ut" path="res://core/hub_oc_manager/hubInteractionsManager.gd" id="1_afd3c"]
+[ext_resource type="Resource" uid="uid://mtsflqm4xedv" path="res://core/hub_oc_manager/temp/hub_states/0.tres" id="1_dw7pg"]
+[ext_resource type="PackedScene" uid="uid://c1ajoul1eerja" path="res://core/hub_oc_manager/interactionArea.tscn" id="2_712fi"]
+[ext_resource type="Script" uid="uid://d1dgea5neqeai" path="res://core/hub_oc_manager/hubState.gd" id="2_nn6tf"]
+[ext_resource type="PackedScene" uid="uid://8u7o87nryac0" path="res://core/dialogue_system/DialogueSystem.tscn" id="3_afd3c"]
+[ext_resource type="Resource" uid="uid://do38kxk3n8ulr" path="res://core/hub_oc_manager/temp/hub_states/1.tres" id="3_fky0j"]
+[ext_resource type="Resource" uid="uid://bp82dokapoeyd" path="res://core/hub_oc_manager/temp/hub_states/2.tres" id="4_0pkqh"]
+[ext_resource type="Resource" uid="uid://cn4lbbdn364nu" path="res://core/hub_oc_manager/temp/hub_states/3.tres" id="5_oed3i"]
+[ext_resource type="Resource" uid="uid://mhorifw2ct6h" path="res://core/hub_oc_manager/temp/hub_states/4.tres" id="6_0pkqh"]
+
+[sub_resource type="GDScript" id="GDScript_712fi"]
+resource_name = "interactionManagerTest"
+script/source = "extends Node
+
+@onready var hub_interactions_manager: HubInteractionsManager = $\"'hub'/HubInteractionsManager\"
+@export var state_to_run_index : int = 0 ## Limited to test_states.size() - 1
+@export var test_states : Array[HubState]
+
+func _ready() -> void:
+	if state_to_run_index < test_states.size():
+		hub_interactions_manager.set_interactions_from_hub_state(
+			test_states[state_to_run_index]
+		)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgwgs"]
+
+[sub_resource type="GDScript" id="GDScript_afd3c"]
+script/source = "extends CharacterBody2D
+
+func _physics_process(_delta: float) -> void:
+	velocity = Input.get_vector(\"move_left\", \"move_right\",\"move_up\",\"move_down\") * 100
+	move_and_slide()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dw7pg"]
+
+[node name="hubInteractionsManagerTest" type="Node" unique_id=1459803970]
+script = SubResource("GDScript_712fi")
+state_to_run_index = 4
+test_states = Array[ExtResource("2_nn6tf")]([ExtResource("1_dw7pg"), ExtResource("3_fky0j"), ExtResource("4_0pkqh"), ExtResource("5_oed3i"), ExtResource("6_0pkqh")])
+
+[node name="\'hub\'" type="Node2D" parent="." unique_id=2068246313]
+
+[node name="HubInteractionsManager" type="Node" parent="\'hub\'" unique_id=118413592 node_paths=PackedStringArray("dialogue_system", "location_markers")]
+script = ExtResource("1_afd3c")
+dialogue_system = NodePath("../../CanvasLayer/DialogueSystem")
+location_markers = {
+0: NodePath("../interactionMarkers/north"),
+1: NodePath("../interactionMarkers/south"),
+2: NodePath("../interactionMarkers/east"),
+3: NodePath("../interactionMarkers/west")
+}
+metadata/_custom_type_script = "uid://wmottv1kh8ut"
+
+[node name="walls" type="StaticBody2D" parent="\'hub\'" unique_id=2139357232]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="\'hub\'/walls" unique_id=1475999892]
+build_mode = 1
+polygon = PackedVector2Array(0, 0, 128, 0, 128, 128, 0, 128)
+
+[node name="bg" type="ColorRect" parent="\'hub\'/walls" unique_id=84166309]
+offset_right = 128.0
+offset_bottom = 128.0
+color = Color(0.53737485, 0.00020749167, 0.5373711, 1)
+
+[node name="bg2" type="ColorRect" parent="\'hub\'/walls" unique_id=820736528]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 126.0
+offset_bottom = 126.0
+color = Color(1, 0.5372549, 1, 1)
+
+[node name="interactionMarkers" type="Node2D" parent="\'hub\'" unique_id=1359867439]
+
+[node name="north" type="Marker2D" parent="\'hub\'/interactionMarkers" unique_id=568263755]
+position = Vector2(64, 16)
+
+[node name="HubLocation" parent="\'hub\'/interactionMarkers/north" unique_id=1346217520 instance=ExtResource("2_712fi")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="\'hub\'/interactionMarkers/north/HubLocation" unique_id=13304686]
+shape = SubResource("RectangleShape2D_qgwgs")
+
+[node name="south" type="Marker2D" parent="\'hub\'/interactionMarkers" unique_id=739935626]
+position = Vector2(64, 112)
+
+[node name="HubLocation" parent="\'hub\'/interactionMarkers/south" unique_id=960885195 instance=ExtResource("2_712fi")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="\'hub\'/interactionMarkers/south/HubLocation" unique_id=187693749]
+shape = SubResource("RectangleShape2D_qgwgs")
+
+[node name="east" type="Marker2D" parent="\'hub\'/interactionMarkers" unique_id=1742416947]
+position = Vector2(112, 64)
+
+[node name="HubLocation" parent="\'hub\'/interactionMarkers/east" unique_id=1792832391 instance=ExtResource("2_712fi")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="\'hub\'/interactionMarkers/east/HubLocation" unique_id=1872017521]
+shape = SubResource("RectangleShape2D_qgwgs")
+
+[node name="west" type="Marker2D" parent="\'hub\'/interactionMarkers" unique_id=59083688]
+position = Vector2(16, 64)
+
+[node name="HubLocation" parent="\'hub\'/interactionMarkers/west" unique_id=1337647618 instance=ExtResource("2_712fi")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="\'hub\'/interactionMarkers/west/HubLocation" unique_id=37804488]
+shape = SubResource("RectangleShape2D_qgwgs")
+
+[node name="player" type="CharacterBody2D" parent="\'hub\'" unique_id=39447810]
+position = Vector2(64, 66)
+script = SubResource("GDScript_afd3c")
+
+[node name="Camera2D" type="Camera2D" parent="\'hub\'/player" unique_id=1540906920]
+zoom = Vector2(5.185, 5.185)
+limit_left = 0
+limit_top = 0
+limit_right = 128
+limit_bottom = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="\'hub\'/player" unique_id=248512370]
+shape = SubResource("CircleShape2D_dw7pg")
+
+[node name="Polygon2D" type="Polygon2D" parent="\'hub\'/player" unique_id=960235617]
+position = Vector2(-8, -8)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 0, 0, 16, 16, 16, 16, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=77601769]
+
+[node name="DialogueSystem" parent="CanvasLayer" unique_id=1918673968 instance=ExtResource("3_afd3c")]
+visible = false

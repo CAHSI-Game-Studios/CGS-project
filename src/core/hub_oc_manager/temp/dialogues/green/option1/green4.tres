@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://jv21cpl64wif"]
+
+[ext_resource type="Script" uid="uid://pxo52x3jat8o" path="res://core/dialogue_system/dialogue.gd" id="1_ltxxo"]
+
+[resource]
+script = ExtResource("1_ltxxo")
+id = &"greenFlowers"
+dialogue_type = 2
+speaker = "Green"
+text = "Flowers... Yes... I think I will get her flowers. Thank you for the suggestion."
+text_duration = 3.0
+allow_skip_at = 0.2
+metadata/_custom_type_script = "uid://pxo52x3jat8o"
